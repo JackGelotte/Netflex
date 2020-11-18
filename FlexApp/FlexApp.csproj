@@ -10,4 +10,8 @@
     <Folder Include="Images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseConnection\DatabaseConnection.csproj" />
+  </ItemGroup>
+
 </Project>

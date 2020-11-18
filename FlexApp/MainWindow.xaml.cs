@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DatabaseConnection;
+using FlexApp.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,29 @@ namespace FlexApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private UserStatus user = new UserStatus();
+
         public MainWindow()
         {
             InitializeComponent();
+            
+        }
+
+
+
+        public bool[] options = { true, true, true, true, true };
+        public void Click_Search_Options()
+        {
+
+        }
+
+        public void Click_Search(object e)
+        {       
+            UserRental ur = new UserRental(user);
+
+            ur.RegisterRental(UserSearch.Search("Titanic", options));
+
+            
         }
     }
 }
