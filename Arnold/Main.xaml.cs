@@ -10,14 +10,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Application
+namespace Arnold
 {
     /// <summary>
-    /// Interaction logic for StartScreen.xaml
+    /// Interaction logic for Main.xaml
     /// </summary>
-    public partial class StartScreen : Window
+    public partial class Main : Window
     {
-        public StartScreen()
+        public Main()
         {
             InitializeComponent();
         }
