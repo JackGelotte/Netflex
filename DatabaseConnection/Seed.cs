@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DatabaseConnection
+﻿namespace DatabaseConnection
 {
-    class Seed
+    internal class Seed
     {
-        static void Main()
+        private static void Main()
         {
-
         }
     }
 }
