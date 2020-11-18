@@ -1,17 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DatabaseConnection
 {
     public class Context : DbContext
     {
-        public DbSet<UserAccount> UserAccounts { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Rental> Rentals { get; set; }
-        public DbSet<UserPassword> UserPasswords { get; set; }
-
+        public DbSet<Login> Logins { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
