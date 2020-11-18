@@ -13,8 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-<<<<<<< HEAD:Apply/MainWindow.xaml.cs
-namespace Apply
+namespace FlexApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -22,16 +21,6 @@ namespace Apply
     public partial class MainWindow : Window
     {
         public MainWindow()
-=======
-namespace Arnold
-{
-    /// <summary>
-    /// Interaction logic for Main.xaml
-    /// </summary>
-    public partial class Main : Window
-    {
-        public Main()
->>>>>>> f727bacf3e7438a43254dfc30b2b4bd172f45d1d:Arnold/Main.xaml.cs
         {
             InitializeComponent();
         }
