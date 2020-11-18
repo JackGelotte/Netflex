@@ -8,7 +8,7 @@ namespace DatabaseConnection
 {
     static class Seed
     {
-        static void Main() { 
+        static void Main() {
             ct.RemoveRange(ct.Movies);
             ct.SaveChanges();
             Read(File.ReadAllLines(@".\MovieList.csv").Take(1000).ToArray()); }
@@ -25,7 +25,7 @@ namespace DatabaseConnection
 
         public static string FindGenre(string s) => String.Join(", ", s.Split('|').Select(g => ToEnum(g)));
 
-        public static void Read(string[] movies) 
+        public static void Read(string[] movies)
         {
             for (int i = 1; i < movies.Length; i++)
             {
@@ -45,9 +45,9 @@ namespace DatabaseConnection
                     movieSort.Add(movieRaw[2]);
                     movieSort.Add("0");
                 }
-                    
                 movieSort.Add(movieRaw[3]);
                 movieSort.Add(FindGenre(movieRaw[4]));
+                movieSort.Add(movieRaw[0]);
 
                 Write(movieSort);
             }
@@ -64,13 +64,14 @@ namespace DatabaseConnection
                         Title = movie[0],
                         Year = Int32.Parse(movie[1]),
                         Rating = movie[2],
-                        Genre = movie[3]
+                        Genre = movie[3],
+                        ImdbID = Int32.Parse(movie[4])
                     };
                     ct.Add(m);
                     ct.SaveChanges();
                 }
                 catch { }
             }
-        }   
+        }
     }
 }
