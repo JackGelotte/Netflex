@@ -5,7 +5,7 @@ using System.Text;
 namespace FlexApp.User
 {
     static class UserCreation
-    {          
+    {
         public static void CreateNewUser(UserStatus user)
         {
 

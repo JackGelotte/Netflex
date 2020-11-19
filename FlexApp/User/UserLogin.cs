@@ -6,7 +6,6 @@ namespace FlexApp.User
 {
     class UserLogin
     {
-              
-        
+
     }
 }

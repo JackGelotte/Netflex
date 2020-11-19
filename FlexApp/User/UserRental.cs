@@ -11,7 +11,7 @@ namespace FlexApp.User
 
         public Movie Movie { get; set; }
 
-        public UserRental(UserStatus user) 
+        public UserRental(UserStatus user)
         {
             User = user;
         }

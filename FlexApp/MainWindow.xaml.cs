@@ -27,7 +27,6 @@ namespace FlexApp
         public MainWindow()
         {
             InitializeComponent();
-            
         }
 
 
@@ -39,12 +38,11 @@ namespace FlexApp
         }
 
         public void Click_Search(object e)
-        {       
+        {
             UserRental ur = new UserRental(user);
 
             ur.RegisterRental(UserSearch.Search("Titanic", options));
 
-            
         }
     }
 }
