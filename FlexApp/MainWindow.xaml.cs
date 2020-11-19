@@ -27,7 +27,6 @@ namespace FlexApp
         public MainWindow()
         {
             InitializeComponent();
-            
         }
 
 
@@ -60,7 +59,6 @@ namespace FlexApp
 
             ar.RegisterRental(SearchResults.First(), daysActive);
 
-            
         }
 
         public bool ReverseBool(bool b) => b == true ? false : true;
