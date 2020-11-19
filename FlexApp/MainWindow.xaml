@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280">
     <Grid>
-        <Image Stretch="Fill" Source="sdfsdfsd.png" Height="718" VerticalAlignment="Top" Margin="0,-14,0,0"/>
-
+        <Image Stretch="Fill" Source="/Images/sdfsdfsd.png" Height="718" VerticalAlignment="Top" Margin="0,-14,0,0"/>
+        <Image Source="/Images/Logo.png" Margin="10,-32,949,559"/>
+        <Frame Source="Franco.xaml" Margin="211,166,46,10"/>
     </Grid>
 </Window>
