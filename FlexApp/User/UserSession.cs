@@ -6,13 +6,13 @@ using DatabaseConnection;
 namespace FlexApp
 {
 
-    class UserStatus
+    class UserSession
     {
         public bool IsLoggedIn { get; set; }
 
         public Customer Customer { get; set; }
 
-        public UserStatus() { IsLoggedIn = false; }
+        public UserSession() { IsLoggedIn = false; }
 
 
         public void ShowHistory() { }

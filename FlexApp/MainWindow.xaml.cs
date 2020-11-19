@@ -1,5 +1,4 @@
 ﻿using DatabaseConnection;
-using FlexApp.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FlexApp.User;
 
 namespace FlexApp
 {
@@ -22,7 +22,7 @@ namespace FlexApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private UserStatus user = new UserStatus();
+        private UserSession user = new UserSession();
 
         public MainWindow()
         {
@@ -31,20 +31,38 @@ namespace FlexApp
         }
 
 
+        public List<string> Options = new List<string> { "Title", "Genre", "Year" };
 
-        public bool[] options = { true, true, true, true, true };
-        public void Click_Search_Options()
+        public List<Movie> SearchResults = new List<Movie>();
+
+        public void Click_Search_Options(object e)
         {
+            bool buttonClicked = true;
+            buttonClicked = ReverseBool(buttonClicked);
+            if (buttonClicked) ;// Options.Add( Name of click )
+            if (!buttonClicked) ; // Option.Remove( Name of click )
 
         }
 
         public void Click_Search(object e)
         {       
-            UserRental ur = new UserRental(user);
+            AppRental ar = new AppRental(user);
 
-            ur.RegisterRental(UserSearch.Search("Titanic", options));
+            string searchTerm = "Titanic";
+
+            foreach (string s in Options) SearchResults.AddRange(Search.ShowResult(searchTerm, s));
+
+
+
+
+
+            int daysActive = 1; // 1, 3, 7
+
+            ar.RegisterRental(SearchResults.First(), daysActive);
 
             
         }
+
+        public bool ReverseBool(bool b) => b == true ? false : true;
     }
 }
