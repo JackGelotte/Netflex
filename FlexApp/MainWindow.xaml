@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280" AllowsTransparency="True"
         WindowStyle="None">
- 
+
     <Grid>
         <Image Source="/Images/sdfsdfsd.png" Height="720" Width="1280" VerticalAlignment="Top"/>
         <Image Source="/Images/Logo.png" Margin="0,-2,949,583"/>
-        <Frame Source="Franco1.xaml" Margin="214,183,51,0"/>
+        <Frame Source="Franco1.xaml" Margin="0,175,40,0" HorizontalAlignment="Right" Width="1030"/>
         <local:ButtonMenu HorizontalAlignment="Left" Width="160" Height="580" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
