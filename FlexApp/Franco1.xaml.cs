@@ -14,14 +14,13 @@ using System.Windows.Shapes;
 namespace FlexApp
 {
     /// <summary>
-    /// Interaction logic for Arnold.xaml
+    /// Interaction logic for Franco1.xaml
     /// </summary>
-    public partial class Arnold : UserControl
+    public partial class Franco1 : Page
     {
-        public Arnold()
+        public Franco1()
         {
             InitializeComponent();
-            this.DataContext = this;
         }
     }
 }
