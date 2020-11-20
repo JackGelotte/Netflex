@@ -7,11 +7,11 @@ namespace FlexApp.User
 {
     class UserRental
     {
-        public UserStatus User { get; set; }
+        public UserSession User { get; set; }
 
         public Movie Movie { get; set; }
 
-        public UserRental(UserStatus user)
+        public UserRental(UserSession user)
         {
             User = user;
         }
