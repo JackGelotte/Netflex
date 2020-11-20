@@ -26,7 +26,7 @@ namespace FlexApp
 
         private UserSession user = new UserSession();
         
-        private List<Movie> FrontPageMovies { get; set; }
+        
 
         public MainWindow()
         {
@@ -34,11 +34,11 @@ namespace FlexApp
 
             UserSession currentSession = new UserSession();
 
-            LoadFrontPageMovies();
+            MovieViewer.LoadNewMovies();
 
         }
 
-        public void LoadFrontPageMovies() { FrontPageMovies = ct.Movies.OrderBy(x => x.Rating).Take(10).ToList(); }
+        
 
 
 
