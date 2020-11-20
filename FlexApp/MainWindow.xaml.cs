@@ -71,8 +71,8 @@ namespace FlexApp
         {
             bool buttonClicked = true;
             buttonClicked = ReverseBool(buttonClicked);
-            if (buttonClicked) ;// Options.Add( Name of click )
-            if (!buttonClicked) ; // Option.Remove( Name of click )
+            if (buttonClicked);// Options.Add( Name of click )
+            if (!buttonClicked); // Option.Remove( Name of click )
 
         }
 

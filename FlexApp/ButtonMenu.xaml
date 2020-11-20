@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="FlexApp.ButtonMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlexApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="580" d:DesignWidth="160">
+    <Grid>
+        <StackPanel Grid.Column="1">
+            <Separator Height="20" Background="Transparent"/>
+            <Button HorizontalAlignment="Center" Width="120" Click="Search_Click">
+ 
+                <StackPanel HorizontalAlignment="Stretch">
+                    <TextBlock HorizontalAlignment="Left" Text="Search" FontSize="20"/>
+                </StackPanel>
+            </Button>
+            
+            <Separator Height="20" Background="Transparent"/>
+
+            <Button HorizontalAlignment="Center" Width="120" Click="Categories_Click">
+                <StackPanel HorizontalAlignment="Stretch">
+                    <TextBlock HorizontalAlignment="Left" Text="Categories" FontSize="20"/>
+                </StackPanel>
+            </Button>
+            
+            <Separator Height="20" Background="Transparent"/>
+            
+            <Button HorizontalAlignment="Center" Width="120" Click="Hot_Click">
+                <StackPanel HorizontalAlignment="Stretch">
+                    <TextBlock HorizontalAlignment="Left" Text="Hett just nu" FontSize="20"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

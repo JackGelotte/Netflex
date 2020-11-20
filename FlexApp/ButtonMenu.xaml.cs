@@ -14,14 +14,29 @@ using System.Windows.Shapes;
 namespace FlexApp
 {
     /// <summary>
-    /// Interaction logic for Franco.xaml
+    /// Interaction logic for ButtonMenu.xaml
     /// </summary>
-    public partial class Franco : Page
+    public partial class ButtonMenu : UserControl
     {
-        public Franco()
+        public const int BUTTON_SEPARATOR = 150;
+        public ButtonMenu()
         {
             InitializeComponent();
-            
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Categories_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Hot_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

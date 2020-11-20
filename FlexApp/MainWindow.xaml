@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlexApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280"
-        AllowsTransparency="True"
+        Title="MainWindow" Height="720" Width="1280" AllowsTransparency="True"
         WindowStyle="None">
+ 
     <Grid>
-        <Image Stretch="Fill" Source="/Images/sdfsdfsd.png" Height="718" VerticalAlignment="Top" Margin="0,8,0,0"/>
-        <Image Source="/Images/Logo.png" Margin="10,-32,949,559"/>
-        <Frame Source="Franco.xaml" Margin="211,166,46,10"/>
+        <Image Source="/Images/sdfsdfsd.png" Height="720" Width="1280" VerticalAlignment="Top"/>
+        <Image Source="/Images/Logo.png" Margin="0,-2,949,583"/>
+        <Frame Source="Franco1.xaml" Margin="214,183,51,0"/>
+        <local:ButtonMenu HorizontalAlignment="Left" Width="160" Height="580" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
