@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="470*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="350"/>
+                <RowDefinition Height="{Binding HEIGHT}"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="350"/>
                 <RowDefinition Height="100"/>

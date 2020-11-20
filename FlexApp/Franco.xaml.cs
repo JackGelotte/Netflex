@@ -21,6 +21,7 @@ namespace FlexApp
         public Franco()
         {
             InitializeComponent();
+            
         }
     }
 }
