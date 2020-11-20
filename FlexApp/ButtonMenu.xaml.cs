@@ -36,7 +36,7 @@ namespace FlexApp
 
         private void Hot_Click(object sender, RoutedEventArgs e)
         {
-
+            MovieViewer.LoadPopularMovies();
         }
     }
 }

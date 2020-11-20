@@ -22,12 +22,45 @@ namespace FlexApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Context ct = new Context();
+
         private UserSession user = new UserSession();
+        
+        
 
         public MainWindow()
         {
             InitializeComponent();
+
+            UserSession currentSession = new UserSession();
+
+            MovieViewer.LoadNewMovies();
+
         }
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         public List<string> Options = new List<string> { "Title", "Genre", "Year" };
