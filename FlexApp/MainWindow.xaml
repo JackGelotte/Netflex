@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FlexApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280" AllowsTransparency="True"
-        WindowStyle="None">
+        WindowStyle="None" WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Image Source="/Images/sdfsdfsd.png" Height="720" Width="1280" VerticalAlignment="Top"/>

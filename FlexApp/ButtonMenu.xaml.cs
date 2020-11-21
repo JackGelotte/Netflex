@@ -31,7 +31,7 @@ namespace FlexApp
 
         private void Categories_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void Hot_Click(object sender, RoutedEventArgs e)

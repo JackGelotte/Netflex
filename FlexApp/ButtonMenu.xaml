@@ -9,8 +9,8 @@
     <Grid>
         <StackPanel Grid.Column="1">
             <Separator Height="20" Background="Transparent"/>
-            <Button HorizontalAlignment="Center" Width="120" Click="Search_Click">
- 
+            <Button HorizontalAlignment="Center" Width="120" Click="Search_Click" Cursor="Wait">
+
                 <StackPanel HorizontalAlignment="Stretch">
                     <TextBlock HorizontalAlignment="Left" Text="Search" FontSize="20"/>
                 </StackPanel>
@@ -18,7 +18,7 @@
             
             <Separator Height="20" Background="Transparent"/>
 
-            <Button HorizontalAlignment="Center" Width="120" Click="Categories_Click">
+            <Button HorizontalAlignment="Center" Width="120" Click="Categories_Click" Cursor="Wait">
                 <StackPanel HorizontalAlignment="Stretch">
                     <TextBlock HorizontalAlignment="Left" Text="Categories" FontSize="20"/>
                 </StackPanel>
@@ -26,7 +26,7 @@
             
             <Separator Height="20" Background="Transparent"/>
             
-            <Button HorizontalAlignment="Center" Width="120" Click="Hot_Click">
+            <Button HorizontalAlignment="Center" Width="120" Click="Hot_Click" Cursor="Wait">
                 <StackPanel HorizontalAlignment="Stretch">
                     <TextBlock HorizontalAlignment="Left" Text="Hett just nu" FontSize="20"/>
                 </StackPanel>
