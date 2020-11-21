@@ -26,17 +26,15 @@ namespace FlexApp
 
         public UserSession CurrentSession = new UserSession();
 
-        public MovieViewer mv = new MovieViewer();
 
         public MainWindow()
         {
             InitializeComponent();
-
+            
             if (CurrentSession.IsLoggedIn) { } // show logged in border
             else { } // show standard border
 
-            mv.LoadNewMovies();
-
+            MovieViewer.LoadNewMovies();
         }
 
     }

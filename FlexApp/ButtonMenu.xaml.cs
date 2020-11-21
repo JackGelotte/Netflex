@@ -27,7 +27,6 @@ namespace FlexApp
 
     public partial class ButtonMenu : UserControl
     {
-        public MovieViewer mv = new MovieViewer();
 
         Context ct = new Context();
 
@@ -80,21 +79,30 @@ namespace FlexApp
 
         }
 
-        private void Categories_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Hot_Click(object sender, RoutedEventArgs e)
         {
-            mv.ClearQueue();
-            mv.LoadPopularMovies();
+            MovieViewer.ClearQueue();
+            MovieViewer.LoadPopularMovies();
         }
 
         private void GenresComboBox_Select(object sender, MouseButtonEventArgs e)
         {
-            mv.ClearQueue();
-            mv.LoadMoviesByGenre(GenresComboBox.Text);
+            MovieViewer.ClearQueue();
+            MovieViewer.LoadMoviesByGenre(GenresComboBox.Text);
+        }
+
+        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            SearchBox.Text = "";
+        }
+
+        private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SearchBox.Text))
+            {
+                SearchBox.Text = "Search";
+            }
+           
         }
     }  
 }
