@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,7 +25,7 @@ namespace FlexApp
         public Franco1()
         {
             InitializeComponent();
-
+            
         }
 
         private void Click_Previous(object sender, RoutedEventArgs e)
@@ -36,7 +37,7 @@ namespace FlexApp
                     for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
                     {
 
-
+                        
 
 
                     }
