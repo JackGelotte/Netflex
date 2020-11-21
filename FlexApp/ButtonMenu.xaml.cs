@@ -94,7 +94,7 @@ namespace FlexApp
         private void GenresComboBox_Select(object sender, MouseButtonEventArgs e)
         {
             mv.ClearQueue();
-            mv.LoadMoviesByGenre(GenresComboBox.SelectedItem.ToString());
+            mv.LoadMoviesByGenre(GenresComboBox.Text);
         }
     }  
 }
