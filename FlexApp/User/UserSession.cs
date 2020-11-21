@@ -6,7 +6,7 @@ using DatabaseConnection;
 namespace FlexApp
 {
 
-    class UserSession
+    public class UserSession
     {
         public bool IsLoggedIn { get; set; }
 
@@ -14,11 +14,7 @@ namespace FlexApp
 
         public UserSession() { IsLoggedIn = false; }
 
-
         public void ShowHistory() { }
-
-
-
 
     }
 }

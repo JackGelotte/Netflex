@@ -6,7 +6,7 @@ using DatabaseConnection;
 
 namespace FlexApp.User
 {
-    class AppRental
+    public class AppRental
     {
         public UserSession User { get; set; }
 

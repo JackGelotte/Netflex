@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DatabaseConnection;
 
 namespace FlexApp
 {
@@ -18,9 +19,52 @@ namespace FlexApp
     /// </summary>
     public partial class Franco1 : Page
     {
+
+        
         public Franco1()
         {
             InitializeComponent();
+
+            
+
+
+
+        }
+
+        private void Click_Previous(object sender, RoutedEventArgs e)
+        {
+            if (MovieViewer.HoldPrevious.Count > 0)
+            {
+                for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
+                {
+                    for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
+                    {
+
+
+
+
+                    }
+                }
+            }
+
+        }
+
+        private void Click_Next(object sender, RoutedEventArgs e)
+        {
+            if(MovieViewer.DisplayMovies.Count > 0)
+            {
+                for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
+                {
+                    for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
+                    {
+
+
+
+
+                    }
+                }
+
+            }
 
         }
     }
