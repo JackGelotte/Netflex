@@ -32,7 +32,17 @@
                 </StackPanel>
             </Button>
 
+            <Separator Height="20" Background="Transparent"/>
             
+            <ComboBox Name="GenresComboBox"
+                      HorizontalAlignment="Center" Width="120" 
+                      ItemsSource="{Binding GenresTest}"
+                      DisplayMemberPath="GenreName"
+                      SelectedValuePath="GenreName"
+                      SelectedValue="SelectedGenre" 
+                      PreviewMouseLeftButtonDown="GenresComboBox_Select" />
+
+
         </StackPanel>
     </Grid>
 </UserControl>

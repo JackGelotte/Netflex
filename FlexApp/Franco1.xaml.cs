@@ -19,21 +19,17 @@ namespace FlexApp
     /// </summary>
     public partial class Franco1 : Page
     {
- 
-        
+
+        MovieViewer mv = new MovieViewer();
         public Franco1()
         {
             InitializeComponent();
-
-            
-
-
 
         }
 
         private void Click_Previous(object sender, RoutedEventArgs e)
         {
-            if (MovieViewer.HoldPrevious.Count > 0)
+            if (mv.HoldPrevious.Count > 0)
             {
                 for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
                 {
@@ -51,7 +47,7 @@ namespace FlexApp
 
         private void Click_Next(object sender, RoutedEventArgs e)
         {
-            if(MovieViewer.DisplayMovies.Count > 0)
+            if(mv.DisplayMovies.Count > 0)
             {
                 for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
                 {

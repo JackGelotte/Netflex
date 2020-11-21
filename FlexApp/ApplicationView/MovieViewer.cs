@@ -3,18 +3,21 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using DatabaseConnection;
+using System.Collections.ObjectModel;
 
 namespace FlexApp
 {
-    public static class MovieViewer
+    public class MovieViewer
     {
         public const int MOVIES_PER_PAGE = 10;
-        public static Queue<Movie> DisplayMovies { get; set; } = new Queue<Movie>();
-        public static Queue<Movie> HoldPrevious { get; set; } = new Queue<Movie>();
 
-        public static Context ct = new Context();
+        public Queue<Movie> DisplayMovies { get; set; } = new Queue<Movie>();
 
-        public static void SearchMovie(string input)
+        public Queue<Movie> HoldPrevious { get; set; } = new Queue<Movie>();
+
+        public Context ct = new Context();
+
+        public void SearchMovie(string input)
         {
             ct.Movies.Where(m => m.Title.Contains(input)
                 || m.Genre.Contains(input)
@@ -24,22 +27,24 @@ namespace FlexApp
                 .ForEach(m => DisplayMovies.Enqueue(m));
         }
 
-        public static void LoadPopularMovies()
+        public void LoadPopularMovies()
         {
             ct.Movies.OrderBy(x => x.Rating).Take(MOVIES_PER_PAGE).ToList().ForEach(m => DisplayMovies.Enqueue(m));
         }
 
-        public static void LoadNewMovies()
+        public void LoadNewMovies()
         {
             ct.Movies.OrderBy(x => x.Year).Take(MOVIES_PER_PAGE).ToList().ForEach(m => DisplayMovies.Enqueue(m));
         }
 
-        public static void LoadMoviesByGenre(int genre)
+        public void LoadMoviesByGenre(string genre)
         {
-            ct.Movies.Where(x => x.Genre.Contains($"{genre}")).ToList().ForEach(m => DisplayMovies.Enqueue(m));
+            ct.Movies.Where(x => x.Genre.Contains(genre)).ToList().ForEach(m => DisplayMovies.Enqueue(m));
+            Franco1 f1 = new Franco1();
+            f1.InitializeComponent();
         }
 
-        public static void ClearQueue()
+        public void ClearQueue()
         {
             DisplayMovies.Clear();
             HoldPrevious.Clear();
