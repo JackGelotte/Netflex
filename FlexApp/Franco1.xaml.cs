@@ -20,16 +20,38 @@ namespace FlexApp
     public partial class Franco1 : Page
     {
 
-        MovieViewer mv = new MovieViewer();
         public Franco1()
         {
             InitializeComponent();
-            
+
+            for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
+            {
+                for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
+                {
+                     Movie m = MovieViewer.DisplayMovies.Dequeue();
+                    
+                     Image image = new Image();
+                     image.Cursor = Cursors.Hand;
+                     image.HorizontalAlignment = HorizontalAlignment.Center;
+                     image.VerticalAlignment = VerticalAlignment.Center;
+
+                     image.Source = new BitmapImage(new Uri(GetImdbInfo.ImdbPoster(m)));
+
+                     image.Margin = new Thickness(4, 4, 4, 4);
+
+                     MovieGrid.Children.Add(image);
+                     Grid.SetRow(image, y);
+                     Grid.SetColumn(image, x);
+                    
+
+                }
+            }
+
         }
 
         private void Click_Previous(object sender, RoutedEventArgs e)
         {
-            if (mv.HoldPrevious.Count > 0)
+            if (MovieViewer.HoldPrevious.Count > 0)
             {
                 for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
                 {
@@ -47,7 +69,7 @@ namespace FlexApp
 
         private void Click_Next(object sender, RoutedEventArgs e)
         {
-            if(mv.DisplayMovies.Count > 0)
+            if(MovieViewer.DisplayMovies.Count > 0)
             {
                 for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
                 {

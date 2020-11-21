@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DatabaseConnection;
 using IMDbApiLib;
 using IMDbApiLib.Models;
+using System.Linq;
 
 namespace FlexApp
 {
@@ -38,6 +39,13 @@ namespace FlexApp
             var data = await api.TitleAsync($"{movie.ImdbID}");
             return data.Similars;
         }
+        public static string ImdbPoster(Movie movie)
+        {
+            var apiLib = new ApiLib(API_KEY);
+            var data = apiLib.TitleAsync($"tt{movie.ImdbID}");
+            return data.Result.Posters.Posters.First().Link;
+        }
+
 
     }
 }
