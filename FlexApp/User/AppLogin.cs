@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FlexApp.User
 {
-    static class AppLogin
+    public static class AppLogin
     {
               
         public static void Loggin(UserSession user, string username, string password)
