@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -12,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DatabaseConnection;
+using Microsoft.EntityFrameworkCore;
+using System.Windows.Markup;
 
 namespace FlexApp
 {
@@ -25,6 +28,15 @@ namespace FlexApp
         public ButtonMenu()
         {
             InitializeComponent();
+
+
+            // Genres.ItemsSource = Enum.GetValues(typeof(Genre)).Cast<Genre>();
+
+            //Context ct = new Context();
+
+            //Genres.ItemsSource = ct.Movies.ToList();
+
+            // typeof(Colors).GetProperties();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -35,9 +47,9 @@ namespace FlexApp
         string SelectedGenre = "Action";
         public static int GetEnum(string value)
         {
-            try 
-            { 
-                return (int)Enum.Parse(typeof(Genre), Regex.Replace(value, "[ -]", "")); 
+            try
+            {
+                return (int)Enum.Parse(typeof(Genre), Regex.Replace(value, "[ -]", ""));
             }
             catch { return 24; }
         }
@@ -51,5 +63,6 @@ namespace FlexApp
         {
             MovieViewer.LoadPopularMovies();
         }
-    }
+
+    }  
 }

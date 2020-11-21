@@ -28,11 +28,9 @@
             
             <Image Source="https://images-na.ssl-images-amazon.com/images/M/MV5BMDU2ZWJlMjktMTRhMy00ZTA5LWEzNDgtYmNmZTEwZTViZWJkXkEyXkFqcGdeQXVyNDQ2OTk4MzI@._V1_UX182_CR0,0,182,268_AL_.jpg"/>
 
-            <Button Name="Click_Previous"
-                    Content="Previous"
+            <Button Content="Previous"
                     Click="Click_Previous"/>
-            <Button Name="Click_Next"
-                    Content="Next"
+            <Button Content="Next"
                     Click="Click_Next"/>
         </Grid>
     </ScrollViewer>
