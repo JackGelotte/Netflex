@@ -6,6 +6,8 @@ using DatabaseConnection;
 using IMDbApiLib;
 using IMDbApiLib.Models;
 using System.Linq;
+using System.Collections.ObjectModel;
+using System.Threading;
 
 namespace FlexApp
 {
@@ -17,7 +19,9 @@ namespace FlexApp
 
     static class GetImdbInfo
     {
-        public const string API_KEY = "k_6f3w3pvw"; 
+        public const string API_KEY = "k_6f3w3pvw";
+
+        public static List<PosterDataItem> ImdbPosters { get; set; } = new List<PosterDataItem>();
 
         public static async Task<TrailerData> ImdbTrailer(Movie movie)
         {
