@@ -29,10 +29,10 @@
             <ComboBox Name="GenresComboBox" 
                       HorizontalAlignment="Center" Width="120" 
                       ItemsSource="{Binding GenresTest}"
-                      DisplayMemberPath="GenreName"
+                      DisplayMemberPath="GenreShow"
                       SelectedValuePath="GenreName"
                       SelectedValue="SelectedGenre" 
-                      PreviewMouseLeftButtonDown="GenresComboBox_Select" 
+                      DropDownClosed="GenresComboBox_DropDownClosed"
                       Height="27"
                       />
 

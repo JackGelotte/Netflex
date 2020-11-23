@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FlexApp.User;
 
+
 namespace FlexApp
 {
     /// <summary>
@@ -29,8 +30,9 @@ namespace FlexApp
 
         public MainWindow()
         {
-            InitializeComponent();
             
+            InitializeComponent();
+
             if (CurrentSession.IsLoggedIn) { } // show logged in border
             else { } // show standard border
 

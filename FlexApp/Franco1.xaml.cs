@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DatabaseConnection;
+using System.Linq;
+
 
 namespace FlexApp
 {
@@ -24,27 +26,28 @@ namespace FlexApp
         public Franco1()
         {
             InitializeComponent();
-
-            for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
+            int i = 0;
+            for (int x = 0; x < MovieGrid.RowDefinitions.Count; x++)
             {
-                for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
+                for (int y = 0; y < MovieGrid.ColumnDefinitions.Count; y++)
                 {
-                     Movie m = MovieViewer.DisplayMovies.Dequeue();
-                    
-                     Image image = new Image();
-                     image.Cursor = Cursors.Hand;
-                     image.HorizontalAlignment = HorizontalAlignment.Center;
-                     image.VerticalAlignment = VerticalAlignment.Center;
+                    if(i < MovieViewer.DisplayMovies.Count)
+                    {
+                        Movie m = MovieViewer.DisplayMovies[i];
+                        Image image = new Image();
+                        image.Cursor = Cursors.Hand;
+                        image.HorizontalAlignment = HorizontalAlignment.Center;
+                        image.VerticalAlignment = VerticalAlignment.Center;
 
-                     image.Source = new BitmapImage(new Uri(GetImdbInfo.ImdbPoster(m)));
+                        image.Source = new BitmapImage(new Uri(m.PosterLink));
 
-                     image.Margin = new Thickness(4, 4, 4, 4);
+                        image.Margin = new Thickness(4, 4, 4, 4);
 
-                     MovieGrid.Children.Add(image);
-                     Grid.SetRow(image, y);
-                     Grid.SetColumn(image, x);
-                    
-
+                        MovieGrid.Children.Add(image);
+                        Grid.SetRow(image, x);
+                        Grid.SetColumn(image, y);
+                    }
+                    i++;
                 }
             }
 
@@ -52,7 +55,7 @@ namespace FlexApp
 
         private void Click_Previous(object sender, RoutedEventArgs e)
         {
-            if (MovieViewer.HoldPrevious.Count > 0)
+            if (true)
             {
                 for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
                 {
@@ -70,7 +73,7 @@ namespace FlexApp
 
         private void Click_Next(object sender, RoutedEventArgs e)
         {
-            if(MovieViewer.DisplayMovies.Count > 0)
+            if(true)
             {
                 for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
                 {

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseConnection", "DatabaseConnection\DatabaseConnection.csproj", "{87B2F957-804E-4683-AA72-C377E1A2189B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlexApp", "FlexApp\FlexApp.csproj", "{FB778ABB-330C-4277-BE63-88562042BB44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlexApp", "FlexApp\FlexApp.csproj", "{FB778ABB-330C-4277-BE63-88562042BB44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

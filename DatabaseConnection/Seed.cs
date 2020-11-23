@@ -3,15 +3,46 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using IMDbApiLib;
+
 
 namespace DatabaseConnection
 {
     static class Seed
     {
+        public const string API_KEY = "k_a4fdj6tm";
+        public static List<string> ImdbPosters { get; set; } = new List<string>();
+
+
+
+
         static void Main() {
             ct.RemoveRange(ct.Movies);
             ct.SaveChanges();
-            Read(File.ReadAllLines(@".\MovieList.csv").Take(100).ToArray()); }
+            Read(File.ReadAllLines(@".\MovieList.csv").Take(10).ToArray());
+
+
+
+            /*
+            var list = ct.Movies.ToList();
+            string imdbId = $"";
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                imdbId = $"{list[0].ImdbID}";
+                while ( imdbId.Length < 7) imdbId = imdbId.Insert(0, "0");
+
+                var apiLib = new ApiLib(API_KEY);
+                var data = apiLib.PostersAsync($"tt{imdbId}");
+                try { ImdbPosters.Add($"{data.Result.Posters.First().Link}"); }
+                catch { }
+
+            }
+
+            Console.ReadKey();
+            */
+
+        }
 
         public static Context ct = new Context();
 
@@ -37,7 +68,16 @@ namespace DatabaseConnection
                 }
                 movieSort.Add(movieRaw[3]);
                 movieSort.Add(movieRaw[4].Replace('|', ' '));
+
                 movieSort.Add(movieRaw[0]);
+
+                string imdbId = $"{movieRaw[0]}";
+                while (imdbId.Length < 7) imdbId = imdbId.Insert(0, "0");
+
+                var apiLib = new ApiLib(API_KEY);
+                var data = apiLib.PostersAsync($"tt{imdbId}");
+                try { movieSort.Add($"{data.Result.Posters.First().Link}"); }
+                catch { }
 
                 Write(movieSort);
             }
@@ -55,7 +95,8 @@ namespace DatabaseConnection
                         Year = Int32.Parse(movie[1]),
                         Rating = movie[2],
                         Genre = movie[3],
-                        ImdbID = Int32.Parse(movie[4])
+                        ImdbID = Int32.Parse(movie[4]),
+                        PosterLink = movie[5]
                     };
                     ct.Add(m);
                     ct.SaveChanges();

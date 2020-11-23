@@ -36,6 +36,7 @@ namespace DatabaseConnection
         public int Year { get; set; }
         public string Genre { get; set; }
         public string Rating { get; set; }
+        public string PosterLink { get; set; }
 
         // References to other tables
         public virtual ICollection<Rental> Rentals { get; set; }

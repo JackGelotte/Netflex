@@ -42,14 +42,14 @@ namespace FlexApp
                         new Genre("Drama"),
                         new Genre("Family"),
                         new Genre("Fantasy"),
-                        new Genre("FilmNoir"),
+                        new Genre("FilmNoir", "Film Noir"),
                         new Genre("History"),
                         new Genre("Horror"),
                         new Genre("Music"),
                         new Genre("Musical"),
                         new Genre("Mystery"),
                         new Genre("Romance"),
-                        new Genre("SciFi"),
+                        new Genre("SciFi", "Sci-Fi"),
                         new Genre("Short"),
                         new Genre("Sport"),
                         new Genre("Superhero"),
@@ -62,7 +62,9 @@ namespace FlexApp
         public class Genre
         {
             public string GenreName { get; set; }
-            public Genre(string value) { GenreName = value; }
+            public string GenreShow { get; set; }
+            public Genre(string value) { GenreName = value; GenreShow = value; }
+            public Genre(string value, string show) { GenreName = value; GenreShow = show; }
 
         }
 
@@ -81,14 +83,9 @@ namespace FlexApp
 
         private void Hot_Click(object sender, RoutedEventArgs e)
         {
-            MovieViewer.ClearQueue();
             MovieViewer.LoadPopularMovies();
-        }
+            Franco1 f1 = new Franco1();
 
-        private void GenresComboBox_Select(object sender, MouseButtonEventArgs e)
-        {
-            MovieViewer.ClearQueue();
-            MovieViewer.LoadMoviesByGenre(GenresComboBox.Text);
         }
 
         private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
@@ -103,6 +100,11 @@ namespace FlexApp
                 SearchBox.Text = "Search";
             }
            
+        }
+
+        private void GenresComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            MovieViewer.LoadMoviesByGenre(GenresComboBox.Text);
         }
     }  
 }
