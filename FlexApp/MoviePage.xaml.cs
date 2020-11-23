@@ -18,14 +18,14 @@ using System.Linq;
 namespace FlexApp
 {
     /// <summary>
-    /// Interaction logic for Franco1.xaml
+    /// Interaction logic for MoviePage.xaml
     /// </summary>
-    public partial class Franco1 : Page
+    public partial class MoviePage : Page
     {
-
+        private static int page = 1;
         public static int Page
         {
-            get { return Page; }
+            get { return page; }
             set
             {
                 if (value < 1) Page = 1;
@@ -52,7 +52,7 @@ namespace FlexApp
                         image.VerticalAlignment = VerticalAlignment.Center;
                         image.Source = new BitmapImage(new Uri(m.PosterLink));
                         image.Margin = new Thickness(4, 4, 4, 4);
-
+                        img1.Source = new BitmapImage(new Uri(m.PosterLink));
                         MovieGrid.Children.Add(image);
                         Grid.SetRow(image, x);
                         Grid.SetColumn(image, y);
@@ -62,7 +62,7 @@ namespace FlexApp
             }
         }
 
-        public Franco1()
+        public MoviePage()
         {
             InitializeComponent();
 

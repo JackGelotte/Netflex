@@ -84,7 +84,7 @@ namespace FlexApp
         private void Hot_Click(object sender, RoutedEventArgs e)
         {
             MovieViewer.LoadPopularMovies();
-            Franco1 f1 = new Franco1();
+            MoviePage f1 = new MoviePage();
 
         }
 
