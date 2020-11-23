@@ -22,16 +22,44 @@ namespace FlexApp
         {
             InitializeComponent();
 
+            if(!MainWindow.CurrentSession.IsLoggedIn)
+            {
+                LeftButtom.Text = "Login";
+                RightButton.Text = "Register";
+            }
+
+            if(MainWindow.CurrentSession.IsLoggedIn)
+            {
+                LeftButtom.Text = "Log Out";
+                RightButton.Text = "My Page";
+            }
         }
 
-        private void Login_Click(object sender, RoutedEventArgs e)
+        private void Left_Click(object sender, RoutedEventArgs e)
         {
+            if (!MainWindow.CurrentSession.IsLoggedIn)
+            {
+                LoginScreen ls = new LoginScreen();
+                ls.Show();
+            }
 
+            if (MainWindow.CurrentSession.IsLoggedIn)
+            {
+
+            }
         }
 
-        private void Register_Click(object sender, RoutedEventArgs e)
+        private void Right_Click(object sender, RoutedEventArgs e)
         {
+            if (!MainWindow.CurrentSession.IsLoggedIn)
+            {
 
+            }
+
+            if (MainWindow.CurrentSession.IsLoggedIn)
+            {
+
+            }
         }
     }
 }

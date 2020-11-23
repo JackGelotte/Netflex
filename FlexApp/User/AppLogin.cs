@@ -11,7 +11,7 @@ namespace FlexApp.User
     public static class AppLogin
     {
               
-        public static void Loggin(UserSession user, string username, string password)
+        public static string Login(UserSession user, string username, string password)
         {
             using (MD5 md5 = MD5.Create())
             {
@@ -37,11 +37,12 @@ namespace FlexApp.User
 
                     user.IsLoggedIn = true;
                 }
+                return Helper.Message.LoginSuccessful;
 
             }
             catch
             {
-                // Console.WriteLine("Wrong username or password");
+                return Helper.Message.LoginFailed;
             }
         }
         

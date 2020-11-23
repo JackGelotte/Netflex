@@ -10,7 +10,7 @@ namespace DatabaseConnection
 {
     static class Seed
     {
-        public const string API_KEY = "k_a4fdj6tm";
+        public const string API_KEY = "k_6f3w3pvw";
         public static List<string> ImdbPosters { get; set; } = new List<string>();
 
 

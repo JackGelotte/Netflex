@@ -27,13 +27,13 @@ namespace FlexApp
         public static void LoadPopularMovies()
         {
             DisplayMovies.Clear();
-            DisplayMovies.AddRange(ct.Movies.OrderBy(x => x.Rating).Take(MOVIES_PER_PAGE));
+            DisplayMovies.AddRange(ct.Movies.OrderBy(x => x.Rating).Take(3));
         }
 
         public static void LoadNewMovies()
         {
             DisplayMovies.Clear();
-            DisplayMovies.AddRange(ct.Movies.OrderBy(x => x.Year).Take(MOVIES_PER_PAGE));
+            DisplayMovies.AddRange(ct.Movies.OrderBy(x => x.Year).Take(1));
         }
 
         public static void LoadMoviesByGenre(string genre)
@@ -41,6 +41,9 @@ namespace FlexApp
             DisplayMovies.Clear();
             DisplayMovies.AddRange(ct.Movies.Where(x => x.Genre.Contains(genre)));
         }
+
+        public static IEnumerable<Movie> TestMethod(string title) => ct.Movies.Where(m => m.Title.Contains(title, StringComparison.OrdinalIgnoreCase)).AsEnumerable();
+
 
     }
 

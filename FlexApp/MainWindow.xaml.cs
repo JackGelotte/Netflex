@@ -23,9 +23,9 @@ namespace FlexApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Context ct = new Context();
+        public static Context ct = new Context();
 
-        public UserSession CurrentSession = new UserSession();
+        public static UserSession CurrentSession = new UserSession();
 
 
         public MainWindow()
@@ -33,8 +33,6 @@ namespace FlexApp
             
             InitializeComponent();
 
-            if (CurrentSession.IsLoggedIn) { } // show logged in border
-            else { } // show standard border
 
             MovieViewer.LoadNewMovies();
         }

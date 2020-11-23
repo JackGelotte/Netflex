@@ -82,10 +82,8 @@ namespace FlexApp
         }
 
         private void Hot_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             MovieViewer.LoadPopularMovies();
-            MoviePage f1 = new MoviePage();
-
         }
 
         private void SearchBox_GotFocus(object sender, RoutedEventArgs e)

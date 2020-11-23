@@ -14,7 +14,8 @@
             <TextBox Name="txtUsername" Background="AliceBlue" Foreground="White" FontSize="18"/>
             <Label Content="Password" Foreground="White"/>
             <PasswordBox Name="txtPassword" Background="AliceBlue" Foreground="White" FontSize="18"/>
-            <Button Name="LoginButton" Content="Submit" Margin="60 10" Background="AliceBlue" Foreground="White" FontSize="18"/>
+            <Button Name="LoginButton" Content="Log In" Margin="60 10" Background="AliceBlue" Foreground="White" FontSize="18"
+                    Click="LoginButton_Click"/>
         </StackPanel>
     </Border>
 </Window>

@@ -52,7 +52,7 @@ namespace FlexApp
                         image.VerticalAlignment = VerticalAlignment.Center;
                         image.Source = new BitmapImage(new Uri(m.PosterLink));
                         image.Margin = new Thickness(4, 4, 4, 4);
-                        
+
                         MovieGrid.Children.Add(image);
                         Grid.SetRow(image, x);
                         Grid.SetColumn(image, y);
