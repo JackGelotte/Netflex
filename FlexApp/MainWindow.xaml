@@ -14,5 +14,6 @@
         <local:ButtonMenu HorizontalAlignment="Left" Width="160" Height="580" VerticalAlignment="Bottom"/>
         <local:TopButtonMenu HorizontalAlignment="Right" Width="300" Height="138" VerticalAlignment="Top"/>
         <local:MovieDisplay Width="1030" Margin="0,175,40,0" HorizontalAlignment="Right"/>
+        <local:RegistrationScreen Width="1030" Margin="0,175,40,0" HorizontalAlignment="Right"/>
     </Grid>
 </Window>
