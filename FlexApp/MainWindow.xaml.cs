@@ -30,13 +30,14 @@ namespace FlexApp
 
         public MainWindow()
         {
-            
+            MovieViewer.LoadNewMovies();
+
             InitializeComponent();
 
             if (CurrentSession.IsLoggedIn) { } // show logged in border
             else { } // show standard border
 
-            MovieViewer.LoadNewMovies();
+            
         }
 
     }
