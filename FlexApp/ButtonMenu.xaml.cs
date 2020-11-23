@@ -84,6 +84,8 @@ namespace FlexApp
         private void Hot_Click(object sender, RoutedEventArgs e)
         {            
             MovieViewer.LoadPopularMovies();
+
+
         }
 
         private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
@@ -104,5 +106,7 @@ namespace FlexApp
         {
             MovieViewer.LoadMoviesByGenre(GenresComboBox.Text);
         }
+
+        
     }  
 }

@@ -11,8 +11,8 @@
     <Grid>
         <Image Source="/Images/sdfsdfsd.png" Height="720" Width="1280" VerticalAlignment="Top"/>
         <Image Source="/Images/Logo.png" Margin="0,-2,949,583"/>
-        <Frame Source="MoviePage.xaml" Margin="0,175,40,0" HorizontalAlignment="Right" Width="1030"/>
         <local:ButtonMenu HorizontalAlignment="Left" Width="160" Height="580" VerticalAlignment="Bottom"/>
-        <local:TopButtonMenu HorizontalAlignment="Right" Width="250" Height="150" VerticalAlignment="Top"/>
+        <local:TopButtonMenu HorizontalAlignment="Right" Width="300" Height="138" VerticalAlignment="Top"/>
+        <local:MovieDisplay Width="1030" Margin="0,175,40,0" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

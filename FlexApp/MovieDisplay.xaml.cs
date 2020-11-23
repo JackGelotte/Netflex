@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,15 +11,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DatabaseConnection;
-using System.Linq;
-
 
 namespace FlexApp
 {
     /// <summary>
-    /// Interaction logic for MoviePage.xaml
+    /// Interaction logic for MovieDisplay.xaml
     /// </summary>
-    public partial class MoviePage : Page
+    public partial class MovieDisplay : UserControl
     {
         private static int page = 1;
         public static int Page
@@ -62,7 +59,7 @@ namespace FlexApp
             }
         }
 
-        public MoviePage()
+        public MovieDisplay()
         {
             InitializeComponent();
 
@@ -83,3 +80,4 @@ namespace FlexApp
         }
     }
 }
+

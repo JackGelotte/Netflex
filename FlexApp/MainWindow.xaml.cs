@@ -30,11 +30,12 @@ namespace FlexApp
 
         public MainWindow()
         {
-            
+            MovieViewer.LoadNewMovies();
+
             InitializeComponent();
 
 
-            MovieViewer.LoadNewMovies();
+            
         }
 
     }
