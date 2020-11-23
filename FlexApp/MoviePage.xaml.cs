@@ -18,12 +18,11 @@ using System.Linq;
 namespace FlexApp
 {
     /// <summary>
-    /// Interaction logic for Franco1.xaml
+    /// Interaction logic for MoviePage.xaml
     /// </summary>
-    public partial class Franco1 : Page
+    public partial class MoviePage : Page
     {
-
-        public static int page = 1;
+        private static int page = 1;
         public static int Page
         {
             get { return page; }
@@ -63,7 +62,7 @@ namespace FlexApp
             }
         }
 
-        public Franco1()
+        public MoviePage()
         {
             InitializeComponent();
 
