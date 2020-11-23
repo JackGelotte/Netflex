@@ -76,7 +76,7 @@ namespace DatabaseConnection
 
                 var apiLib = new ApiLib(API_KEY);
                 var data = apiLib.PostersAsync($"tt{imdbId}");
-                try { movieSort.Add($"{data.Result.Posters.First().Link}"); }
+                try { movieSort.Add($"{data.Result.Posters.Where(l=>l.Language == "en").First().Link}"); }
                 catch { }
 
                 Write(movieSort);

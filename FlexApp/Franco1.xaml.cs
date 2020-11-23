@@ -23,13 +23,14 @@ namespace FlexApp
     public partial class Franco1 : Page
     {
 
+        public static int page = 1;
         public static int Page
         {
-            get { return Page; }
+            get { return page; }
             set
             {
-                if (value < 1) Page = 1;
-                else Page = value;
+                if (value < 1) page = 1;
+                else page = value;
             }
         }
 
@@ -52,7 +53,7 @@ namespace FlexApp
                         image.VerticalAlignment = VerticalAlignment.Center;
                         image.Source = new BitmapImage(new Uri(m.PosterLink));
                         image.Margin = new Thickness(4, 4, 4, 4);
-
+                        
                         MovieGrid.Children.Add(image);
                         Grid.SetRow(image, x);
                         Grid.SetColumn(image, y);
