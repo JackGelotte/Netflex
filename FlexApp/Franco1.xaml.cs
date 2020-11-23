@@ -23,24 +23,34 @@ namespace FlexApp
     public partial class Franco1 : Page
     {
 
-        public Franco1()
+        public static int Page
         {
-            InitializeComponent();
-            int i = 0;
+            get { return Page; }
+            set
+            {
+                if (value < 1) Page = 1;
+                else Page = value;
+            }
+        }
+
+        public void InitializeMovieView()
+        {
+            int i = 0 * Page;
+
             for (int x = 0; x < MovieGrid.RowDefinitions.Count; x++)
             {
                 for (int y = 0; y < MovieGrid.ColumnDefinitions.Count; y++)
                 {
-                    if(i < MovieViewer.DisplayMovies.Count)
+                    if (i < MovieViewer.DisplayMovies.Count
+                        && i < Page * MovieViewer.MOVIES_PER_PAGE)
                     {
                         Movie m = MovieViewer.DisplayMovies[i];
+
                         Image image = new Image();
                         image.Cursor = Cursors.Hand;
                         image.HorizontalAlignment = HorizontalAlignment.Center;
                         image.VerticalAlignment = VerticalAlignment.Center;
-
                         image.Source = new BitmapImage(new Uri(m.PosterLink));
-
                         image.Margin = new Thickness(4, 4, 4, 4);
 
                         MovieGrid.Children.Add(image);
@@ -50,44 +60,26 @@ namespace FlexApp
                     i++;
                 }
             }
+        }
+
+        public Franco1()
+        {
+            InitializeComponent();
+
+            InitializeMovieView();
 
         }
 
         private void Click_Previous(object sender, RoutedEventArgs e)
         {
-            if (true)
-            {
-                for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
-                {
-                    for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
-                    {
-
-                        
-
-
-                    }
-                }
-            }
-
+            Page--;
+            InitializeMovieView();
         }
 
         private void Click_Next(object sender, RoutedEventArgs e)
         {
-            if(true)
-            {
-                for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
-                {
-                    for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
-                    {
-
-
-
-
-                    }
-                }
-
-            }
-
+            Page++;
+            InitializeMovieView();
         }
     }
 }

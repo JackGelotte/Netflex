@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Text;
 using DatabaseConnection;
-using System.Collections.ObjectModel;
 
 namespace FlexApp
 {
@@ -45,4 +43,5 @@ namespace FlexApp
         }
 
     }
+
 }
