@@ -22,13 +22,13 @@ namespace FlexApp
         {
             InitializeComponent();
 
-            if(!MainWindow.CurrentSession.IsLoggedIn)
+            if(!UserSession.IsLoggedIn)
             {
                 LeftButtom.Text = "Login";
                 RightButton.Text = "Register";
             }
 
-            if(MainWindow.CurrentSession.IsLoggedIn)
+            if(UserSession.IsLoggedIn)
             {
                 LeftButtom.Text = "Log Out";
                 RightButton.Text = "My Page";
@@ -37,13 +37,13 @@ namespace FlexApp
 
         private void Left_Click(object sender, RoutedEventArgs e)
         {
-            if (!MainWindow.CurrentSession.IsLoggedIn)
+            if (!UserSession.IsLoggedIn)
             {
                 LoginScreen ls = new LoginScreen();
                 ls.Show();
             }
 
-            if (MainWindow.CurrentSession.IsLoggedIn)
+            if (UserSession.IsLoggedIn)
             {
 
             }
@@ -51,12 +51,12 @@ namespace FlexApp
 
         private void Right_Click(object sender, RoutedEventArgs e)
         {
-            if (!MainWindow.CurrentSession.IsLoggedIn)
+            if (!UserSession.IsLoggedIn)
             {
 
             }
 
-            if (MainWindow.CurrentSession.IsLoggedIn)
+            if (UserSession.IsLoggedIn)
             {
 
             }

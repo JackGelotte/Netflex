@@ -10,6 +10,7 @@ namespace FlexApp
         {
             public static readonly string LoginSuccessful = "Cool";
             public static readonly string LoginFailed = "Nope";
+            public static readonly string SearchError = "Skriv Bättre";
         }
 
 

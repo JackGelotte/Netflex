@@ -19,7 +19,7 @@ namespace DatabaseConnection
         static void Main() {
             ct.RemoveRange(ct.Movies);
             ct.SaveChanges();
-            Read(File.ReadAllLines(@".\MovieList.csv").Take(10).ToArray());
+            Read(File.ReadAllLines(@".\MovieList.csv").Take(100).ToArray());
 
 
 

@@ -6,7 +6,7 @@ namespace FlexApp.User
 {
     public static class UserCreation
     {          
-        public static void CreateNewUser(UserSession user)
+        public static void CreateNewUser()
         {
 
         }

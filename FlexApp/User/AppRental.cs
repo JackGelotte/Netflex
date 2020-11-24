@@ -8,28 +8,23 @@ namespace FlexApp.User
 {
     public class AppRental
     {
-        public UserSession User { get; set; }
-
+        public Customer Customer { get; set; }
         public Movie Movie { get; set; }
 
         public bool isPayed { get; set; }
 
-        public AppRental(UserSession user) 
+        public AppRental() 
         {
-            User = user;
+            try { Customer = UserSession.Customer; }
+            catch { }
             isPayed = false;
         }
 
         public void RegisterRental(Movie movie, int daysActive)
         {
-            if(!User.IsLoggedIn)
-            {
-                UserCreation.CreateNewUser(User);
-            }
+            Payment(daysActive);
 
-            this.Payment(daysActive);
-
-            if(User.IsLoggedIn && isPayed)
+            if(UserSession.IsLoggedIn && isPayed)
             {
                 using(Context ct = new Context())
                 {
@@ -37,7 +32,7 @@ namespace FlexApp.User
                     {
                         RentDate = DateTime.Now.ToString("yyyy-MM-dd"),
                         ReturnDate = DateTime.Now.AddDays(daysActive).ToString("yyyy-MM-dd"),
-                        Customer = User.Customer,
+                        Customer = this.Customer,
                         Movie = this.Movie
                     };
                 }               

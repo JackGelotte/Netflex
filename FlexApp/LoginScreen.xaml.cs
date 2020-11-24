@@ -25,7 +25,7 @@ namespace FlexApp
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            var status = User.AppLogin.Login(MainWindow.CurrentSession, txtUsername.Text, txtPassword.Password);
+            var status = User.AppLogin.Login(txtUsername.Text, txtPassword.Password);
             MessageBox.Show(status);
         }
     }

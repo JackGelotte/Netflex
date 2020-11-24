@@ -11,7 +11,7 @@ namespace FlexApp.User
     public static class AppLogin
     {
               
-        public static string Login(UserSession user, string username, string password)
+        public static string Login(string username, string password)
         {
             using (MD5 md5 = MD5.Create())
             {
@@ -30,12 +30,12 @@ namespace FlexApp.User
             {
                 using(Context ct = new Context())
                 {
-                    user.Customer = ct.Customers.Where(x => x.
+                    UserSession.Customer = ct.Customers.Where(x => x.
                         Login.Username == username && x.
                         Login.Password == password)
                         .First();
 
-                    user.IsLoggedIn = true;
+                    UserSession.IsLoggedIn = true;
                 }
                 return Helper.Message.LoginSuccessful;
 
