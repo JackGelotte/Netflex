@@ -8,10 +8,10 @@
     d:DesignHeight="580" d:DesignWidth="1115">
     
     <Grid>
-        <Border Background="Black">
+        <Border Background="Transparent">
             <StackPanel>
-                <Label Content="Registration" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
-                <Separator></Separator>
+                <Label Content="Registration" Foreground="White" FontSize="35" HorizontalAlignment="Center"/>
+                <RibbonSeparator Margin="150,0,150,20"></RibbonSeparator>
                 <Label Content="First Name" Foreground="White" Margin="200,0,200,0" />
                 <TextBox Name="New_FirstName" Background="AliceBlue" FontSize="18" Margin="200,0,200,0"/>
                 <Label Content="Last Name" Foreground="White" Margin="200,0,200,0"/>
