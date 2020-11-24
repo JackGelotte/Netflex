@@ -31,8 +31,6 @@ namespace FlexApp
             
             
 
-
-
             if (!UserSession.IsLoggedIn)
             {
                 Login_Logout_ButtonText.Text = "Login";
@@ -47,12 +45,11 @@ namespace FlexApp
         }
 
         // Logo Knapp
-        private void LogoButton_Click(object sender, RoutedEventArgs e)
+        private void Logo_Click(object sender, MouseButtonEventArgs e)
         {
             StartPage.Visibility = Visibility.Visible;
             RegistrationPage.Visibility = Visibility.Hidden;
         }
-
 
         // Login Knapp
         private void Login_Logout_Click(object sender, RoutedEventArgs e)
@@ -162,8 +159,6 @@ namespace FlexApp
             MovieViewer.LoadPopularMovies();
 
         }
-
-        
     }
 
     }

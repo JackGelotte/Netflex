@@ -25,10 +25,10 @@
 
         <!-- Top Bar -->
         <Grid Grid.RowSpan="1" Grid.ColumnSpan="2">
-            <Button Name="LogoButton" Background="Transparent" Margin="0,0,950,0" Click="LogoButton_Click">
-            <Image Source="/Images/Logo.png" HorizontalAlignment="Left" />
-            </Button>
-
+            <Label MouseUp="Logo_Click">
+                <Image Source="/Images/Logo.png" HorizontalAlignment="Left" />
+            </Label>
+            
             <Button Name="Login_Logout_Button" Click="Login_Logout_Click" Margin="700,0,0,0" Height="35"  Width="120" Cursor="Wait">
                 <StackPanel>
                     <TextBlock Name="Login_Logout_ButtonText" Text="Login" FontSize="20"/>
@@ -43,17 +43,14 @@
 
         <!-- Left Bar -->
         <Grid Grid.Row="1" Grid.Column="0">
-            
             <!-- Search Button -->
-            <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
+            <WrapPanel HorizontalAlignment="Center" Margin="0,20,0,0">
 
-                <TextBox Name="SearchBox" Text="Search" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus" FontSize="20" Height="30" Width="100"/>
+                <TextBox Name="SearchBox"  Height="30" Width="120" Text="Search" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus" FontSize="20"/>
 
-                <Button Width="25" HorizontalAlignment="Center"  Click="Search_Click" Cursor="Wait">
-
+                <Button Width="30" Height="30" HorizontalAlignment="Center"  Click="Search_Click" Cursor="Wait">
                     <StackPanel HorizontalAlignment="Center">
                         <TextBlock HorizontalAlignment="Center" Text="Go" FontSize="13" />
-
                     </StackPanel>
                 </Button>
 
@@ -68,10 +65,12 @@
                       SelectedValue="SelectedGenre" 
                       DropDownClosed="GenresComboBox_DropDownClosed"
                       Height="27"
+                      VerticalAlignment="Top" 
+                      Margin="0,70,0,0"
                       />
 
             <!-- Hot! Button -->
-            <Button HorizontalAlignment="Center" Height="30"  Width="120" Click="Hot_Click" Cursor="Wait">
+            <Button Height="30"  Width="120" Click="Hot_Click" Cursor="Wait" VerticalAlignment="Top" Margin="0,120,0,0">
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Left" Text="Hett just nu" FontSize="20"/>
                 </StackPanel>
@@ -80,9 +79,9 @@
 
         <!-- Movie Display -->
         <Grid Name="MainPage" Grid.Column="1" Grid.Row="1">
-            <local:MovieDisplay x:Name="StartPage" Visibility="Hidden"> </local:MovieDisplay>
+            <local:MovieDisplay x:Name="StartPage" Visibility="Hidden"></local:MovieDisplay>
             <local:RegistrationScreen x:Name="RegistrationPage" Visibility="Hidden"></local:RegistrationScreen>
-            
+
         </Grid>
     </Grid>
 </Window>
