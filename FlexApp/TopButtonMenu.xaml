@@ -5,17 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlexApp"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="250">
+             d:DesignHeight="100" d:DesignWidth="300">
     <Grid>
 
-        <Button Name="LoginButton" Click="Left_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Height="30"  Width="120" Cursor="Wait">
-            <StackPanel HorizontalAlignment="Stretch">
-                <TextBlock Name="LeftButtom" HorizontalAlignment="Left" Text="Login" FontSize="20"/>
+        <Button Name="LoginButton" Click="Left_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Height="35"  Width="120" Cursor="Wait">
+            <StackPanel>
+                <TextBlock Name="LeftButtom" Text="Login" FontSize="20"/>
             </StackPanel>
         </Button>
-        <Button Name="RegisterButton" Click="Right_Click" VerticalAlignment="Center" HorizontalAlignment="Right" Height="30"  Width="120" Cursor="Wait">
-                <StackPanel HorizontalAlignment="Stretch">
-                    <TextBlock Name="RightButton" HorizontalAlignment="Left" Text="Register" FontSize="20"/>
+        <Button Name="RegisterButton" Click="Right_Click" VerticalAlignment="Center" HorizontalAlignment="Right" Height="35"  Width="120" Cursor="Wait">
+                <StackPanel>
+                    <TextBlock Name="RightButton" Text="Register" FontSize="20"/>
                 </StackPanel>
             </Button>
         

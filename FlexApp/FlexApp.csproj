@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <None Remove="Images\Logo.png" />
-    <None Remove="Images\sdfsdfsd.png" />
+    <None Remove="Images\TempBackground.png" />
     <None Remove="Images\UntitledRed.png" />
     <None Remove="sdfsdfsd.png" />
   </ItemGroup>
@@ -17,7 +17,7 @@
     <Content Include="Images\Logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\sdfsdfsd.png">
+    <Content Include="Images\TempBackground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\UntitledRed.png">
