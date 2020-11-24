@@ -29,10 +29,6 @@ namespace FlexApp
 
             InitializeComponent();
             
-            
-
-
-
             if (!UserSession.IsLoggedIn)
             {
                 Login_Logout_ButtonText.Text = "Login";
@@ -85,8 +81,7 @@ namespace FlexApp
         }
 
         // Genre Lista
-        public ObservableCollection<Genre> GenresTest
-        {
+        public ObservableCollection<Genre> GenresTest {
             get
             {
                 return new ObservableCollection<Genre>() {
@@ -142,26 +137,13 @@ namespace FlexApp
                 MessageBox.Show($"{Helper.Message.SearchErrorIncorectSearchTerm}\n{exc}");
             }
         }
-        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (SearchBox.Text == "Search") SearchBox.Text = "";
-        }
 
-        private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(SearchBox.Text))
-            {
-                SearchBox.Text = "Search";
-            }
+        private void SearchBox_GotFocus(object sender, RoutedEventArgs e) { if (SearchBox.Text == "Search") SearchBox.Text = ""; }
 
-        }
+        private void SearchBox_LostFocus(object sender, RoutedEventArgs e) { if (String.IsNullOrEmpty(SearchBox.Text)) { SearchBox.Text = "Search"; }}
 
         // Hot! Knapp
-        private void Hot_Click(object sender, RoutedEventArgs e)
-        {
-            MovieViewer.LoadPopularMovies();
-
-        }
+        private void Hot_Click(object sender, RoutedEventArgs e) { MovieViewer.LoadPopularMovies(); }
 
         
     }

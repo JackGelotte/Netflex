@@ -13,7 +13,7 @@
         <Button Content="Rent" Margin="711,90,18,50" Click="Rent_Button_Click" />
         <ComboBox Name="DaysActiveSelectionMjo" 
                       HorizontalAlignment="Left" Width="120" 
-                      ItemsSource="{Binding DaysActive}"
+                      ItemsSource="{Binding DaysActiveComboBox}"
                       DisplayMemberPath="DaysActive"
                       SelectedValuePath="DaysActive"
                       Height="27" Margin="648,55,0,352"

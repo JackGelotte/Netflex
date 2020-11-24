@@ -20,6 +20,8 @@ namespace FlexApp
     public partial class MovieDisplay : UserControl
     {
         private static int page = 1;
+
+        private static int index = 0;
         public static int Page
         {
             get { return page; }
@@ -32,16 +34,16 @@ namespace FlexApp
 
         public void InitializeMovieView()
         {
-            int i = 0 * Page;
+            index = 0;
 
             for (int x = 0; x < MovieGrid.RowDefinitions.Count; x++)
             {
                 for (int y = 0; y < MovieGrid.ColumnDefinitions.Count; y++)
                 {
-                    if (i < MovieViewer.DisplayMovies.Count
-                        && i < Page * MovieViewer.MOVIES_PER_PAGE)
+                    if (index < MovieViewer.DisplayMovies.Count
+                        && index < Page * MovieViewer.MOVIES_PER_PAGE)
                     {
-                        Movie m = MovieViewer.DisplayMovies[i];
+                        Movie m = MovieViewer.DisplayMovies[index];
 
                         Image image = new Image();
                         image.Cursor = Cursors.Hand;
@@ -49,12 +51,13 @@ namespace FlexApp
                         image.VerticalAlignment = VerticalAlignment.Center;
                         image.Source = new BitmapImage(new Uri(m.PosterLink));
                         image.Margin = new Thickness(4, 4, 4, 4);
+                        image.MouseUp += Mouse_Up;
 
                         MovieGrid.Children.Add(image);
                         Grid.SetRow(image, x);
                         Grid.SetColumn(image, y);
-                    }
-                    i++;
+                        index++;
+                    }  
                 }
             }
         }
@@ -67,16 +70,38 @@ namespace FlexApp
 
         }
 
+        private void Mouse_Up(object sender, MouseButtonEventArgs e)
+        {
+            MovieDetailRental md = new MovieDetailRental();
+
+            var x = Grid.GetColumn(sender as UIElement);
+            var y = Grid.GetRow(sender as UIElement);
+
+            int i = y * MovieGrid.ColumnDefinitions.Count + x;
+            md.MovieToRent = MovieViewer.DisplayMovies[i];
+
+            md.MoviePoster.Source = new BitmapImage(new Uri(MovieViewer.DisplayMovies[i].PosterLink));
+            md.MovieInfo.Text = $"{MovieViewer.DisplayMovies[i].Title} " +
+                $"{MovieViewer.DisplayMovies[i].Year} " +
+                $"{MovieViewer.DisplayMovies[i].Rating}";
+
+            md.Show();
+        }
+
         private void Click_Previous(object sender, RoutedEventArgs e)
         {
+            this.Visibility = Visibility.Hidden;
             Page--;
-            InitializeMovieView();
+            MovieDisplay md = new MovieDisplay();
+            md.Visibility = Visibility.Visible;
         }
 
         private void Click_Next(object sender, RoutedEventArgs e)
         {
+            this.Visibility = Visibility.Hidden;
             Page++;
-            InitializeMovieView();
+            MovieDisplay md = new MovieDisplay();
+            md.Visibility = Visibility.Visible;
         }
     }
 }

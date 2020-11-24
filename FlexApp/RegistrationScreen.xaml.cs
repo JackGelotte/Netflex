@@ -24,37 +24,33 @@ namespace FlexApp
             InitializeComponent();
         }
 
-        public void Register_Click(object sender, MouseButtonEventArgs e)
+        private void New_Registration_Button_Click(object sender, RoutedEventArgs e)
         {
-            bool check = false;
-            while(!check)
+
+            MessageBox.Show("fef");
+            bool check = true;
+            while (check)
             {
-                if (New_Password.Password != Repeat_Password.Password)
-                {
-                    MessageBox.Show(Helper.Message.RegistrationErrorPasswordMismatch);
-                    continue;
-                }
+                if(New_Username.Text.Length < 4 || New_Password.Password.Length < 4) 
+                    { MessageBox.Show(Helper.Message.LoginFailedWrongUsernameOrPassword); break; }
 
-                if (UserSession.ct.Logins.Where(l => l.Username.Equals(New_Username)).Count() > 0)
-                {
-                    MessageBox.Show(Helper.Message.RegistrationErrorUsernameAlreadyExists);
-                    continue;
-                }
+                if (New_Password.Password != Repeat_Password.Password) 
+                    { MessageBox.Show(Helper.Message.RegistrationErrorPasswordMismatch); break; ; }
 
-                if(UserSession.ct.Customers.Where(c => c.Email.Equals(New_Email.Text)).Count() > 0)
-                {
-                    MessageBox.Show(Helper.Message.RegistrationErrorEmailAlreadyRegistered);
-                    continue;
-                }
+                if (UserSession.ct.Logins.Where(l => l.Username.Equals(New_Username)).Count() > 0) 
+                    { MessageBox.Show(Helper.Message.RegistrationErrorUsernameAlreadyExists); break; ; }
 
-                User.UserCreation.CreateNewUser(New_FirstName.Text, New_LastName.Text, New_Email.Text, New_Adress.Text, "070", New_Username.Text, New_Password.Password);
+                if (UserSession.ct.Customers.Where(c => c.Email.Equals(New_Email.Text)).Count() > 0) 
+                    { MessageBox.Show(Helper.Message.RegistrationErrorEmailAlreadyRegistered); break; ; }
 
+                User.UserCreation.CreateNewUser(
+                    New_FirstName.Text, New_LastName.Text, 
+                    New_Email.Text, New_Adress.Text, "070", 
+                    New_Username.Text, New_Password.Password
+                    );
+
+                check = false;
             }
-
-             
-
         }
-
-
     }
 }

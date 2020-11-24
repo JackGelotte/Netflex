@@ -41,6 +41,7 @@ namespace FlexApp
         {
             InitializeComponent();
             
+            
         }
 
         private void Rent_Button_Click(object sender, RoutedEventArgs e)
@@ -53,8 +54,15 @@ namespace FlexApp
 
             if(UserSession.IsLoggedIn)
             {
-                User.AppRental ar = new User.AppRental();
-                ar.RegisterRental(MovieToRent, 1);
+                try
+                {
+                    User.AppRental.RegisterRental(UserSession.Customer, MovieToRent, 3);
+                    MessageBox.Show("Rental osv");
+                }
+                catch(Exception er) 
+                {
+                    MessageBox.Show("du suger osv, jupp" + er);
+                }
 
                 this.Close();
             }

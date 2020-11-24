@@ -6,47 +6,33 @@ using DatabaseConnection;
 
 namespace FlexApp.User
 {
-    public class AppRental
+    public static class AppRental
     {
-        public Customer Customer { get; set; }
-        public Movie Movie { get; set; }
+        public static bool isPayed { get; set; }
 
-        public bool isPayed { get; set; }
-
-        public AppRental() 
-        {
-            try { Customer = UserSession.Customer; }
-            catch { }
-            isPayed = false;
-        }
-
-        public void RegisterRental(Movie movie, int daysActive)
+        public static void RegisterRental(Customer customer, Movie movie, int daysActive)
         {
             Payment(daysActive);
 
             if(UserSession.IsLoggedIn && isPayed)
             {
-                using(Context ct = new Context())
+                UserSession.ct.Rentals.Add(new Rental()
                 {
-                    Rental r = new Rental()
-                    {
-                        RentDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                        ReturnDate = DateTime.Now.AddDays(daysActive).ToString("yyyy-MM-dd"),
-                        Customer = this.Customer,
-                        Movie = this.Movie
-                    };
-                }               
+                    RentDate = DateTime.Now.ToString("yyyy-MM-dd"),
+                    ReturnDate = DateTime.Now.AddDays(daysActive).ToString("yyyy-MM-dd"),
+                    Customer = customer,
+                    Movie = movie
+                });
+                UserSession.ct.SaveChanges();
             }
         }
 
-        public void Payment(int daysActive)
+        public static void Payment(int daysActive)
         {
-
-            if(true)// Payment stuff
+            if(true)
             {
-                this.isPayed = true;
+                isPayed = true;
             }
-
         }
 
     }

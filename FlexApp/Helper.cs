@@ -14,6 +14,7 @@ namespace FlexApp
             public static readonly string RegistrationErrorPasswordMismatch = "Passwards no match, no go";
             public static readonly string RegistrationErrorUsernameAlreadyExists = "Username taken, try 89712893821972873";
             public static readonly string RegistrationErrorEmailAlreadyRegistered = "Email already have an account, go get your password";
+            public static readonly string RegistrationErrorUsernamePasswordIncorect = "Username must be at least 3 characters, password 7, make it safe osv";
         }
 
 

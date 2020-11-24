@@ -28,7 +28,7 @@
                 <PasswordBox Name="Repeat_Password" Background="AliceBlue" FontSize="18" Margin="200,0,200,0"/>
                 
                 <Button Name="New_RegistrationButton" Content="Register" Background="AliceBlue" FontSize="18"
-                        Margin="350,40,350,0"/>
+                        Margin="350,40,350,0" Click="New_Registration_Button_Click"/>
             </StackPanel>
         </Border>
     </Grid>
