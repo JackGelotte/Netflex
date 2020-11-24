@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -22,6 +23,38 @@ namespace FlexApp
         {
             InitializeComponent();
         }
+
+        public void Register_Click(object sender, MouseButtonEventArgs e)
+        {
+            bool check = false;
+            while(!check)
+            {
+                if (New_Password.Password != Repeat_Password.Password)
+                {
+                    MessageBox.Show(Helper.Message.RegistrationErrorPasswordMismatch);
+                    continue;
+                }
+
+                if (UserSession.ct.Logins.Where(l => l.Username.Equals(New_Username)).Count() > 0)
+                {
+                    MessageBox.Show(Helper.Message.RegistrationErrorUsernameAlreadyExists);
+                    continue;
+                }
+
+                if(UserSession.ct.Customers.Where(c => c.Email.Equals(New_Email.Text)).Count() > 0)
+                {
+                    MessageBox.Show(Helper.Message.RegistrationErrorEmailAlreadyRegistered);
+                    continue;
+                }
+
+                User.UserCreation.CreateNewUser(New_FirstName.Text, New_LastName.Text, New_Email.Text, New_Adress.Text, "070", New_Username.Text, New_Password.Password);
+
+            }
+
+             
+
+        }
+
 
     }
 }

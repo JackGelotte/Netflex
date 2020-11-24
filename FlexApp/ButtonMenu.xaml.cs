@@ -28,8 +28,6 @@ namespace FlexApp
     public partial class ButtonMenu : UserControl
     {
 
-        Context ct = new Context();
-
         public ObservableCollection<Genre> GenresTest { get {
                 return new ObservableCollection<Genre>() {
                         new Genre("Action"),
@@ -78,19 +76,25 @@ namespace FlexApp
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                MovieViewer.SearchMovie(SearchBox.Text);
+            }
+            catch(Exception exc)
+            {
+                MessageBox.Show($"{Helper.Message.SearchErrorIncorectSearchTerm}\n{exc}");
+            }
         }
 
         private void Hot_Click(object sender, RoutedEventArgs e)
-        {            
-            MovieViewer.LoadPopularMovies();
-
+        {
+            MovieViewer.LoadPopularMovies(); 
 
         }
 
         private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            SearchBox.Text = "";
+            if(SearchBox.Text == "Search") SearchBox.Text = "";
         }
 
         private void SearchBox_LostFocus(object sender, RoutedEventArgs e)

@@ -23,11 +23,6 @@ namespace FlexApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static Context ct = new Context();
-
-        public static UserSession CurrentSession = new UserSession();
-
-
         public MainWindow()
         {
             MovieViewer.LoadNewMovies();
