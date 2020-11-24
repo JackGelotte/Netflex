@@ -9,8 +9,11 @@ namespace FlexApp
         public static class Message
         {
             public static readonly string LoginSuccessful = "Cool";
-            public static readonly string LoginFailed = "Nope";
-            public static readonly string SearchError = "Skriv Bättre";
+            public static readonly string LoginFailedWrongUsernameOrPassword = "Nope";
+            public static readonly string SearchErrorIncorectSearchTerm = "Skriv Bättre";
+            public static readonly string RegistrationErrorPasswordMismatch = "Passwards no match, no go";
+            public static readonly string RegistrationErrorUsernameAlreadyExists = "Username taken, try 89712893821972873";
+            public static readonly string RegistrationErrorEmailAlreadyRegistered = "Email already have an account, go get your password";
         }
 
 

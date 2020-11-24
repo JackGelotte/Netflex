@@ -28,9 +28,8 @@ namespace FlexApp.User
 
             try
             {
-                using(Context ct = new Context())
                 {
-                    UserSession.Customer = ct.Customers.Where(x => x.
+                    UserSession.Customer = UserSession.ct.Customers.Where(x => x.
                         Login.Username == username && x.
                         Login.Password == password)
                         .First();
@@ -42,7 +41,7 @@ namespace FlexApp.User
             }
             catch
             {
-                return Helper.Message.LoginFailed;
+                return Helper.Message.LoginFailedWrongUsernameOrPassword;
             }
         }
         

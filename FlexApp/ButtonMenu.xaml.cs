@@ -82,7 +82,7 @@ namespace FlexApp
             }
             catch(Exception exc)
             {
-                MessageBox.Show($"{Helper.Message.SearchError}\n{exc}");
+                MessageBox.Show($"{Helper.Message.SearchErrorIncorectSearchTerm}\n{exc}");
             }
         }
 
