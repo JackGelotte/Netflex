@@ -23,13 +23,13 @@ namespace FlexApp
         public static void LoadPopularMovies()
         {
             DisplayMovies.Clear();
-            foreach (Movie m in Status.ct.Movies.OrderBy(x => x.Rating).Take(MOVIES_PER_PAGE)) DisplayMovies.Add(m);
+            foreach (Movie m in Status.ct.Movies.OrderBy(x => x.Rating).Reverse()) DisplayMovies.Add(m);
         }
 
         public static void LoadNewMovies()
         {
             DisplayMovies.Clear();
-            foreach (Movie m in Status.ct.Movies.OrderBy(x => x.Year).Take(MOVIES_PER_PAGE)) DisplayMovies.Add(m);
+            foreach (Movie m in Status.ct.Movies.OrderBy(x => x.Year).Reverse()) DisplayMovies.Add(m);
         }
 
         public static void LoadMoviesByGenre(string genre)

@@ -79,7 +79,7 @@
 
         <!-- Movie Display -->
         <Grid Name="MainPage" Grid.Column="1" Grid.Row="1">
-            <local:MovieDisplay x:Name="StartPage" Visibility="Hidden"></local:MovieDisplay>
+            <local:MovieDisplay x:Name="StartPage" Visibility="Hidden" > </local:MovieDisplay>
             <local:RegistrationScreen x:Name="RegistrationPage" Visibility="Hidden"></local:RegistrationScreen>
 
         </Grid>
