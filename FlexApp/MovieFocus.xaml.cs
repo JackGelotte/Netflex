@@ -51,8 +51,8 @@ namespace FlexApp
         {
             if(!Status.IsLoggedIn)
             {
-                //LoginScreen ls = new LoginScreen();
-                //ls.Show();
+                LoginScreen ls = new LoginScreen();
+                ls.Show();
             }
 
             if(Status.IsLoggedIn)
@@ -74,7 +74,7 @@ namespace FlexApp
 
         private void DaysActiveSelectionMjo_DropDownClosed(object sender, EventArgs e)
         {
-            DaysActiveSelected = Int32.Parse(DaysActiveSelectionMjo.Text);
+            if(!String.IsNullOrEmpty(DaysActiveSelectionMjo.Text)) DaysActiveSelected = Int32.Parse(DaysActiveSelectionMjo.Text);
         }
     }
 }

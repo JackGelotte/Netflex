@@ -34,15 +34,21 @@ namespace FlexApp
 
         }
 
-        public void Refresh()
+        public static void Refresh()
         {
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(x => x.IsInitialized);
+
             if (!Status.IsLoggedIn)
             {
-                Login_Logout_ButtonText.Text = "Login";
+                mw.Login_Logout_ButtonText.Text = "Login";
+                mw.Register_MyPage_ButtonText.Text = "Register";
+                Register_MyPage_ButtonText.Text = "Register";
+                Register_MyPage_ButtonText.Text = "Register";
                 Register_MyPage_ButtonText.Text = "Register";
             }
             if (Status.IsLoggedIn)
             {
+                Status.LogOut();
                 Login_Logout_ButtonText.Text = "Log Out";
                 Register_MyPage_ButtonText.Text = "My Page";
             }
@@ -62,7 +68,6 @@ namespace FlexApp
             {
                 LoginScreen ls = new LoginScreen(this);
                 ls.Show();
-                ls.Activate();
             }
 
             if (Status.IsLoggedIn)
@@ -131,6 +136,7 @@ namespace FlexApp
         private void GenresComboBox_DropDownClosed(object sender, EventArgs e)
         {
             Movies.LoadMoviesByGenre(GenresComboBox.Text);
+            MovieDisplay.Refresh();
         }
 
         // Sök Knapp
@@ -139,6 +145,7 @@ namespace FlexApp
             try
             {
                 Movies.SearchMovie(SearchBox.Text);
+                MovieDisplay.Refresh();
             }
             catch (Exception exc)
             {
@@ -151,7 +158,11 @@ namespace FlexApp
         private void SearchBox_LostFocus(object sender, RoutedEventArgs e) { if (String.IsNullOrEmpty(SearchBox.Text)) { SearchBox.Text = "Search"; }}
 
         // Hot! Knapp
-        private void Hot_Click(object sender, RoutedEventArgs e) { Movies.LoadPopularMovies(); }
+        private void Hot_Click(object sender, RoutedEventArgs e) 
+        { 
+            Movies.LoadPopularMovies(); 
+            MovieDisplay.Refresh(); 
+        }
 
         
     }

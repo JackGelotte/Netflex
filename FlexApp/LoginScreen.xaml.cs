@@ -17,13 +17,22 @@ namespace FlexApp
     /// </summary>
     public partial class LoginScreen : Window
     {
-        public MainWindow Sender { get; set; }
+       // public MainWindow Sender { get; set; }
 
         public LoginScreen(MainWindow mw)
         {
             InitializeComponent();
 
-            Sender = mw;
+            //Sender = mw;
+        }
+
+        public LoginScreen()
+        {
+            InitializeComponent();
+
+            //Sender = null;
+
+
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -34,7 +43,7 @@ namespace FlexApp
 
             if (status == Helper.Message.LoginSuccessful)
             {
-                Sender.Refresh();
+                MainWindow.Refresh();
                 this.Close();
             }
 
