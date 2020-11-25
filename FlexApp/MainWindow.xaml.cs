@@ -38,13 +38,11 @@ namespace FlexApp
         {
             if (!Status.IsLoggedIn)
             {
-                Status.LogOut();
                 Login_Logout_ButtonText.Text = "Login";
                 Register_MyPage_ButtonText.Text = "Register";
             }
             if (Status.IsLoggedIn)
             {
-                Status.LogOut();
                 Login_Logout_ButtonText.Text = "Log Out";
                 Register_MyPage_ButtonText.Text = "My Page";
             }
