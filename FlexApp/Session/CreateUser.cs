@@ -6,11 +6,11 @@ using DatabaseConnection;
 
 namespace FlexApp.User
 {
-    public static class UserCreation
+    public static class CreateUser
     {          
         public static void CreateNewUser(string fName, string lName, string eMail, string adress, string phoneNo, string userName, string passWord)
         {
-            UserSession.ct.Customers.Add(new Customer()
+            Status.ct.Customers.Add(new Customer()
             {
                 FirstName = fName,
                 LastName = lName,
@@ -19,7 +19,7 @@ namespace FlexApp.User
                 PhoneNumber = phoneNo,
                 Login = new Login() { Username = userName, Password = Encrypt(passWord) }
             });
-            UserSession.ct.SaveChanges();
+            Status.ct.SaveChanges();
         }
 
         public static string Encrypt(string input)

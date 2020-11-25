@@ -40,10 +40,10 @@ namespace FlexApp
             {
                 for (int y = 0; y < MovieGrid.ColumnDefinitions.Count; y++)
                 {
-                    if (index < MovieViewer.DisplayMovies.Count
-                        && index < Page * MovieViewer.MOVIES_PER_PAGE)
+                    if (index < Movies.DisplayMovies.Count
+                        && index < Page * Movies.MOVIES_PER_PAGE)
                     {
-                        Movie m = MovieViewer.DisplayMovies[index];
+                        Movie m = Movies.DisplayMovies[index];
 
                         Image image = new Image();
                         image.Cursor = Cursors.Hand;
@@ -72,18 +72,18 @@ namespace FlexApp
 
         private void Mouse_Up(object sender, MouseButtonEventArgs e)
         {
-            MovieDetailRental md = new MovieDetailRental();
+            MovieFocus md = new MovieFocus();
 
             var x = Grid.GetColumn(sender as UIElement);
             var y = Grid.GetRow(sender as UIElement);
 
             int i = y * MovieGrid.ColumnDefinitions.Count + x;
-            md.MovieToRent = MovieViewer.DisplayMovies[i];
+            md.MovieSelected = Movies.DisplayMovies[i];
 
-            md.MoviePoster.Source = new BitmapImage(new Uri(MovieViewer.DisplayMovies[i].PosterLink));
-            md.MovieInfo.Text = $"{MovieViewer.DisplayMovies[i].Title} " +
-                $"{MovieViewer.DisplayMovies[i].Year} " +
-                $"{MovieViewer.DisplayMovies[i].Rating}";
+            md.MoviePoster.Source = new BitmapImage(new Uri(Movies.DisplayMovies[i].PosterLink));
+            md.MovieInfo.Text = $"{Movies.DisplayMovies[i].Title} " +
+                $"{Movies.DisplayMovies[i].Year} " +
+                $"{Movies.DisplayMovies[i].Rating}";
 
             md.Show();
         }

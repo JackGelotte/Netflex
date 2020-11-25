@@ -59,7 +59,7 @@
             <!-- Genres Box -->
             <ComboBox Name="GenresComboBox" 
                       HorizontalAlignment="Center" Width="120" 
-                      ItemsSource="{Binding GenresTest}"
+                      ItemsSource="{Binding Genres}"
                       DisplayMemberPath="GenreShow"
                       SelectedValuePath="GenreName"
                       SelectedValue="SelectedGenre" 

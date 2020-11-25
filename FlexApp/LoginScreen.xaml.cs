@@ -17,16 +17,33 @@ namespace FlexApp
     /// </summary>
     public partial class LoginScreen : Window
     {
-        public LoginScreen()
+        public MainWindow Sender { get; set; }
+
+        public LoginScreen(MainWindow mw)
         {
             InitializeComponent();
 
+            Sender = mw;
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            var status = User.AppLogin.Login(txtUsername.Text, txtPassword.Password);
+            var status = User.LogIn.Login(txtUsername.Text, txtPassword.Password);
+
             MessageBox.Show(status);
+
+            if (status == Helper.Message.LoginSuccessful)
+            {
+                Sender.Refresh();
+                this.Close();
+            }
+
+            if(status == Helper.Message.LoginFailedWrongUsernameOrPassword)
+            {
+                txtPassword.Password = "";
+                txtUsername.Text = "";
+            }
+
         }
     }
 }

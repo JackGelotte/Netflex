@@ -17,7 +17,7 @@ namespace FlexApp
     /// <summary>
     /// Interaction logic for MovieDetailRental.xaml
     /// </summary>
-    public partial class MovieDetailRental : Window
+    public partial class MovieFocus : Window
     {
 
         public ObservableCollection<DaysActiveComboBox> DaysActiveSelection { get {
@@ -35,28 +35,31 @@ namespace FlexApp
 
         }
 
-        public Movie MovieToRent { get; set; }
+        public int DaysActiveSelected { get; set; }
 
-        public MovieDetailRental()
+        public Movie MovieSelected { get; set; }
+
+        public MovieFocus()
         {
             InitializeComponent();
-            
+
+            DataContext = this;
             
         }
 
         private void Rent_Button_Click(object sender, RoutedEventArgs e)
         {
-            if(!UserSession.IsLoggedIn)
+            if(!Status.IsLoggedIn)
             {
-                LoginScreen ls = new LoginScreen();
-                ls.Show();
+                //LoginScreen ls = new LoginScreen();
+                //ls.Show();
             }
 
-            if(UserSession.IsLoggedIn)
+            if(Status.IsLoggedIn)
             {
                 try
                 {
-                    User.AppRental.RegisterRental(UserSession.Customer, MovieToRent, 3);
+                    User.Rental.Execute(MovieSelected, DaysActiveSelected);
                     MessageBox.Show("Rental osv");
                 }
                 catch(Exception er) 
@@ -68,6 +71,11 @@ namespace FlexApp
             }
 
 
+        }
+
+        private void DaysActiveSelectionMjo_DropDownClosed(object sender, EventArgs e)
+        {
+            DaysActiveSelected = Int32.Parse(DaysActiveSelectionMjo.Text);
         }
     }
 }

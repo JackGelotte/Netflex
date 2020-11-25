@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FlexApp.User;
 using System.Collections.ObjectModel;
+using System.Threading;
 
 namespace FlexApp
 {
@@ -25,18 +26,25 @@ namespace FlexApp
     {
         public MainWindow()
         {
-            MovieViewer.LoadNewMovies();
+            Movies.LoadNewMovies();
 
             InitializeComponent();
-            
-            if (!UserSession.IsLoggedIn)
+
+            DataContext = this;
+
+        }
+
+        public void Refresh()
+        {
+            if (!Status.IsLoggedIn)
             {
+                Status.LogOut();
                 Login_Logout_ButtonText.Text = "Login";
                 Register_MyPage_ButtonText.Text = "Register";
             }
-
-            if (UserSession.IsLoggedIn)
+            if (Status.IsLoggedIn)
             {
+                Status.LogOut();
                 Login_Logout_ButtonText.Text = "Log Out";
                 Register_MyPage_ButtonText.Text = "My Page";
             }
@@ -52,35 +60,38 @@ namespace FlexApp
         // Login Knapp
         private void Login_Logout_Click(object sender, RoutedEventArgs e)
         {
-            if (!UserSession.IsLoggedIn)
+            if (!Status.IsLoggedIn)
             {
-                LoginScreen ls = new LoginScreen();
+                LoginScreen ls = new LoginScreen(this);
                 ls.Show();
+                ls.Activate();
             }
 
-            if (UserSession.IsLoggedIn)
+            if (Status.IsLoggedIn)
             {
-
+                Status.LogOut();
+                Login_Logout_ButtonText.Text = "Login";
+                Register_MyPage_ButtonText.Text = "Register";
             }
         }
 
         // Registrering Knapp
         private void Register_MyPage_Click(object sender, RoutedEventArgs e)
         {
-            if (!UserSession.IsLoggedIn)
+            if (!Status.IsLoggedIn)
             {
                 StartPage.Visibility = Visibility.Hidden;
                 RegistrationPage.Visibility = Visibility.Visible;
             }
 
-            if (UserSession.IsLoggedIn)
+            if (Status.IsLoggedIn)
             {
 
             }
         }
 
         // Genre Lista
-        public ObservableCollection<Genre> GenresTest {
+        public ObservableCollection<Genre> Genres {
             get
             {
                 return new ObservableCollection<Genre>() {
@@ -121,7 +132,7 @@ namespace FlexApp
         }
         private void GenresComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            MovieViewer.LoadMoviesByGenre(GenresComboBox.Text);
+            Movies.LoadMoviesByGenre(GenresComboBox.Text);
         }
 
         // Sök Knapp
@@ -129,7 +140,7 @@ namespace FlexApp
         {
             try
             {
-                MovieViewer.SearchMovie(SearchBox.Text);
+                Movies.SearchMovie(SearchBox.Text);
             }
             catch (Exception exc)
             {
@@ -142,7 +153,7 @@ namespace FlexApp
         private void SearchBox_LostFocus(object sender, RoutedEventArgs e) { if (String.IsNullOrEmpty(SearchBox.Text)) { SearchBox.Text = "Search"; }}
 
         // Hot! Knapp
-        private void Hot_Click(object sender, RoutedEventArgs e) { MovieViewer.LoadPopularMovies(); }
+        private void Hot_Click(object sender, RoutedEventArgs e) { Movies.LoadPopularMovies(); }
 
         
     }

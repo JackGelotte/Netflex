@@ -6,24 +6,24 @@ using DatabaseConnection;
 
 namespace FlexApp.User
 {
-    public static class AppRental
+    public static class Rental
     {
         public static bool isPayed { get; set; }
 
-        public static void RegisterRental(Customer customer, Movie movie, int daysActive)
+        public static void Execute(Movie movie, int daysActive)
         {
             Payment(daysActive);
 
-            if(UserSession.IsLoggedIn && isPayed)
+            if(Status.IsLoggedIn && isPayed)
             {
-                UserSession.ct.Rentals.Add(new Rental()
+                Status.ct.Add(new DatabaseConnection.Rental()
                 {
                     RentDate = DateTime.Now.ToString("yyyy-MM-dd"),
                     ReturnDate = DateTime.Now.AddDays(daysActive).ToString("yyyy-MM-dd"),
-                    Customer = customer,
+                    Customer = Status.Customer,
                     Movie = movie
                 });
-                UserSession.ct.SaveChanges();
+                Status.ct.SaveChanges();
             }
         }
 

@@ -17,7 +17,7 @@ namespace FlexApp
     // ------------------------------------------ \\
      //  --------------------------------------  \\
 
-    static class GetImdbInfo
+    static class ImdbApi
     {
         public const string API_KEY = "k_6f3w3pvw";
 

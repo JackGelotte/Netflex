@@ -37,13 +37,13 @@ namespace FlexApp
                 if (New_Password.Password != Repeat_Password.Password) 
                     { MessageBox.Show(Helper.Message.RegistrationErrorPasswordMismatch); break; ; }
 
-                if (UserSession.ct.Logins.Where(l => l.Username.Equals(New_Username)).Count() > 0) 
+                if (Status.ct.Logins.Where(l => l.Username.Equals(New_Username)).Count() > 0) 
                     { MessageBox.Show(Helper.Message.RegistrationErrorUsernameAlreadyExists); break; ; }
 
-                if (UserSession.ct.Customers.Where(c => c.Email.Equals(New_Email.Text)).Count() > 0) 
+                if (Status.ct.Customers.Where(c => c.Email.Equals(New_Email.Text)).Count() > 0) 
                     { MessageBox.Show(Helper.Message.RegistrationErrorEmailAlreadyRegistered); break; ; }
 
-                User.UserCreation.CreateNewUser(
+                User.CreateUser.CreateNewUser(
                     New_FirstName.Text, New_LastName.Text, 
                     New_Email.Text, New_Adress.Text, "070", 
                     New_Username.Text, New_Password.Password

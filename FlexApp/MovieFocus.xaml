@@ -1,4 +1,4 @@
-﻿<Window x:Class="FlexApp.MovieDetailRental"
+﻿<Window x:Class="FlexApp.MovieFocus"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,14 +9,16 @@
     <Grid>
 
         <Image Name="MoviePoster" Margin="0,0,419,0" />
-        <TextBlock Name="MovieInfo" Margin="453,87,94,47" />
-        <Button Content="Rent" Margin="711,90,18,50" Click="Rent_Button_Click" />
+        <TextBlock Name="MovieInfo" Margin="380,133,167,50" />
+        <Button Content="Rent" Margin="685,90,18,50" Click="Rent_Button_Click" />
         <ComboBox Name="DaysActiveSelectionMjo" 
                       HorizontalAlignment="Left" Width="120" 
-                      ItemsSource="{Binding DaysActiveComboBox}"
+                      ItemsSource="{Binding DaysActiveSelection}"
                       DisplayMemberPath="DaysActive"
                       SelectedValuePath="DaysActive"
-                      Height="27" Margin="648,55,0,352"
+                      DropDownClosed="DaysActiveSelectionMjo_DropDownClosed"
+                      Height="27" Margin="633,20,0,387"
                       />
+        <TextBlock HorizontalAlignment="Left" Margin="535,23,0,0" Text="Select Days" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Height="30"/>
     </Grid>
 </Window>

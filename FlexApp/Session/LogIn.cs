@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FlexApp.User
 {
-    public static class AppLogin
+    public static class LogIn
     {
               
         public static string Login(string username, string password)
@@ -29,12 +29,12 @@ namespace FlexApp.User
             try
             {
                 {
-                    UserSession.Customer = UserSession.ct.Customers.Where(x => x.
+                    Status.Customer = Status.ct.Customers.Where(x => x.
                         Login.Username == username && x.
                         Login.Password == password)
                         .First();
 
-                    UserSession.IsLoggedIn = true;
+                    Status.IsLoggedIn = true;
                 }
                 return Helper.Message.LoginSuccessful;
 
