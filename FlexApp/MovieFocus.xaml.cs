@@ -59,7 +59,8 @@ namespace FlexApp
             {
                 try
                 {
-                    User.Rental.Execute(MovieSelected, DaysActiveSelected);
+                    new User.Rental(MovieSelected).Execute(DaysActiveSelected);
+
                     MessageBox.Show("Rental osv");
                 }
                 catch(Exception er) 
@@ -69,8 +70,6 @@ namespace FlexApp
 
                 this.Close();
             }
-
-
         }
 
         private void DaysActiveSelectionMjo_DropDownClosed(object sender, EventArgs e)

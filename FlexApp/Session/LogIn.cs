@@ -9,8 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FlexApp.User
 {
     public static class LogIn
-    {
-              
+    {           
         public static string Login(string username, string password)
         {
             using (MD5 md5 = MD5.Create())
@@ -23,27 +22,25 @@ namespace FlexApp.User
                 {
                     sb.Append(hashBytes[i].ToString("X2"));
                 }
+
                 password = sb.ToString();
             }
 
             try
             {
-                {
-                    Status.Customer = Status.ct.Customers.Where(x => x.
-                        Login.Username == username && x.
-                        Login.Password == password)
-                        .First();
+                Status.Customer = Status.ct.Customers.Where(x => x.
+                    Login.Username == username && x.
+                    Login.Password == password)
+                    .First();
 
-                    Status.IsLoggedIn = true;
-                }
+                Status.IsLoggedIn = true;
+
                 return Helper.Message.LoginSuccessful;
-
             }
             catch
             {
                 return Helper.Message.LoginFailedWrongUsernameOrPassword;
             }
-        }
-        
+        }       
     }
 }

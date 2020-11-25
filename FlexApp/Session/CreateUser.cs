@@ -8,16 +8,21 @@ namespace FlexApp.User
 {
     public static class CreateUser
     {          
-        public static void CreateNewUser(string fName, string lName, string eMail, string adress, string phoneNo, string userName, string passWord)
+        public static void CreateNewUser(string fName, string lName, string eMail, string adress, string phoneNo, string username, string password)
         {
-            Status.ct.Customers.Add(new Customer()
+            Status.ct.Customers.Add(new Customer() 
             {
                 FirstName = fName,
                 LastName = lName,
                 Email = eMail,
                 Adress = adress,
                 PhoneNumber = phoneNo,
-                Login = new Login() { Username = userName, Password = Encrypt(passWord) }
+                Login = new Login()  
+                { 
+                    Username = username, 
+                    Password = Encrypt(password), 
+                    Customer = Status.Customer 
+                }
             });
             Status.ct.SaveChanges();
         }
