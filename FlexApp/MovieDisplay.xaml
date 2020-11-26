@@ -8,8 +8,9 @@
 
              mc:Ignorable="d" 
              d:DesignHeight="580" d:DesignWidth="1072">
+    
     <Grid>
-        <ScrollViewer>
+        <ScrollViewer x:Name="MovieViewScroll">
             <ScrollViewer.Effect>
                 <DropShadowEffect/>
             </ScrollViewer.Effect>

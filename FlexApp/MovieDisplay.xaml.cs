@@ -60,11 +60,12 @@ namespace FlexApp
 
         public static void Refresh()
         {
+            MovieDisplayUserControl.MovieViewScroll.ScrollToVerticalOffset(0);
+
             MovieDisplayUserControl.MovieGrid.Children.Clear();
 
             MovieDisplayUserControl.InitializeMovieView();
         }
-
 
         public void InitializeMovieView()
         {
@@ -112,8 +113,8 @@ namespace FlexApp
             MovieFocus mf = new MovieFocus();
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(x => x.IsInitialized);
 
-            mf.Width = mw.MainPage.Width - 20;
-            mf.Height = mw.MainPage.Height - 20;
+            mf.Width = mw.Width - 200;
+            mf.Height = mw.Height - 120;
             mf.Owner =  mw;
 
             mf.WindowStartupLocation = WindowStartupLocation.CenterOwner;
@@ -144,6 +145,7 @@ namespace FlexApp
             Page++;
             Refresh();
         }
+
     }
 }
 

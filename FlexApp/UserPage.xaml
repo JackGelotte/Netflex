@@ -88,7 +88,7 @@
         </Grid>
 
         <!-- UserControls -> Active rentals / History -->
-        <Border BorderBrush="Red" BorderThickness="0.1" Margin="0,0,48,10" Grid.Column="2" Grid.Row="2">
+        <Border BorderBrush="DarkRed" BorderThickness="0.3" Margin="0,0,48,10" Grid.Column="2" Grid.Row="2">
             <Grid Name="RentalView" Grid.Column="2" Grid.Row="2">
 
                 <local:UserPageActiveRentals x:Name="ActiveRentalsUserControl"
