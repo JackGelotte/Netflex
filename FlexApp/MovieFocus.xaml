@@ -8,17 +8,20 @@
         Title="MovieDetailRental" Height="450" Width="800">
     <Grid>
 
-        <Image Name="MoviePoster" Margin="0,0,419,0" />
+        <Image Name="MoviePoster" Margin="40,40,419,40" />
         <TextBlock Name="MovieInfo" Margin="380,133,167,50" />
-        <Button Content="Rent" Margin="685,90,18,50" Click="Rent_Button_Click" />
-        <ComboBox Name="DaysActiveSelectionMjo" 
-                      HorizontalAlignment="Left" Width="120" 
+        <Button Content="Rent" Margin="630,330,0,0" Click="Rent_Button_Click" Height="30" Width="100"/>
+        <ComboBox Name="DaysActiveSelectionMjo"
+                  SelectedIndex="0"
                       ItemsSource="{Binding DaysActiveSelection}"
                       DisplayMemberPath="DaysActive"
                       SelectedValuePath="DaysActive"
                       DropDownClosed="DaysActiveSelectionMjo_DropDownClosed"
-                      Height="27" Margin="633,20,0,387"
-                      />
-        <TextBlock HorizontalAlignment="Left" Margin="535,23,0,0" Text="Select Days" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Height="30"/>
+                      Height="30" Width="100" Margin="630,250,0,0"
+                      >
+
+            
+
+        </ComboBox>
     </Grid>
 </Window>

@@ -23,6 +23,8 @@ namespace FlexApp
             public static readonly string RegistrationErrorUsernameAlreadyExists = "Username taken, try 89712893821972873";
             public static readonly string RegistrationErrorEmailAlreadyRegistered = "Email already have an account, go get your password";
             public static readonly string RegistrationErrorUsernamePasswordIncorect = "Username must be at least 3 characters, password 7, make it safe osv";
+            public static readonly string RentalSelectedActiveDays = "Days Active";
+            public static readonly string RentalSelectActiveDaysError = "Choose how many days you want the movie active.";
         }
 
 

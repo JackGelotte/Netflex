@@ -80,7 +80,7 @@ namespace FlexApp
                         image.HorizontalAlignment = HorizontalAlignment.Center;
                         image.VerticalAlignment = VerticalAlignment.Center;
                         image.Source = new BitmapImage(new Uri(m.PosterLink));
-                        image.Margin = new Thickness(8, 8, 8, 8);
+                        image.Margin = new Thickness(4, 4, 4, 4);
                         image.MouseUp += Mouse_Up;
 
                         MovieGrid.Children.Add(image);
@@ -88,14 +88,14 @@ namespace FlexApp
                         Grid.SetColumn(image, x);
 
                         index++;
-                    }  
+                    }   
                 }
             }
         }
 
         private void Mouse_Up(object sender, MouseButtonEventArgs e)
         {
-            MovieFocus md = new MovieFocus();
+            MovieFocus mf = new MovieFocus();
 
             var x = Grid.GetColumn(sender as UIElement);
             var y = Grid.GetRow(sender as UIElement);
@@ -104,12 +104,12 @@ namespace FlexApp
 
             md.MovieSelected = Movies.DisplayMovies[i];
 
-            md.MoviePoster.Source = new BitmapImage(new Uri(Movies.DisplayMovies[i].PosterLink));
-            md.MovieInfo.Text = $"{Movies.DisplayMovies[i].Title} " +
+            mf.MoviePoster.Source = new BitmapImage(new Uri(Movies.DisplayMovies[i].PosterLink));
+            mf.MovieInfo.Text = $"{Movies.DisplayMovies[i].Title} " +
                 $"{Movies.DisplayMovies[i].Year} " +
                 $"{Movies.DisplayMovies[i].Rating}";
 
-            md.Show();
+            mf.Show();
         }
 
         private void Click_Previous(object sender, RoutedEventArgs e)
