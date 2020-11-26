@@ -69,8 +69,8 @@ namespace FlexApp
         public void InitializeMovieView()
         {
             Index = 0;
-            for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
-            {   for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
+            for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
+            {   for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
                 {   if (Index < Movies.DisplayMovies.Count)
                     {
                         Movie m = Movies.DisplayMovies[Index];
@@ -80,7 +80,7 @@ namespace FlexApp
                         image.HorizontalAlignment = HorizontalAlignment.Center;
                         image.VerticalAlignment = VerticalAlignment.Center;
                         image.Source = new BitmapImage(new Uri(m.PosterLink));
-                        image.Margin = new Thickness(4, 4, 4, 4);
+                        image.Margin = new Thickness(10, 20, 10, 20);
                         image.MouseUp += Mouse_Up;
 
                         MovieGrid.Children.Add(image);
@@ -102,7 +102,7 @@ namespace FlexApp
 
             int i = (x * MovieGrid.RowDefinitions.Count + y) + Page * Movies.MOVIES_PER_PAGE;
 
-            md.MovieSelected = Movies.DisplayMovies[i];
+            mf.MovieSelected = Movies.DisplayMovies[i];
 
             mf.MoviePoster.Source = new BitmapImage(new Uri(Movies.DisplayMovies[i].PosterLink));
             mf.MovieInfo.Text = $"{Movies.DisplayMovies[i].Title} " +
