@@ -80,7 +80,7 @@ namespace FlexApp
                         image.HorizontalAlignment = HorizontalAlignment.Center;
                         image.VerticalAlignment = VerticalAlignment.Center;
                         image.Source = new BitmapImage(new Uri(m.PosterLink));
-                        image.Margin = new Thickness(10, 20, 10, 20);
+                        image.Margin = new Thickness(10, 30, 10, 30);
                         image.MouseUp += Mouse_Up;
 
                         MovieGrid.Children.Add(image);
