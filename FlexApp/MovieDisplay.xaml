@@ -14,6 +14,12 @@
                 <DropShadowEffect/>
             </ScrollViewer.Effect>
             <Grid Name="MovieGrid" Margin="0,0,31,0">
+                <Grid.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="BorderBrush" Value="DarkRed" />
+                        <Setter Property="BorderThickness" Value="0.5"/>
+                    </Style>
+                </Grid.Resources>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="260.25"/>
                     <ColumnDefinition Width="260.25"/>
@@ -27,11 +33,36 @@
                     <RowDefinition Height="350"/>
                     <RowDefinition Height="350"/>
                     <RowDefinition Height="350"/>
-                    
-                    
                 </Grid.RowDefinitions>
 
                 
+                <StackPanel Grid.Column="0" Grid.Row="0"/>
+                <StackPanel Grid.Column="1" Grid.Row="0"/>
+                <StackPanel Grid.Column="2" Grid.Row="0"/>
+                <StackPanel Grid.Column="3" Grid.Row="0"/>
+                
+                <StackPanel Grid.Column="0" Grid.Row="1"/>
+                <StackPanel Grid.Column="1" Grid.Row="1"/>
+                <StackPanel Grid.Column="2" Grid.Row="1"/>
+                <StackPanel Grid.Column="3" Grid.Row="1"/>
+
+                <StackPanel Grid.Column="0" Grid.Row="2"/>
+                <StackPanel Grid.Column="1" Grid.Row="2"/>
+                <StackPanel Grid.Column="2" Grid.Row="2"/>
+                <StackPanel Grid.Column="3" Grid.Row="2"/>
+
+                <StackPanel Grid.Column="0" Grid.Row="3"/>
+                <StackPanel Grid.Column="1" Grid.Row="3"/>
+                <StackPanel Grid.Column="2" Grid.Row="3"/>
+                <StackPanel Grid.Column="3" Grid.Row="3"/>
+
+                <StackPanel Grid.Column="0" Grid.Row="4"/>
+                <StackPanel Grid.Column="1" Grid.Row="4"/>
+                <StackPanel Grid.Column="2" Grid.Row="4"/>
+                <StackPanel Grid.Column="3" Grid.Row="4"/>
+
+
+
                 <Button Grid.Row="10" Grid.Column="1" Content="Next"
                     Click="Click_Next" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Height="50" />
                 

@@ -75,17 +75,31 @@ namespace FlexApp
                     {
                         Movie m = Movies.DisplayMovies[Index];
 
+                        StackPanel SP = new StackPanel();
+                        TextBlock title = new TextBlock();
                         Image image = new Image();
-                        image.Cursor = Cursors.Hand;
-                        image.HorizontalAlignment = HorizontalAlignment.Center;
-                        image.VerticalAlignment = VerticalAlignment.Center;
-                        image.Source = new BitmapImage(new Uri(m.PosterLink));
-                        image.Margin = new Thickness(10, 30, 10, 30);
-                        image.MouseUp += Mouse_Up;
+                        
+                        title.Cursor = Cursors.Wait;
+                        title.Text = m.Title;
+                        title.Foreground = Brushes.White;
+                        title.FontSize = 20;
+                        title.Margin = new Thickness(10,0,10,10);
+                        title.HorizontalAlignment = HorizontalAlignment.Center;
+                        title.MouseUp += Mouse_Up;
 
-                        MovieGrid.Children.Add(image);
-                        Grid.SetRow(image, y);
-                        Grid.SetColumn(image, x);
+                        image.Cursor = Cursors.Wait;
+                        image.Source = new BitmapImage(new Uri(m.PosterLink));                    
+                        image.Margin = new Thickness(10, 30, 10, 5);
+                        image.MouseUp += Mouse_Up;
+                        image.MaxHeight = 280;                       
+
+                        SP.Children.Add(image);
+                        SP.Children.Add(title);
+
+                        MovieGrid.Children.Add(SP);
+
+                        Grid.SetRow(SP, y);
+                        Grid.SetColumn(SP, x);
 
                         index++;
                     }   
