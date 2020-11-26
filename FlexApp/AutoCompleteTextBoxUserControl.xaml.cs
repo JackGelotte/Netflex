@@ -50,13 +50,17 @@ namespace FlexApp
             if (string.IsNullOrEmpty(this.SearchBox.Text))
             {
                 this.CloseAutoSuggestionBox();
+                this.autoList.ItemsSource = this.AutoSuggestionList.Where(p => p.Contains(this.SearchBox.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+                Movies.LoadPopularMovies();
+                MovieDisplay.Page = 0;
+                MovieDisplay.Refresh();
                 return;
             }
             this.OpenAutoSuggestionBox();
             this.autoList.ItemsSource = this.AutoSuggestionList.Where(p => p.Contains(this.SearchBox.Text, StringComparison.OrdinalIgnoreCase)).ToList();
             Movies.SearchMovie(SearchBox.Text);
             MovieDisplay.Page = 0;
-            MovieDisplay.Refresh(); ;
+            MovieDisplay.Refresh(); 
         }
 
 

@@ -82,11 +82,14 @@ namespace FlexApp
             {
                 StartPage.Visibility = Visibility.Hidden;
                 RegistrationPage.Visibility = Visibility.Visible;
+                UserPage.Visibility = Visibility.Visible;
             }
 
             if (Status.IsLoggedIn)
             {
-
+                StartPage.Visibility = Visibility.Hidden;
+                RegistrationPage.Visibility = Visibility.Hidden;
+                UserPage.Visibility = Visibility.Visible;
             }
         }
 
@@ -137,7 +140,6 @@ namespace FlexApp
             MovieDisplay.Refresh();
         }
 
-        // Hot! Knapp
         private void Hot_Click(object sender, RoutedEventArgs e)
         {
             Movies.LoadPopularMovies();
@@ -146,5 +148,4 @@ namespace FlexApp
         }
 
     }
-
-    }
+}

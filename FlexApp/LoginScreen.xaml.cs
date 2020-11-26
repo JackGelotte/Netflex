@@ -22,17 +22,11 @@ namespace FlexApp
         public LoginScreen(MainWindow mw)
         {
             InitializeComponent();
-
-            //Sender = mw;
         }
 
         public LoginScreen()
         {
             InitializeComponent();
-
-            //Sender = null;
-
-
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
