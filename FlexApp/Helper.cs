@@ -27,6 +27,10 @@ namespace FlexApp
             public static readonly string RentalSelectActiveDaysError = "Choose how many days you want the movie active.";
         }
 
+        public static class Image
+        {
+            public static readonly string DefaultAvatarURL = "https://ets2.lt/wp-content/uploads/profile_builder/avatars/userID_18932_originalAvatar_Ugly-People-Pics-5-570x855.jpg";
+        }
 
         public static class CsvFile
         {

@@ -80,6 +80,7 @@ namespace FlexApp
         private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
         {
             if (SearchBox.Text == "Search") SearchBox.Text = "";
+            OpenAutoSuggestionBox();
         }
 
         private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
@@ -87,6 +88,7 @@ namespace FlexApp
             if (String.IsNullOrEmpty(SearchBox.Text))
             {
                 SearchBox.Text = "Search";
+                CloseAutoSuggestionBox();
             }
         }
     }

@@ -51,20 +51,25 @@ namespace FlexApp
             }
         }
 
-        // Logo Knapp
-        private void Logo_Click(object sender, MouseButtonEventArgs e)
-        {
-            StartPage.Visibility = Visibility.Visible;
-            RegistrationPage.Visibility = Visibility.Hidden;
-        }
-
         // Login Knapp
         private void Login_Logout_Click(object sender, RoutedEventArgs e)
         {
             if (!Status.IsLoggedIn)
             {
                 LoginScreen ls = new LoginScreen(this);
+
+                const double MinWidth = 200;
+                const double MinHeight = 200;
+
+                double width = this.Width - 50;
+                double height = this.Height - 30;
+
+                ls.Owner = this;
+                ls.Width = width > MinWidth ? width : MinWidth;
+                ls.Height = height > MinHeight ? height : MinHeight;
+                ls.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                 ls.Show();
+
             }
 
             if (Status.IsLoggedIn)
@@ -91,6 +96,14 @@ namespace FlexApp
                 RegistrationPage.Visibility = Visibility.Hidden;
                 UserPage.Visibility = Visibility.Visible;
             }
+        }
+
+        // Logo Knapp
+        private void Logo_Click(object sender, MouseButtonEventArgs e)
+        {
+            StartPage.Visibility = Visibility.Visible;
+            RegistrationPage.Visibility = Visibility.Hidden;
+            UserPage.Visibility = Visibility.Hidden;
         }
 
         // Genre Lista

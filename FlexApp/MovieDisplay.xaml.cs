@@ -110,6 +110,13 @@ namespace FlexApp
         private void Mouse_Up(object sender, MouseButtonEventArgs e)
         {
             MovieFocus mf = new MovieFocus();
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(x => x.IsInitialized);
+
+            mf.Width = mw.MainPage.Width - 20;
+            mf.Height = mw.MainPage.Height - 20;
+            mf.Owner =  mw;
+
+            mf.WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
             var x = Grid.GetColumn(sender as UIElement);
             var y = Grid.GetRow(sender as UIElement);
