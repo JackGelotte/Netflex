@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280" AllowsTransparency="True"
         WindowStyle="None" WindowStartupLocation="CenterScreen">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"></RowDefinition>
@@ -42,33 +41,22 @@
         </Grid>
 
         <!-- Left Bar -->
-        <Grid Grid.Row="1" Grid.Column="0">
+        <Grid Grid.Row="1" Grid.Column="0" Name="LeftBar">
+            
             <!-- Search Button -->
-            <WrapPanel HorizontalAlignment="Center" Margin="0,20,0,0">
-
-                <TextBox Name="SearchBox"  Height="30" Width="120" Text="Search" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus" FontSize="20"/>
-
-                <Button Width="30" Height="30" HorizontalAlignment="Center"  Click="Search_Click" Cursor="Wait">
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock HorizontalAlignment="Center" Text="Go" FontSize="13" />
-                    </StackPanel>
-                </Button>
-
-            </WrapPanel>
+            <local:AutoCompleteTextBoxUserControl Height="100" Width="160" VerticalAlignment="Top" />
 
             <!-- Genres Box -->
-            <ComboBox Name="GenresComboBox" 
-                      HorizontalAlignment="Center" Width="120" 
+            <ComboBox Name="GenresComboBox" VerticalAlignment="Top" HorizontalAlignment="Center" Width="120" Height="27"                      
                       ItemsSource="{Binding Genres}"
                       DisplayMemberPath="GenreShow"
                       SelectedValuePath="GenreName"
                       SelectedValue="SelectedGenre" 
-                      DropDownClosed="GenresComboBox_DropDownClosed"
-                      Height="27"
-                      VerticalAlignment="Top" 
+                      DropDownClosed="GenresComboBox_DropDownClosed"                                          
                       Margin="0,70,0,0"
                       />
 
+          
             <!-- Hot! Button -->
             <Button Height="30"  Width="120" Click="Hot_Click" Cursor="Wait" VerticalAlignment="Top" Margin="0,120,0,0">
                 <StackPanel>

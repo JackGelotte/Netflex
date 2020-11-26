@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -28,7 +29,7 @@ namespace FlexApp
         {
             Movies.LoadNewMovies();
 
-            InitializeComponent();
+            this.InitializeComponent();
 
             DataContext = this;
 
@@ -132,35 +133,18 @@ namespace FlexApp
         private void GenresComboBox_DropDownClosed(object sender, EventArgs e)
         {
             Movies.LoadMoviesByGenre(GenresComboBox.Text);
+            MovieDisplay.Page = 0;
             MovieDisplay.Refresh();
         }
 
-        // Sök Knapp
-        private void Search_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Movies.SearchMovie(SearchBox.Text);
-                MovieDisplay.Refresh();
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show($"{Helper.Message.SearchErrorIncorectSearchTerm}\n{exc}");
-            }
-        }
-
-        private void SearchBox_GotFocus(object sender, RoutedEventArgs e) { if (SearchBox.Text == "Search") SearchBox.Text = ""; }
-
-        private void SearchBox_LostFocus(object sender, RoutedEventArgs e) { if (String.IsNullOrEmpty(SearchBox.Text)) { SearchBox.Text = "Search"; }}
-
         // Hot! Knapp
-        private void Hot_Click(object sender, RoutedEventArgs e) 
-        { 
-            Movies.LoadPopularMovies(); 
-            MovieDisplay.Refresh(); 
+        private void Hot_Click(object sender, RoutedEventArgs e)
+        {
+            Movies.LoadPopularMovies();
+            MovieDisplay.Page = 0;
+            MovieDisplay.Refresh();
         }
 
-        
     }
 
     }

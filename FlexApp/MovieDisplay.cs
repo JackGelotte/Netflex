@@ -40,18 +40,20 @@ namespace FlexApp
 
         }
 
-
-
-
-        private static int page = 1;
-
         private static int index = 0;
+        public static int Index
+        {
+            get { return index + Page * Movies.MOVIES_PER_PAGE; }
+            set { index = value; }
+        }
+        
+        private static int page = 0;
         public static int Page
         {
             get { return page; }
             set
             {
-                if (value < 1) page = 1;
+                if (value < 0) page = 0;
                 else page = value;
             }
         }
@@ -66,15 +68,12 @@ namespace FlexApp
 
         public void InitializeMovieView()
         {
-            index = 0;
-
+            Index = 0;
             for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
-            {
-                for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
-                {
-                    if (index < Movies.DisplayMovies.Count)
+            {   for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
+                {   if (Index < Movies.DisplayMovies.Count)
                     {
-                        Movie m = Movies.DisplayMovies[index];
+                        Movie m = Movies.DisplayMovies[Index];
 
                         Image image = new Image();
                         image.Cursor = Cursors.Hand;
@@ -87,6 +86,7 @@ namespace FlexApp
                         MovieGrid.Children.Add(image);
                         Grid.SetRow(image, y);
                         Grid.SetColumn(image, x);
+
                         index++;
                     }  
                 }
@@ -100,7 +100,8 @@ namespace FlexApp
             var x = Grid.GetColumn(sender as UIElement);
             var y = Grid.GetRow(sender as UIElement);
 
-            int i = x * MovieGrid.RowDefinitions.Count + y;
+            int i = (x * MovieGrid.RowDefinitions.Count + y) + Page * Movies.MOVIES_PER_PAGE;
+
             md.MovieSelected = Movies.DisplayMovies[i];
 
             md.MoviePoster.Source = new BitmapImage(new Uri(Movies.DisplayMovies[i].PosterLink));
@@ -113,18 +114,14 @@ namespace FlexApp
 
         private void Click_Previous(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Hidden;
             Page--;
-            MovieDisplay md = new MovieDisplay();
-            md.Visibility = Visibility.Visible;
+            Refresh();
         }
 
         private void Click_Next(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Hidden;
             Page++;
-            MovieDisplay md = new MovieDisplay();
-            md.Visibility = Visibility.Visible;
+            Refresh();
         }
     }
 }
