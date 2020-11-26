@@ -42,15 +42,12 @@ namespace FlexApp
             {
                 mw.Login_Logout_ButtonText.Text = "Login";
                 mw.Register_MyPage_ButtonText.Text = "Register";
-                Register_MyPage_ButtonText.Text = "Register";
-                Register_MyPage_ButtonText.Text = "Register";
-                Register_MyPage_ButtonText.Text = "Register";
             }
             if (Status.IsLoggedIn)
             {
                 Status.LogOut();
-                Login_Logout_ButtonText.Text = "Log Out";
-                Register_MyPage_ButtonText.Text = "My Page";
+                mw.Login_Logout_ButtonText.Text = "Log Out";
+                mw.Register_MyPage_ButtonText.Text = "My Page";
             }
         }
 
@@ -136,6 +133,7 @@ namespace FlexApp
         private void GenresComboBox_DropDownClosed(object sender, EventArgs e)
         {
             Movies.LoadMoviesByGenre(GenresComboBox.Text);
+            MovieDisplay.Page = 0;
             MovieDisplay.Refresh();
         }
 
@@ -145,6 +143,7 @@ namespace FlexApp
             try
             {
                 Movies.SearchMovie(SearchBox.Text);
+                MovieDisplay.Page = 0;
                 MovieDisplay.Refresh();
             }
             catch (Exception exc)
@@ -160,7 +159,8 @@ namespace FlexApp
         // Hot! Knapp
         private void Hot_Click(object sender, RoutedEventArgs e) 
         { 
-            Movies.LoadPopularMovies(); 
+            Movies.LoadPopularMovies();
+            MovieDisplay.Page = 0;
             MovieDisplay.Refresh(); 
         }
 

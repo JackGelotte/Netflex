@@ -22,16 +22,17 @@ namespace FlexApp
 
         public ObservableCollection<DaysActiveComboBox> DaysActiveSelection { get {
             return new ObservableCollection<DaysActiveComboBox>() { 
-            new DaysActiveComboBox(1),
-            new DaysActiveComboBox(3),
-            new DaysActiveComboBox(7)
+            new DaysActiveComboBox(Helper.Message.RentalSelectedActiveDays),
+            new DaysActiveComboBox("1"),
+            new DaysActiveComboBox("3"),
+            new DaysActiveComboBox("7")
             }; }
         }
 
         public class DaysActiveComboBox
         {
-            public int DaysActive { get; set; }
-            public DaysActiveComboBox(int i) { DaysActive = i; }
+            public string DaysActive { get; set; }
+            public DaysActiveComboBox(string i) { DaysActive = i; }
 
         }
 
@@ -57,6 +58,7 @@ namespace FlexApp
 
             if(Status.IsLoggedIn)
             {
+               
                 try
                 {
                     new User.Rental(MovieSelected).Execute(DaysActiveSelected);
@@ -74,7 +76,19 @@ namespace FlexApp
 
         private void DaysActiveSelectionMjo_DropDownClosed(object sender, EventArgs e)
         {
-            if(!String.IsNullOrEmpty(DaysActiveSelectionMjo.Text)) DaysActiveSelected = Int32.Parse(DaysActiveSelectionMjo.Text);
+            if (!String.IsNullOrEmpty(DaysActiveSelectionMjo.Text))
+
+                try
+                {
+                    Int32.TryParse(DaysActiveSelectionMjo.Text, out int test);
+                    DaysActiveSelected = test;
+                }
+                catch
+                {
+                    DaysActiveSelected = -1;
+                }
+
+                    
         }
     }
 }

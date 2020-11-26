@@ -43,7 +43,7 @@ namespace FlexApp
 
 
 
-        private static int page = 1;
+        private static int page = 0;
 
         private static int index = 0;
         public static int Page
@@ -51,7 +51,7 @@ namespace FlexApp
             get { return page; }
             set
             {
-                if (value < 1) page = 1;
+                if (value < 0) page = 0;
                 else page = value;
             }
         }
@@ -68,63 +68,59 @@ namespace FlexApp
         {
             index = 0;
 
-            for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
+            for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
             {
-                for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
+                for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
                 {
-                    if (index < Movies.DisplayMovies.Count)
+                    if (index + Page * Movies.MOVIES_PER_PAGE < Movies.DisplayMovies.Count)
                     {
-                        Movie m = Movies.DisplayMovies[index];
+                        Movie m = Movies.DisplayMovies[index + Page * Movies.MOVIES_PER_PAGE];
 
                         Image image = new Image();
                         image.Cursor = Cursors.Hand;
                         image.HorizontalAlignment = HorizontalAlignment.Center;
                         image.VerticalAlignment = VerticalAlignment.Center;
                         image.Source = new BitmapImage(new Uri(m.PosterLink));
-                        image.Margin = new Thickness(8, 8, 8, 8);
+                        image.Margin = new Thickness(4, 4, 4, 4);
                         image.MouseUp += Mouse_Up;
 
                         MovieGrid.Children.Add(image);
                         Grid.SetRow(image, y);
                         Grid.SetColumn(image, x);
                         index++;
-                    }  
+                    }   
                 }
             }
         }
 
         private void Mouse_Up(object sender, MouseButtonEventArgs e)
         {
-            MovieFocus md = new MovieFocus();
+            MovieFocus mf = new MovieFocus();
 
             var x = Grid.GetColumn(sender as UIElement);
             var y = Grid.GetRow(sender as UIElement);
 
-            int i = x * MovieGrid.RowDefinitions.Count + y;
-            md.MovieSelected = Movies.DisplayMovies[i];
+            int i = (y * MovieGrid.ColumnDefinitions.Count + x) + Page * Movies.MOVIES_PER_PAGE;
+            mf.MovieSelected = Movies.DisplayMovies[i];
 
-            md.MoviePoster.Source = new BitmapImage(new Uri(Movies.DisplayMovies[i].PosterLink));
-            md.MovieInfo.Text = $"{Movies.DisplayMovies[i].Title} " +
+            mf.MoviePoster.Source = new BitmapImage(new Uri(Movies.DisplayMovies[i].PosterLink));
+            mf.MovieInfo.Text = $"{Movies.DisplayMovies[i].Title} " +
                 $"{Movies.DisplayMovies[i].Year} " +
                 $"{Movies.DisplayMovies[i].Rating}";
 
-            md.Show();
+            mf.Show();
         }
 
         private void Click_Previous(object sender, RoutedEventArgs e)
-        {
-            this.Visibility = Visibility.Hidden;
+        {         
             Page--;
-            MovieDisplay md = new MovieDisplay();
-            md.Visibility = Visibility.Visible;
+            Refresh();
         }
 
         private void Click_Next(object sender, RoutedEventArgs e)
-        {
-            this.Visibility = Visibility.Hidden;
+        {           
             Page++;
-            MovieDisplay md = new MovieDisplay();
-            md.Visibility = Visibility.Visible;
+            Refresh();
         }
     }
 }
