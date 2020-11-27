@@ -33,7 +33,7 @@ namespace FlexApp
         {
             public string DaysActive { get; set; }
             public DaysActiveComboBox(string i) { DaysActive = i; }
-
+            
         }
 
         public int DaysActiveSelected { get; set; } = -1;
@@ -45,7 +45,11 @@ namespace FlexApp
             InitializeComponent();
 
             DataContext = this;
-            
+
+            Synopsis.Text = "Bra film om många grejer";
+
+
+            TrailerRun.InitializeComponent();
         }
 
         private void Rent_Button_Click(object sender, RoutedEventArgs e)

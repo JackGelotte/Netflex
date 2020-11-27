@@ -15,14 +15,11 @@ namespace FlexApp
 {
     public partial class UserPage : UserControl
     {
-
-
-
         public UserPage()
         {
             InitializeComponent();
 
-            AvatarImage.Source = new BitmapImage(new Uri(Helper.Image.DefaultAvatarURL));
+            AvatarImage.Source = new BitmapImage(new Uri(Helper.Image.BjornAvatarURL));
 
         }
 

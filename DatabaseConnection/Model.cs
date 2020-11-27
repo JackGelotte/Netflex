@@ -11,6 +11,7 @@ namespace DatabaseConnection
         public string Adress { get; set; }
         public string PhoneNumber { get; set; }
         // public string AvatarUrl { get; set; }
+
         // References to other tables
         public virtual Login Login { get; set; }
 
@@ -22,6 +23,7 @@ namespace DatabaseConnection
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        
         // References to other tables
 
         public int CustomerId { get; set; }

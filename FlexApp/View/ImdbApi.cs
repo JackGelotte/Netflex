@@ -19,7 +19,7 @@ namespace FlexApp
 
     static class ImdbApi
     {
-        public const string API_KEY = "k_6f3w3pvw";
+        public const string API_KEY = Helper.ImdbAPI.APIKeyJack;
 
         public static List<PosterDataItem> ImdbPosters { get; set; } = new List<PosterDataItem>();
 

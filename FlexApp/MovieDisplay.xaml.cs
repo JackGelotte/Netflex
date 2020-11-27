@@ -120,13 +120,13 @@ namespace FlexApp
             mf.MovieSelected = Movies.DisplayMovies[i];
 
             mf.MoviePoster.Source = new BitmapImage(new Uri(Movies.DisplayMovies[i].PosterLink));
-            mf.MovieInfo.Text = $"{Movies.DisplayMovies[i].Title} " +
-                $"({Movies.DisplayMovies[i].Year}) " +
-                $"IMDb Score : {Movies.DisplayMovies[i].Rating}";
+            mf.MovieNameYear.Text = $"{Movies.DisplayMovies[i].Title} " +
+                $"({Movies.DisplayMovies[i].Year})";
+            mf.MovieImdbRating.Text = $"IMDb Score : {Movies.DisplayMovies[i].Rating}";
 
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(x => x.IsInitialized);
-            mf.Width = mw.Width - 200;
-            mf.Height = mw.Height - 120;
+            mf.Width = mw.Width - 150;
+            mf.Height = mw.Height - 90;
             mf.Owner = mw;
             mf.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             mf.Show();
