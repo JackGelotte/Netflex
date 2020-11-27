@@ -74,7 +74,7 @@ namespace FlexApp
             index = 0;
             for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
             {   for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
-                {   if (index < Movies.DisplayMovies.Count)
+                {   if (index < Movies.DisplayMovies.Count) 
                     {
                         Movie m = Movies.DisplayMovies[index];
 

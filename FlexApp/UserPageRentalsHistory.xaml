@@ -7,9 +7,27 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        
+
         <ListView Margin="10" Name="movieHistoryDataBinding" 
-                  Background="Black" Foreground="White" />
+                  Background="Black" Foreground="White" 
+                  FontSize="18" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel Name="AddActiveHere">
+                        <TextBlock Text="Movie: " VerticalAlignment="Bottom" />
+                        <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="22"
+                                   VerticalAlignment="Center" />
+                        <TextBlock Text=", " VerticalAlignment="Bottom" />
+                        <TextBlock Text="Date: " VerticalAlignment="Bottom" />
+                        <TextBlock Text="{Binding Date}" FontWeight="Bold" FontSize="22"
+                                   VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Active}" VerticalAlignment="Bottom" 
+                                   Foreground="Red" FontStyle="Italic" 
+                                   FontWeight="UltraLight" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
     </Grid>
 </UserControl>

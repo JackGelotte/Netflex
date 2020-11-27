@@ -16,12 +16,8 @@ using DatabaseConnection;
 
 namespace FlexApp
 {
-    /// <summary>
-    /// Interaction logic for UserPageRentalsHistory.xaml
-    /// </summary>
     public partial class UserPageRentalsHistory : UserControl
     {
-
         public ObservableCollection<MovieHistory> RentalHistoryListView { get; set; } = new ObservableCollection<MovieHistory>();
 
         public string SelectedRental { get; set; }
@@ -32,16 +28,18 @@ namespace FlexApp
 
             public string Date { get; set; }
 
-            
-            public MovieHistory(string title, string date) { Title = title; Date = date; }
-
-            public override string ToString()
-            {
-                return $"Movie : {Title}  |  Date : {Date}";
+            public string Active { get; set; }
+         
+            public MovieHistory(string title, string date, string returnDate) 
+            { 
+                Title = title; 
+                Date = date; 
+                if(DateTime.Parse(returnDate) < DateTime.Now)
+                {
+                    Active = "  (Active)";                                                         
+                }
             }
-
         }
-
 
         public UserPageRentalsHistory()
         {
@@ -50,6 +48,7 @@ namespace FlexApp
             DataContext = this;
 
             movieHistoryDataBinding.ItemsSource = RentalHistoryListView;
+            
         }
     }
 }

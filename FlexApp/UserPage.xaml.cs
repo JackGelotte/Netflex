@@ -40,13 +40,27 @@ namespace FlexApp
 
         public void Refresh()
         {
+            // Refresh Users Rental count
             RentalsCount.Text = $"{Status.ct.Rentals.Where(r => r.Customer.Equals(Status.Customer)).Count()}";
 
+            // Refresh Users Rental History
             foreach (Rental r in Status.ct.Rentals.Where(x => x.Customer == Status.Customer))
             {
                 UserPageUserControl.RentalsHistoryUserControl.RentalHistoryListView
-                    .Add(new UserPageRentalsHistory.MovieHistory($"{r.Movie.Title}", $"{r.RentDate}"));
+                    .Insert(0, new UserPageRentalsHistory.MovieHistory($"{r.Movie.Title}", $"{r.RentDate}", $"{r.ReturnDate}"));
+
             }
+
+            // Refresh Users Active Rentals
+            foreach (Rental r in Status.ct.Rentals.Where(x => x.Customer == Status.Customer))
+            {
+                if (DateTime.Parse(r.ReturnDate) > DateTime.Now)
+                {
+                    UserPageUserControl.ActiveRentalsUserControl.ActiveMovies.Add(r);
+                }
+               
+            }
+            UserPageUserControl.ActiveRentalsUserControl.Refresh();
 
         }
 
