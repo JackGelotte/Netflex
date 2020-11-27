@@ -38,6 +38,8 @@ namespace FlexApp
 
             InitializeMovieView();
 
+            DataContext = this;
+
         }
 
         private static int index = 0;
@@ -60,49 +62,52 @@ namespace FlexApp
 
         public static void Refresh()
         {
+            MovieDisplayUserControl.MovieViewScroll.ScrollToVerticalOffset(0);
+
             MovieDisplayUserControl.MovieGrid.Children.Clear();
 
             MovieDisplayUserControl.InitializeMovieView();
         }
 
-
         public void InitializeMovieView()
         {
-            Index = 0;
+            index = 0;
             for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
             {   for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
-                {   if (Index < Movies.DisplayMovies.Count)
+                {   if (index < Movies.DisplayMovies.Count)
                     {
-                        Movie m = Movies.DisplayMovies[Index];
+                        Movie m = Movies.DisplayMovies[index];
 
                         StackPanel sp = new StackPanel();
                         TextBlock title = new TextBlock();
                         Image image = new Image();
-                       
+                        
+                        image.Cursor = Cursors.Wait;
+                        image.Source = new BitmapImage(new Uri(m.PosterLink));                    
+                        image.Margin = new Thickness(10, 30, 10, 5);
+                        image.MaxHeight = 280;
+
                         title.Cursor = Cursors.Wait;
                         title.Text = m.Title;
                         title.Foreground = Brushes.White;
                         title.FontSize = 20;
-                        title.Margin = new Thickness(10,0,10,10);
+                        title.Margin = new Thickness(10, 0, 10, 10);
                         title.HorizontalAlignment = HorizontalAlignment.Center;
-                        // title.MouseUp += Mouse_Up;
-                       
+                        title.MouseUp += Mouse_Up;
+
                         image.Cursor = Cursors.Wait;
                         image.Source = new BitmapImage(new Uri(m.PosterLink));                    
                         image.Margin = new Thickness(10, 30, 10, 5);
-                        // image.MouseUp += Mouse_Up;
+                        image.MouseUp += Mouse_Up;
                         image.MaxHeight = 280;                       
 
-                        sp.Children.Add(image);
-                        sp.Children.Add(title);
+                        SP.Children.Add(image);
+                        SP.Children.Add(title);
 
-                        sp.MouseUp += Mouse_Up;
+                        MovieGrid.Children.Add(SP);
 
-                        MovieGrid.Children.Add(sp);
-
-                        
-                        Grid.SetRow(sp, y);
-                        Grid.SetColumn(sp, x);
+                        Grid.SetRow(SP, y);
+                        Grid.SetColumn(SP, x);
 
                         index++;
                     }   
@@ -116,16 +121,22 @@ namespace FlexApp
 
             var y = Grid.GetRow(sender as UIElement);
             var x = Grid.GetColumn(sender as UIElement);
-            
-            int i = (y * MovieGrid.ColumnDefinitions.Count + x) + Page * Movies.MOVIES_PER_PAGE;
+            var y = Grid.GetRow(sender as UIElement);
+
+            int i = (x * MovieGrid.RowDefinitions.Count + y) + Page * Movies.MOVIES_PER_PAGE;
 
             mf.MovieSelected = Movies.DisplayMovies[i];
 
             mf.MoviePoster.Source = new BitmapImage(new Uri(Movies.DisplayMovies[i].PosterLink));
             mf.MovieInfo.Text = $"{Movies.DisplayMovies[i].Title} " +
-                $"{Movies.DisplayMovies[i].Year} " +
-                $"{Movies.DisplayMovies[i].Rating}";
+                $"({Movies.DisplayMovies[i].Year}) " +
+                $"IMDb Score : {Movies.DisplayMovies[i].Rating}";
 
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(x => x.IsInitialized);
+            mf.Width = mw.Width - 200;
+            mf.Height = mw.Height - 120;
+            mf.Owner = mw;
+            mf.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             mf.Show();
         }
 
@@ -140,6 +151,7 @@ namespace FlexApp
             Page++;
             Refresh();
         }
+
     }
 }
 

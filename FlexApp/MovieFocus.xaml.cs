@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -19,7 +20,6 @@ namespace FlexApp
     /// </summary>
     public partial class MovieFocus : Window
     {
-
         public ObservableCollection<DaysActiveComboBox> DaysActiveSelection { get {
             return new ObservableCollection<DaysActiveComboBox>() { 
             new DaysActiveComboBox(Helper.Message.RentalSelectedActiveDays),
@@ -36,7 +36,7 @@ namespace FlexApp
 
         }
 
-        public int DaysActiveSelected { get; set; }
+        public int DaysActiveSelected { get; set; } = -1;
 
         public Movie MovieSelected { get; set; }
 
@@ -56,9 +56,10 @@ namespace FlexApp
                 ls.Show();
             }
 
-            if(Status.IsLoggedIn)
+            if (Status.IsLoggedIn && DaysActiveSelected == -1) MessageBox.Show(Helper.Message.RentalSelectActiveDaysError);
+
+            if (Status.IsLoggedIn && DaysActiveSelected != -1) 
             {
-               
                 try
                 {
                     new User.Rental(MovieSelected).Execute(DaysActiveSelected);
@@ -83,12 +84,13 @@ namespace FlexApp
                     Int32.TryParse(DaysActiveSelectionMjo.Text, out int test);
                     DaysActiveSelected = test;
                 }
-                catch
-                {
-                    DaysActiveSelected = -1;
-                }
 
-                    
+                catch { DaysActiveSelected = -1; }                   
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(x => x.IsInitialized).Activate();
         }
     }
 }

@@ -71,7 +71,7 @@
         <Grid Name="MainPage" Grid.Column="2" Grid.Row="2" Margin="0,0,0,5">
             <local:MovieDisplay x:Name="StartPage" Visibility="Hidden" > </local:MovieDisplay>
             <local:RegistrationScreen x:Name="RegistrationPage" Visibility="Hidden"></local:RegistrationScreen>
-
+            <local:UserPage x:Name="UserPage" Visibility="Hidden" />
         </Grid>
     </Grid>
 </Window>

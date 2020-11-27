@@ -32,7 +32,6 @@ namespace FlexApp
             this.InitializeComponent();
 
             DataContext = this;
-
         }
 
         public static void Refresh()
@@ -51,25 +50,31 @@ namespace FlexApp
             }
         }
 
-        // Logo Knapp
-        private void Logo_Click(object sender, MouseButtonEventArgs e)
-        {
-            StartPage.Visibility = Visibility.Visible;
-            RegistrationPage.Visibility = Visibility.Hidden;
-        }
-
         // Login Knapp
         private void Login_Logout_Click(object sender, RoutedEventArgs e)
         {
             if (!Status.IsLoggedIn)
             {
                 LoginScreen ls = new LoginScreen(this);
+
+                const double MinWidth = 200;
+                const double MinHeight = 200;
+
+                double width = this.Width - 50;
+                double height = this.Height - 30;
+
+                ls.Owner = this;
+                ls.Width = width > MinWidth ? width : MinWidth;
+                ls.Height = height > MinHeight ? height : MinHeight;
+                ls.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                 ls.Show();
+
             }
 
             if (Status.IsLoggedIn)
             {
                 Status.LogOut();
+                HomePage();
                 Login_Logout_ButtonText.Text = "Login";
                 Register_MyPage_ButtonText.Text = "Register";
             }
@@ -81,13 +86,31 @@ namespace FlexApp
             if (!Status.IsLoggedIn)
             {
                 StartPage.Visibility = Visibility.Hidden;
-                RegistrationPage.Visibility = Visibility.Visible;
+                UserPage.Visibility = Visibility.Hidden;
+                RegistrationPage.Visibility = Visibility.Visible;               
             }
 
             if (Status.IsLoggedIn)
             {
-
+                StartPage.Visibility = Visibility.Hidden;
+                RegistrationPage.Visibility = Visibility.Hidden;
+                UserPage.Visibility = Visibility.Visible;
             }
+        }
+
+        // Logo Knapp
+        private void Logo_Click(object sender, MouseButtonEventArgs e)
+        {
+            HomePage();
+        }
+
+        public void HomePage()
+        {
+            StartPage.Visibility = Visibility.Visible;
+            RegistrationPage.Visibility = Visibility.Hidden;
+            UserPage.Visibility = Visibility.Hidden;
+            Movies.LoadNewMovies();
+            MovieDisplay.Refresh();
         }
 
         // Genre Lista
@@ -137,7 +160,6 @@ namespace FlexApp
             MovieDisplay.Refresh();
         }
 
-        // Hot! Knapp
         private void Hot_Click(object sender, RoutedEventArgs e)
         {
             Movies.LoadPopularMovies();
@@ -146,5 +168,4 @@ namespace FlexApp
         }
 
     }
-
-    }
+}

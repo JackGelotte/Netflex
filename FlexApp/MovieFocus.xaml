@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlexApp"
         mc:Ignorable="d"
-        Title="MovieDetailRental" Height="450" Width="800">
-    <Grid>
-
+        Title="MovieDetailRental" Height="450" Width="800" 
+        Background="Black"
+        BorderBrush="DarkRed" BorderThickness="2" 
+        Closing="Window_Closing" >
+    <Grid Height="450" Width="800" >
         <Image Name="MoviePoster" Margin="40,40,419,40" />
-        <TextBlock Name="MovieInfo" Margin="380,133,167,50" />
+        <TextBlock Name="MovieInfo" Margin="383,41,164,142" Foreground="White"
+                   FontWeight="Heavy"/>
         <Button Content="Rent" Margin="630,330,0,0" Click="Rent_Button_Click" Height="30" Width="100"/>
         <ComboBox Name="DaysActiveSelectionMjo"
                   SelectedIndex="0"

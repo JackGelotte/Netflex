@@ -10,7 +10,7 @@ namespace DatabaseConnection
         public string Email { get; set; }
         public string Adress { get; set; }
         public string PhoneNumber { get; set; }
-
+        // public string AvatarUrl { get; set; }
         // References to other tables
         public virtual Login Login { get; set; }
 

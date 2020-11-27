@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="FlexApp.UserPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlexApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="159*"/>
+            <RowDefinition Height="274*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="159*"/>
+            <ColumnDefinition Width="641*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Avatar -->
+        <Image Name="AvatarImage"
+            Grid.Column="1" Margin="26,12,35,12" Grid.Row="1"
+               />
+
+        <!-- UserName QuickInfo-->
+        <Grid Name="QuickInfoBox"
+            Margin="126,10,-40,10" Grid.Column="2" Grid.Row="1">
+
+            <WrapPanel Margin="0,0,10,0">
+                <StackPanel Name="Slot1" 
+                    Width="167" Height="153">
+
+                    <TextBlock Text="Rentals" FontWeight="Light"
+                            FontSize="25" Foreground="White" 
+                            Height="35" TextAlignment="Center" />
+                    <TextBlock Text="2" FontWeight="ExtraBold"
+                            FontSize="25" Foreground="White" 
+                            Height="35" TextAlignment="Center"  />
+
+                    <TextBlock Text="Time Watched" FontWeight="Light"
+                            FontSize="25" Foreground="White" 
+                            Height="35" TextAlignment="Center" />
+                    <TextBlock Text="420 h" FontWeight="ExtraBold"
+                            FontSize="25" Foreground="White" 
+                            Height="39" TextAlignment="Center" />
+                </StackPanel>
+
+                <StackPanel Name="Slot2" 
+                    Width="167" Height="153">
+
+                    <TextBlock Text="Friends" FontWeight="Light"
+                            FontSize="25" Foreground="White" 
+                            Height="35" TextAlignment="Center" />
+                    <TextBlock Text="0" FontWeight="ExtraBold"
+                            FontSize="25" Foreground="White" 
+                            Height="35" TextAlignment="Center"  />
+
+                    <TextBlock Text="Status" FontWeight="Light"
+                            FontSize="25" Foreground="White" 
+                            Height="35" TextAlignment="Center" />
+                    <TextBlock Text="n00b" FontWeight="ExtraBold"
+                            FontSize="25" Foreground="White" 
+                            Height="39" TextAlignment="Center" />
+                </StackPanel>
+
+                <StackPanel Name="Slot3" 
+                    Width="167" Height="153">
+
+                    <TextBlock Text="Credit" FontWeight="Light"
+                            FontSize="25" Foreground="White" 
+                            Height="35" TextAlignment="Center" />
+                    <TextBlock Text="69" FontWeight="ExtraBold"
+                            FontSize="25" Foreground="White" 
+                            Height="35" TextAlignment="Center"  />
+
+                    <TextBlock Text="c#" FontWeight="Light"
+                            FontSize="25" Foreground="White" 
+                            Height="35" TextAlignment="Center" />
+                    <TextBlock Text="100%" FontWeight="ExtraBold"
+                            FontSize="25" Foreground="White" 
+                            Height="39" TextAlignment="Center" />
+                </StackPanel>
+
+            </WrapPanel>
+
+
+        </Grid>
+
+        <!-- UserControls -> Active rentals / History -->
+        <Border BorderBrush="DarkRed" BorderThickness="0.3" Margin="0,0,48,10" Grid.Column="2" Grid.Row="2">
+            <Grid Name="RentalView" Grid.Column="2" Grid.Row="2">
+
+                <local:UserPageActiveRentals x:Name="ActiveRentalsUserControl"
+                    Visibility="Hidden" />
+                <local:UserPageRentalsHistory x:Name="RentalsHistoryUserControl"
+                    Visibility="Hidden" />
+                <local:UserPageAccountInformation x:Name="AccountInfoUserControl"
+                    Visibility="Hidden" />
+
+            </Grid>
+        </Border>
+
+        <!-- Left ButtonMenu -> Active Rentals / History / Account Info -->
+        <StackPanel Name="LeftButtonMenu" 
+            Margin="18,19,18,30" Grid.Column="1" Grid.Row="2">
+
+            <Button Name="ActiveRentals" Click="ActiveRentals_Click"
+                Content="Active Rentals" Height="30" FontWeight="DemiBold"
+                Background="Transparent" Foreground="White" />
+            
+            <Button Name="History" Click="History_Click"
+                Content="Movie History" Height="30" FontWeight="DemiBold"
+                Background="Transparent" Foreground="White" />
+            
+            <Button Name="AccountInfo" Click="AccountInfo_Click"
+                Content="Account Info" Height="30" FontWeight="DemiBold"
+                Background="Transparent" Foreground="White" />
+            
+            <Button Name="NoobFilter" Click="NoobFilter_Click"
+                Content="N00b?" Height="30" FontWeight="DemiBold"
+                Background="Transparent" Foreground="White" />
+
+        </StackPanel>
+    </Grid>
+</UserControl>

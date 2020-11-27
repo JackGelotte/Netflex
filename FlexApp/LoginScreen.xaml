@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlexApp"
         mc:Ignorable="d"
-        Title="Login" Height="300" Width="300" FontSize="14" Background="#E50914" >
+        Title="Login" Height="300" Width="300" FontSize="14" Background="#E50914" 
+        Closing="Window_Closing" >
     <Border Background="#2e3137" CornerRadius="20" Margin="20">
         <StackPanel Margin="20,10,20,10">
             <Label Content="Login" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>

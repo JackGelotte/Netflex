@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -22,24 +23,16 @@ namespace FlexApp
         public LoginScreen(MainWindow mw)
         {
             InitializeComponent();
-
-            //Sender = mw;
         }
 
         public LoginScreen()
         {
             InitializeComponent();
-
-            //Sender = null;
-
-
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             var status = User.LogIn.Login(txtUsername.Text, txtPassword.Password);
-
-            MessageBox.Show(status);
 
             if (status == Helper.Message.LoginSuccessful)
             {
@@ -49,10 +42,16 @@ namespace FlexApp
 
             if(status == Helper.Message.LoginFailedWrongUsernameOrPassword)
             {
+                MessageBox.Show(status);
                 txtPassword.Password = "";
                 txtUsername.Text = "";
             }
 
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(x => x.IsInitialized).Activate();
         }
     }
 }
