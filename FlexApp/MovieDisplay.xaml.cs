@@ -93,12 +93,18 @@ namespace FlexApp
                         title.FontSize = 20;
                         title.Margin = new Thickness(10, 0, 10, 10);
                         title.HorizontalAlignment = HorizontalAlignment.Center;
+                        title.MouseUp += Mouse_Up;
+
+                        image.Cursor = Cursors.Wait;
+                        image.Source = new BitmapImage(new Uri(m.PosterLink));                    
+                        image.Margin = new Thickness(10, 30, 10, 5);
+                        image.MouseUp += Mouse_Up;
+                        image.MaxHeight = 280;                       
 
                         sp.Children.Add(image);
                         sp.Children.Add(title);
-                        
+
                         MovieGrid.Children.Add(sp);
-                        sp.MouseUp += Mouse_Up;
 
                         Grid.SetRow(sp, y);
                         Grid.SetColumn(sp, x);
@@ -113,10 +119,11 @@ namespace FlexApp
         {
             MovieFocus mf = new MovieFocus();
 
-            var x = Grid.GetColumn(sender as UIElement);
             var y = Grid.GetRow(sender as UIElement);
+            var x = Grid.GetColumn(sender as UIElement);
 
-            int i = (y * MovieGrid.ColumnDefinitions.Count + x) + Page * Movies.MOVIES_PER_PAGE;
+            int i = (x * MovieGrid.RowDefinitions.Count + y) + Page * Movies.MOVIES_PER_PAGE;
+
             mf.MovieSelected = Movies.DisplayMovies[i];
 
             mf.MoviePoster.Source = new BitmapImage(new Uri(Movies.DisplayMovies[i].PosterLink));
