@@ -32,11 +32,12 @@
                Grid.RowSpan="4" />
 
         <!-- Title/Year/Imdb Ratin-->
-        <StackPanel Grid.Column="2" Grid.Row="1" >
+        <StackPanel Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2">
             <TextBlock Name="MovieNameYear" Foreground="White"
-                   FontWeight="Heavy" FontSize="40"/>
+                   FontWeight="Heavy" FontSize="40" 
+                       HorizontalAlignment="Left" Width="650"/>
             <TextBlock Name="MovieImdbRating" Foreground="White"
-                       HorizontalAlignment="Right" Width="525"
+                       HorizontalAlignment="Right" Width="660"
                    FontWeight="SemiBold"  FontSize="20"/>
         </StackPanel>
 

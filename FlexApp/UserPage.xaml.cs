@@ -51,11 +51,11 @@ namespace FlexApp
             }
 
             // Refresh Users Active Rentals
-            foreach (Rental r in Status.ct.Rentals.Where(x => x.Customer == Status.Customer))
+            foreach (Rental r in Status.ct.Rentals.Where(x => x.Customer == Status.Customer).OrderBy(o=>o.RentDate))
             {
                 if (DateTime.Parse(r.ReturnDate) > DateTime.Now)
                 {
-                    UserPageUserControl.ActiveRentalsUserControl.ActiveMovies.Add(r);
+                    UserPageUserControl.ActiveRentalsUserControl.ActiveMovies.Insert(0, r);
                 }         
             }
             UserPageUserControl.ActiveRentalsUserControl.Refresh();

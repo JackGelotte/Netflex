@@ -27,7 +27,6 @@ namespace FlexApp
         public UserPageActiveRentals()
         {
             InitializeComponent();
-
         }
 
         public void Refresh()

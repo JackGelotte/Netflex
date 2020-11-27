@@ -26,25 +26,20 @@ namespace FlexApp
 
         public void HideScriptErrors(WebBrowser wb, bool Hide)
         {
-            FieldInfo fiComWebBrowser = typeof(WebBrowser).GetField("_axIWebBrowser2", BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo fi = typeof(WebBrowser).GetField("_axIWebBrowser2", BindingFlags.Instance | BindingFlags.NonPublic);
 
-            if (fiComWebBrowser == null) return;
+            if (fi == null) return;
 
-            object objComWebBrowser = fiComWebBrowser.GetValue(wb);
+            object o = fi.GetValue(wb);
 
-            if (objComWebBrowser == null) return;
+            if (o == null) return;
 
-            objComWebBrowser.GetType().InvokeMember(
-
-            "Silent", BindingFlags.SetProperty, null, objComWebBrowser, new object[] { Hide });
-
+            o.GetType().InvokeMember("Silent", BindingFlags.SetProperty, null, o, new object[] { Hide });
         }
 
         public void Browser_Navigated(object sender, NavigationEventArgs e)
         {
-
             HideScriptErrors(this.Browser, true);
-
         }
     }
 }
