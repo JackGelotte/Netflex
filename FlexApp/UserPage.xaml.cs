@@ -48,7 +48,6 @@ namespace FlexApp
             {
                 UserPageUserControl.RentalsHistoryUserControl.RentalHistoryListView
                     .Insert(0, new UserPageRentalsHistory.MovieHistory($"{r.Movie.Title}", $"{r.RentDate}", $"{r.ReturnDate}"));
-
             }
 
             // Refresh Users Active Rentals
@@ -57,8 +56,7 @@ namespace FlexApp
                 if (DateTime.Parse(r.ReturnDate) > DateTime.Now)
                 {
                     UserPageUserControl.ActiveRentalsUserControl.ActiveMovies.Add(r);
-                }
-               
+                }         
             }
             UserPageUserControl.ActiveRentalsUserControl.Refresh();
 
@@ -96,7 +94,6 @@ namespace FlexApp
                     MessageBoxResult.None, 
                     MessageBoxOptions.RtlReading);
             }
-
         }
     }
 }

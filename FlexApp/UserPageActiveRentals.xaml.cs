@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
+using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -66,7 +67,7 @@ namespace FlexApp
                     sp.Children.Add(title);
                     sp.Children.Add(returnDate);
                     sp.Children.Add(image);
-                    
+         
                     MovieGrid.Children.Add(sp);
 
                     sp.MouseUp += Mouse_Up;
@@ -81,7 +82,19 @@ namespace FlexApp
         private void Mouse_Up(object sender, MouseButtonEventArgs e)
         {
             var x = Grid.GetColumn(sender as UIElement);
+            string movieTitle = ActiveMovies[x].Movie.Title;
+            Uri url = new Uri(String.Concat("https://thepiratebay10.org/search/", movieTitle.Replace(" ", "%20"), "/1/99/0"));
 
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(x => x.IsInitialized);
+            WatchMovieWindow wmw = new WatchMovieWindow();
+            wmw.Browser.Navigated += wmw.Browser_Navigated;
+            wmw.Browser.Navigate(url);
+            wmw.Width = mw.Width - 150;
+            wmw.Height = mw.Height - 90;
+            wmw.Owner = mw;
+            wmw.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            wmw.Show();
         }
+
     }
 }
