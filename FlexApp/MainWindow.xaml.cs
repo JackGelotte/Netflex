@@ -32,7 +32,6 @@ namespace FlexApp
             this.InitializeComponent();
 
             DataContext = this;
-
         }
 
         public static void Refresh()
@@ -75,6 +74,7 @@ namespace FlexApp
             if (Status.IsLoggedIn)
             {
                 Status.LogOut();
+                HomePage();
                 Login_Logout_ButtonText.Text = "Login";
                 Register_MyPage_ButtonText.Text = "Register";
             }
@@ -86,8 +86,8 @@ namespace FlexApp
             if (!Status.IsLoggedIn)
             {
                 StartPage.Visibility = Visibility.Hidden;
-                RegistrationPage.Visibility = Visibility.Visible;
-                UserPage.Visibility = Visibility.Visible;
+                UserPage.Visibility = Visibility.Hidden;
+                RegistrationPage.Visibility = Visibility.Visible;               
             }
 
             if (Status.IsLoggedIn)
@@ -101,9 +101,16 @@ namespace FlexApp
         // Logo Knapp
         private void Logo_Click(object sender, MouseButtonEventArgs e)
         {
+            HomePage();
+        }
+
+        public void HomePage()
+        {
             StartPage.Visibility = Visibility.Visible;
             RegistrationPage.Visibility = Visibility.Hidden;
             UserPage.Visibility = Visibility.Hidden;
+            Movies.LoadNewMovies();
+            MovieDisplay.Refresh();
         }
 
         // Genre Lista

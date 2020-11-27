@@ -34,8 +34,6 @@ namespace FlexApp
         {
             var status = User.LogIn.Login(txtUsername.Text, txtPassword.Password);
 
-            MessageBox.Show(status);
-
             if (status == Helper.Message.LoginSuccessful)
             {
                 MainWindow.Refresh();
@@ -44,6 +42,7 @@ namespace FlexApp
 
             if(status == Helper.Message.LoginFailedWrongUsernameOrPassword)
             {
+                MessageBox.Show(status);
                 txtPassword.Password = "";
                 txtUsername.Text = "";
             }

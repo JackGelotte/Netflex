@@ -18,7 +18,9 @@ namespace FlexApp
     {        
         public AutoCompleteTextBoxUserControl()
         {
-                this.InitializeComponent();
+            this.InitializeComponent();
+
+            this.SearchBox.Text = Helper.Message.SearchBoxText;
         }
 
         private List<string> autoSuggestionList = Status.ct.Movies.Select(m => m.Title).ToList();
@@ -47,20 +49,25 @@ namespace FlexApp
 
         private void AutoTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty(this.SearchBox.Text))
+            if(this.SearchBox.Text != Helper.Message.SearchBoxText)
             {
-                this.CloseAutoSuggestionBox();
+                if (string.IsNullOrEmpty(this.SearchBox.Text))
+                {
+                    this.CloseAutoSuggestionBox();
+                    this.autoList.ItemsSource = this.AutoSuggestionList.Where(p => p.Contains(this.SearchBox.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+                    Movies.LoadPopularMovies();
+                    MovieDisplay.Page = 0;
+                    MovieDisplay.Refresh();
+                    return;
+                }
+
+                this.OpenAutoSuggestionBox();
                 this.autoList.ItemsSource = this.AutoSuggestionList.Where(p => p.Contains(this.SearchBox.Text, StringComparison.OrdinalIgnoreCase)).ToList();
-                Movies.LoadPopularMovies();
+                Movies.SearchMovie(SearchBox.Text);
                 MovieDisplay.Page = 0;
                 MovieDisplay.Refresh();
-                return;
             }
-            this.OpenAutoSuggestionBox();
-            this.autoList.ItemsSource = this.AutoSuggestionList.Where(p => p.Contains(this.SearchBox.Text, StringComparison.OrdinalIgnoreCase)).ToList();
-            Movies.SearchMovie(SearchBox.Text);
-            MovieDisplay.Page = 0;
-            MovieDisplay.Refresh(); 
+
         }
 
 
@@ -79,7 +86,7 @@ namespace FlexApp
 
         private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (SearchBox.Text == "Search") SearchBox.Text = "";
+            if (SearchBox.Text == Helper.Message.SearchBoxText) SearchBox.Text = "";
             OpenAutoSuggestionBox();
         }
 
@@ -87,7 +94,7 @@ namespace FlexApp
         {
             if (String.IsNullOrEmpty(SearchBox.Text))
             {
-                SearchBox.Text = "Search";
+                SearchBox.Text = Helper.Message.SearchBoxText;
                 CloseAutoSuggestionBox();
             }
         }

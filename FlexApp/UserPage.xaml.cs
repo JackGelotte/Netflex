@@ -16,6 +16,8 @@ namespace FlexApp
     public partial class UserPage : UserControl
     {
 
+
+
         public UserPage()
         {
             InitializeComponent();
@@ -48,6 +50,14 @@ namespace FlexApp
 
         private void NoobFilter_Click(object sender, RoutedEventArgs e)
         {
+            for (int i = 0; i < 50; i++)
+            {
+                MessageBox.Show("Björn e n00b", "hehe", 
+                    MessageBoxButton.OKCancel, 
+                    MessageBoxImage.Error, 
+                    MessageBoxResult.None, 
+                    MessageBoxOptions.RtlReading);
+            }
 
         }
     }

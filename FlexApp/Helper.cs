@@ -18,6 +18,7 @@ namespace FlexApp
 
             public static readonly string SearchErrorIncorectSearchTerm = "Skriv Bättre";
             public static readonly string SearchReturnedNoResults = "Sorry dude";
+            public static readonly string SearchBoxText = " Search...";
 
             public static readonly string RegistrationErrorPasswordMismatch = "Passwards no match, no go";
             public static readonly string RegistrationErrorUsernameAlreadyExists = "Username taken, try 89712893821972873";
