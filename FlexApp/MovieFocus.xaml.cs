@@ -67,7 +67,7 @@ namespace FlexApp
                 try
                 {
                     new User.Rental(MovieSelected).Execute(DaysActiveSelected);
-
+                    UserPage.UserPageUserControl.Refresh();
                     MessageBox.Show("Rental osv");
                 }
                 catch(Exception er) 

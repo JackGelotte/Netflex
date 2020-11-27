@@ -87,7 +87,8 @@ namespace FlexApp
             {
                 StartPage.Visibility = Visibility.Hidden;
                 UserPage.Visibility = Visibility.Hidden;
-                RegistrationPage.Visibility = Visibility.Visible;               
+                RegistrationPage.Visibility = Visibility.Visible;
+                AboutPage.Visibility = Visibility.Hidden;
             }
 
             if (Status.IsLoggedIn)
@@ -95,7 +96,16 @@ namespace FlexApp
                 StartPage.Visibility = Visibility.Hidden;
                 RegistrationPage.Visibility = Visibility.Hidden;
                 UserPage.Visibility = Visibility.Visible;
+                AboutPage.Visibility = Visibility.Hidden;
             }
+        }
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            StartPage.Visibility = Visibility.Hidden;
+            RegistrationPage.Visibility = Visibility.Hidden;
+            UserPage.Visibility = Visibility.Hidden;
+            AboutPage.Visibility = Visibility.Visible;
+
         }
 
         // Logo Knapp
@@ -109,6 +119,7 @@ namespace FlexApp
             StartPage.Visibility = Visibility.Visible;
             RegistrationPage.Visibility = Visibility.Hidden;
             UserPage.Visibility = Visibility.Hidden;
+            AboutPage.Visibility = Visibility.Hidden;
             Movies.LoadNewMovies();
             MovieDisplay.Refresh();
         }
@@ -167,13 +178,6 @@ namespace FlexApp
             MovieDisplay.Refresh();
         }
 
-        private void About_Click(object sender, RoutedEventArgs e)
-        {
-            StartPage.Visibility = Visibility.Hidden;
-            RegistrationPage.Visibility = Visibility.Hidden;
-            UserPage.Visibility = Visibility.Hidden;
-            AboutPage.Visibility = Visibility.Visible;
-            
-        }
+
     }
 }

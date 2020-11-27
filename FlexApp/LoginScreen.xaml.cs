@@ -37,6 +37,7 @@ namespace FlexApp
             if (status == Helper.Message.LoginSuccessful)
             {
                 MainWindow.Refresh();
+                UserPage.UserPageUserControl.Refresh();
                 this.Close();
             }
 

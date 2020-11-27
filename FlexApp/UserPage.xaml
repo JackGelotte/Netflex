@@ -31,13 +31,15 @@
                 <StackPanel Name="Slot1" 
                     Width="167" Height="153">
 
+                    <!--- Rentals -->
                     <TextBlock Text="Rentals" FontWeight="Light"
                             FontSize="25" Foreground="White" 
                             Height="35" TextAlignment="Center" />
-                    <TextBlock Text="2" FontWeight="ExtraBold"
+                    <TextBlock Name="RentalsCount" Text="2" FontWeight="ExtraBold"
                             FontSize="25" Foreground="White" 
                             Height="35" TextAlignment="Center"  />
 
+                    <!-- Time Watched -->
                     <TextBlock Text="Time Watched" FontWeight="Light"
                             FontSize="25" Foreground="White" 
                             Height="35" TextAlignment="Center" />
@@ -49,6 +51,7 @@
                 <StackPanel Name="Slot2" 
                     Width="167" Height="153">
 
+                    <!-- Friends -->
                     <TextBlock Text="Friends" FontWeight="Light"
                             FontSize="25" Foreground="White" 
                             Height="35" TextAlignment="Center" />
@@ -56,6 +59,7 @@
                             FontSize="25" Foreground="White" 
                             Height="35" TextAlignment="Center"  />
 
+                    <!-- Status -->
                     <TextBlock Text="Status" FontWeight="Light"
                             FontSize="25" Foreground="White" 
                             Height="35" TextAlignment="Center" />
@@ -66,7 +70,8 @@
 
                 <StackPanel Name="Slot3" 
                     Width="167" Height="153">
-
+                    
+                    <!-- Credit -->
                     <TextBlock Text="Credit" FontWeight="Light"
                             FontSize="25" Foreground="White" 
                             Height="35" TextAlignment="Center" />
@@ -74,6 +79,7 @@
                             FontSize="25" Foreground="White" 
                             Height="35" TextAlignment="Center"  />
 
+                    <!-- C#-->
                     <TextBlock Text="c#" FontWeight="Light"
                             FontSize="25" Foreground="White" 
                             Height="35" TextAlignment="Center" />
