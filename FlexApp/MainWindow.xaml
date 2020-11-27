@@ -32,12 +32,12 @@
             
             <Button Name="Login_Logout_Button" Click="Login_Logout_Click" Margin="700,0,0,0" Height="35"  Width="120" Cursor="Wait">
                 <StackPanel>
-                    <TextBlock Name="Login_Logout_ButtonText" Text="Login" FontSize="20"/>
+                    <TextBlock Name="Login_Logout_ButtonText" Text="Login" TextAlignment="Center" FontSize="18"/>
                 </StackPanel>
             </Button>
             <Button Name="Register_MyPage_Button" Click="Register_MyPage_Click" Margin="1050,0,0,0" Height="35"  Width="120" Cursor="Wait">
                 <StackPanel>
-                    <TextBlock Name="Register_MyPage_ButtonText" Text="Register" FontSize="20"/>
+                    <TextBlock Name="Register_MyPage_ButtonText" Text="Register" TextAlignment="Center" FontSize="18"/>
                 </StackPanel>
             </Button>
         </Grid>
@@ -62,7 +62,15 @@
             <!-- Hot! Button -->
             <Button Height="30"  Width="120" Click="Hot_Click" Cursor="Wait" VerticalAlignment="Top" Margin="0,120,0,0">
                 <StackPanel>
-                    <TextBlock HorizontalAlignment="Left" Text="Hett just nu" FontSize="20"/>
+                    <TextBlock TextAlignment="Center" Text="Hett just nu" FontSize="18"/>
+                </StackPanel>
+            </Button>
+
+            
+            <!-- About Button -->
+                <Button Click="About_Click" BorderBrush="Transparent" Height="25"  Width="90" Cursor="Wait" VerticalAlignment="Bottom" Margin="0,0,0,50" Background="Transparent" >
+                <StackPanel>
+                    <TextBlock TextAlignment="Center" Text="About" FontSize="15"/>
                 </StackPanel>
             </Button>
         </Grid>
@@ -72,6 +80,7 @@
             <local:MovieDisplay x:Name="StartPage" Visibility="Hidden" > </local:MovieDisplay>
             <local:RegistrationScreen x:Name="RegistrationPage" Visibility="Hidden"></local:RegistrationScreen>
             <local:UserPage x:Name="UserPage" Visibility="Hidden" />
+            <local:About x:Name="AboutPage" Visibility="Hidden" />
         </Grid>
     </Grid>
 </Window>

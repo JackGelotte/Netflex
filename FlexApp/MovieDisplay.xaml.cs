@@ -101,13 +101,13 @@ namespace FlexApp
                         image.MouseUp += Mouse_Up;
                         image.MaxHeight = 280;                       
 
-                        SP.Children.Add(image);
-                        SP.Children.Add(title);
+                        sp.Children.Add(image);
+                        sp.Children.Add(title);
 
-                        MovieGrid.Children.Add(SP);
+                        MovieGrid.Children.Add(sp);
 
-                        Grid.SetRow(SP, y);
-                        Grid.SetColumn(SP, x);
+                        Grid.SetRow(sp, y);
+                        Grid.SetColumn(sp, x);
 
                         index++;
                     }   
@@ -121,7 +121,6 @@ namespace FlexApp
 
             var y = Grid.GetRow(sender as UIElement);
             var x = Grid.GetColumn(sender as UIElement);
-            var y = Grid.GetRow(sender as UIElement);
 
             int i = (x * MovieGrid.RowDefinitions.Count + y) + Page * Movies.MOVIES_PER_PAGE;
 
