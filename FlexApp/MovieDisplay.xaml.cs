@@ -75,31 +75,34 @@ namespace FlexApp
                     {
                         Movie m = Movies.DisplayMovies[Index];
 
-                        StackPanel SP = new StackPanel();
+                        StackPanel sp = new StackPanel();
                         TextBlock title = new TextBlock();
                         Image image = new Image();
-                        
+                       
                         title.Cursor = Cursors.Wait;
                         title.Text = m.Title;
                         title.Foreground = Brushes.White;
                         title.FontSize = 20;
                         title.Margin = new Thickness(10,0,10,10);
                         title.HorizontalAlignment = HorizontalAlignment.Center;
-                        title.MouseUp += Mouse_Up;
-
+                        // title.MouseUp += Mouse_Up;
+                       
                         image.Cursor = Cursors.Wait;
                         image.Source = new BitmapImage(new Uri(m.PosterLink));                    
                         image.Margin = new Thickness(10, 30, 10, 5);
-                        image.MouseUp += Mouse_Up;
+                        // image.MouseUp += Mouse_Up;
                         image.MaxHeight = 280;                       
 
-                        SP.Children.Add(image);
-                        SP.Children.Add(title);
+                        sp.Children.Add(image);
+                        sp.Children.Add(title);
 
-                        MovieGrid.Children.Add(SP);
+                        sp.MouseUp += Mouse_Up;
 
-                        Grid.SetRow(SP, y);
-                        Grid.SetColumn(SP, x);
+                        MovieGrid.Children.Add(sp);
+
+                        
+                        Grid.SetRow(sp, y);
+                        Grid.SetColumn(sp, x);
 
                         index++;
                     }   
@@ -111,10 +114,10 @@ namespace FlexApp
         {
             MovieFocus mf = new MovieFocus();
 
-            var x = Grid.GetColumn(sender as UIElement);
             var y = Grid.GetRow(sender as UIElement);
-
-            int i = (x * MovieGrid.RowDefinitions.Count + y) + Page * Movies.MOVIES_PER_PAGE;
+            var x = Grid.GetColumn(sender as UIElement);
+            
+            int i = (y * MovieGrid.ColumnDefinitions.Count + x) + Page * Movies.MOVIES_PER_PAGE;
 
             mf.MovieSelected = Movies.DisplayMovies[i];
 
