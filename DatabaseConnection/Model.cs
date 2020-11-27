@@ -34,13 +34,14 @@ namespace DatabaseConnection
     {
         public int Id { get; set; }
         public int ImdbID { get; set; }
+        // public string YouTubeId {get;set;}
         public string Title { get; set; }
         public int Year { get; set; }
         public string Genre { get; set; }
         public string Rating { get; set; }
         public string PosterLink { get; set; }
-       // public string TrailerLink { get; set; }
-       // public string Synopsis { get; set; }
+        // public string TrailerLink { get; set; }
+        // public string Synopsis { get; set; }
 
         // References to other tables
         public virtual ICollection<Rental> Rentals { get; set; }
