@@ -10,6 +10,7 @@ namespace DbComplimentYoutubeImdb
         {
             public const string InvalidPrimaryKey = "Primary key was null or a duplicate.";
             public const string BrokenTrailerLink = "Trailer link broken";
+            public const string NoPostersFound = "There were no posters for this movie";
         }
     }
 }

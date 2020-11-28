@@ -34,7 +34,7 @@ namespace FlexApp
             { 
                 Title = title; 
                 Date = date; 
-                if(DateTime.Parse(returnDate) < DateTime.Now)
+                if(DateTime.Parse(returnDate) > DateTime.Now)
                 {
                     Active = "  (Active)";                                                         
                 }

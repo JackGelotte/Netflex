@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using FlexApp.User;
 using System.Collections.ObjectModel;
 using System.Threading;
+using System.Drawing;
 
 namespace FlexApp
 {
@@ -55,19 +56,16 @@ namespace FlexApp
         {
             if (!Status.IsLoggedIn)
             {
-                LoginScreen ls = new LoginScreen(this);
-
-                const double MinWidth = 200;
-                const double MinHeight = 200;
-
-                double width = this.Width - 50;
-                double height = this.Height - 30;
-
+                /*
+                LoginScreen ls = new LoginScreen(); 
                 ls.Owner = this;
-                ls.Width = width > MinWidth ? width : MinWidth;
-                ls.Height = height > MinHeight ? height : MinHeight;
-                ls.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                ls.WindowStartupLocation = WindowStartupLocation.Manual;
+                ls.Left = 1;
+                ls.Top = 1;
                 ls.Show();
+                */
+
+                LoginDropDown.Visibility = Visibility.Visible;
 
             }
 
@@ -85,10 +83,12 @@ namespace FlexApp
         {
             if (!Status.IsLoggedIn)
             {
+
                 StartPage.Visibility = Visibility.Hidden;
                 UserPage.Visibility = Visibility.Hidden;
                 RegistrationPage.Visibility = Visibility.Visible;
                 AboutPage.Visibility = Visibility.Hidden;
+                LoginDropDown.Visibility = Visibility.Hidden;
             }
 
             if (Status.IsLoggedIn)
@@ -97,6 +97,7 @@ namespace FlexApp
                 RegistrationPage.Visibility = Visibility.Hidden;
                 UserPage.Visibility = Visibility.Visible;
                 AboutPage.Visibility = Visibility.Hidden;
+                LoginDropDown.Visibility = Visibility.Hidden;
             }
         }
         private void About_Click(object sender, RoutedEventArgs e)
@@ -105,6 +106,7 @@ namespace FlexApp
             RegistrationPage.Visibility = Visibility.Hidden;
             UserPage.Visibility = Visibility.Hidden;
             AboutPage.Visibility = Visibility.Visible;
+            LoginDropDown.Visibility = Visibility.Hidden;
 
         }
 
@@ -116,10 +118,11 @@ namespace FlexApp
 
         public void HomePage()
         {
+            LoginDropDown.Visibility = Visibility.Hidden;
             StartPage.Visibility = Visibility.Visible;
             RegistrationPage.Visibility = Visibility.Hidden;
             UserPage.Visibility = Visibility.Hidden;
-            AboutPage.Visibility = Visibility.Hidden;
+            AboutPage.Visibility = Visibility.Hidden;         
             Movies.LoadNewMovies();
             MovieDisplay.Refresh();
         }
@@ -166,6 +169,7 @@ namespace FlexApp
         }
         private void GenresComboBox_DropDownClosed(object sender, EventArgs e)
         {
+            HomePage();
             Movies.LoadMoviesByGenre(GenresComboBox.Text);
             MovieDisplay.Page = 0;
             MovieDisplay.Refresh();
@@ -173,6 +177,7 @@ namespace FlexApp
 
         private void Hot_Click(object sender, RoutedEventArgs e)
         {
+            HomePage();
             Movies.LoadPopularMovies();
             MovieDisplay.Page = 0;
             MovieDisplay.Refresh();

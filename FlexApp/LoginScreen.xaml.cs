@@ -18,13 +18,6 @@ namespace FlexApp
     /// </summary>
     public partial class LoginScreen : Window
     {
-       // public MainWindow Sender { get; set; }
-
-        public LoginScreen(MainWindow mw)
-        {
-            InitializeComponent();
-        }
-
         public LoginScreen()
         {
             InitializeComponent();

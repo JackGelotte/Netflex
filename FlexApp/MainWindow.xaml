@@ -9,27 +9,31 @@
         WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="138"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="546"/>
+            <RowDefinition Height="87"/>
+            <RowDefinition Height="51"/>
+            <RowDefinition/>
+            <RowDefinition Height="142"/>
+            <RowDefinition Height="404"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="162"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1072"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="652"/>
+            <ColumnDefinition Width="388"/>
+            <ColumnDefinition Width="32"/>
         </Grid.ColumnDefinitions>
 
         <!-- Temp Background -->
-        <Grid Grid.RowSpan="3" Grid.ColumnSpan="3">
+        <Grid Grid.RowSpan="5" Grid.ColumnSpan="5">
             <Image Source="/Images/TempBackground.png" Height="720" Width="1280" VerticalAlignment="Top" />
         </Grid>
 
         <!-- Top Bar -->
-        <Grid Grid.RowSpan="1" Grid.ColumnSpan="3">
+        <Grid Grid.RowSpan="2" Grid.ColumnSpan="5">
             <Label MouseUp="Logo_Click">
                 <Image Source="/Images/Logo.png" HorizontalAlignment="Left" />
             </Label>
-            
+
             <Button Name="Login_Logout_Button" Click="Login_Logout_Click" Margin="700,0,0,0" Height="35"  Width="120" Cursor="Wait">
                 <StackPanel>
                     <TextBlock Name="Login_Logout_ButtonText" Text="Login" TextAlignment="Center" FontSize="18"/>
@@ -42,9 +46,13 @@
             </Button>
         </Grid>
 
+        <!-- Login Drop Down-->
+        <local:LogInDropDown Grid.Column="3" Grid.Row="1" Grid.RowSpan="3"
+                             x:Name="LoginDropDown" Visibility="Hidden" />
+
         <!-- Left Bar -->
-        <Grid Grid.RowSpan="2" Grid.Row="1" Grid.Column="0" Name="LeftBar">
-            
+        <Grid Grid.RowSpan="3" Grid.Row="2" Grid.Column="0" Name="LeftBar">
+
             <!-- Search Button -->
             <local:AutoCompleteTextBoxUserControl Height="40" Width="161" VerticalAlignment="Top" HorizontalAlignment="Center" />
 
@@ -58,7 +66,7 @@
                       Margin="0,70,0,0"
                       />
 
-          
+
             <!-- Hot! Button -->
             <Button Height="30"  Width="120" Click="Hot_Click" Cursor="Wait" VerticalAlignment="Top" Margin="0,120,0,0">
                 <StackPanel>
@@ -66,9 +74,9 @@
                 </StackPanel>
             </Button>
 
-            
+
             <!-- About Button -->
-                <Button Click="About_Click" BorderBrush="Transparent" Height="25"  Width="90" Cursor="Wait" VerticalAlignment="Bottom" Margin="0,0,0,50" Background="Transparent" >
+            <Button Click="About_Click" BorderBrush="Transparent" Height="25"  Width="90" Cursor="Wait" VerticalAlignment="Bottom" Margin="0,0,0,50" Background="Transparent" >
                 <StackPanel>
                     <TextBlock TextAlignment="Center" Text="About" FontSize="15"/>
                 </StackPanel>
@@ -76,8 +84,8 @@
         </Grid>
 
         <!-- Movie Display -->
-        <Grid Name="MainPage" Grid.Column="2" Grid.Row="2" Margin="0,0,0,5">
-            <local:MovieDisplay x:Name="StartPage" Visibility="Hidden" > </local:MovieDisplay>
+        <Grid Name="MainPage" Grid.Column="2" Grid.Row="3" Margin="0,0,0,5" Grid.ColumnSpan="3" Grid.RowSpan="2">
+            <local:MovieDisplay x:Name="StartPage" Visibility="Hidden" ></local:MovieDisplay>
             <local:RegistrationScreen x:Name="RegistrationPage" Visibility="Hidden"></local:RegistrationScreen>
             <local:UserPage x:Name="UserPage" Visibility="Hidden" />
             <local:About x:Name="AboutPage" Visibility="Hidden" />

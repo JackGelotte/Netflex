@@ -19,9 +19,9 @@ namespace DbComplimentYoutubeImdb
 
         static void Main()
         {
-            // 0-4 TAGNA
-            int start = 5;
-            int end = 9;
+            // 14-29 TAGNA
+            int start = 14;
+            int end = 29;
 
             // ----------------------------------------
             // --- Rensa Db om något måste göras om ---
@@ -54,8 +54,14 @@ namespace DbComplimentYoutubeImdb
                 var data = apiLib.PostersAsync($"tt{entity.ImdbID}");
 
                 // Sparar poster link, sorterar efter EN
-                posterLink = data.Result.Posters.Where(p => p.Language == "en").First().Link;
-
+                try
+                {
+                    posterLink = data.Result.Posters.Where(p => p.Language == "en").First().Link;
+                }
+                catch 
+                {
+                    Console.WriteLine(Helper.DataBaseError.NoPostersFound);
+                }
                 // Testar så länken inte är trasig, tar nästa om trasig
                 bool isBroken = true;
                 int count = 1;
