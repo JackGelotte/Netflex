@@ -25,11 +25,14 @@ namespace FlexApp
             public const string RegistrationErrorEmailAlreadyRegistered = "Email already have an account, go get your password";
             public const string RegistrationErrorUsernamePasswordIncorect = "Username must be at least 3 characters, password 7, make it safe osv";
             public const string RegistrationErrorUsernameLength = "Username needs to be at least 4 characters, you laazy?";
+            public const string AvatarFailedToLoad = "Fel format eller för ful, testa igen";
 
             public const string RentalSelectedActiveDays = "Days Active";
             public const string RentalSelectActiveDaysError = "Choose how many days you want the movie active.";
 
             public const string TrailerErrorLoading = "Failed to load trailer";
+
+
         }
 
         public static class Image

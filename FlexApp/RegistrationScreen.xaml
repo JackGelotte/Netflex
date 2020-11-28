@@ -8,14 +8,25 @@
     d:DesignHeight="580" d:DesignWidth="1115">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="113*"/>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="57*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="191*"/>
+            <ColumnDefinition Width="337*"/>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="337*"/>
+            <ColumnDefinition Width="58*"/>
+            <ColumnDefinition Width="133*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Top / Bottom(button)-->
 
-        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" >
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="4" >
 
             <Label Content="Registration" Foreground="White" FontSize="35" 
                    HorizontalAlignment="Center"/>
@@ -24,7 +35,7 @@
 
             <Button Name="New_RegistrationButton"  Background="Black" 
                     FontSize="18" Margin="0,400,0,0" FontWeight="Bold"
-                    Click="New_Registration_Button_Click">
+                    Click="New_Registration_Button_Click" Width="1036">
                 <TextBlock Text="R e g i s t e r" Foreground="White"
                            Margin="0,5,0,10" />
             </Button>
@@ -32,62 +43,71 @@
         </StackPanel>
 
         <!-- Left side-->
-        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Margin="10,100,557,0" 
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="2" 
                     >
-            <Label Content="First Name" Foreground="White" Margin="200,0,200,0" 
+            <Label Content="First Name" Foreground="White" 
                     />
             <TextBox Name="New_FirstName" Background="AliceBlue" FontSize="18" 
-                        Margin="200,0,200,0"/>
+                        />
 
-            <Label Content="Last Name" Foreground="White" Margin="200,0,200,0"/>
+            <Label Content="Last Name" Foreground="White" />
             <TextBox Name="New_LastName" Background="AliceBlue" FontSize="18" 
-                     Margin="200,0,200,0"/>
+                     />
 
-            <Label Content="Street" Foreground="White" Margin="200,0,200,0"/>
+            <Label Content="Street" Foreground="White" />
             <TextBox Name="New_Street" Background="AliceBlue" FontSize="18" 
-                     Margin="200,0,200,0"/>
+                     />
 
-            <Label Content="Postal" Foreground="White" Margin="200,0,200,0"/>
+            <Label Content="Postal" Foreground="White" />
             <TextBox Name="New_Postal" Background="AliceBlue" FontSize="18" 
-                     Margin="200,0,200,0"/>
+                     />
 
-            <Label Content="City" Foreground="White" Margin="200,0,200,0"/>
+            <Label Content="City" Foreground="White" />
             <TextBox Name="New_City" Background="AliceBlue" FontSize="18" 
-                     Margin="200,0,200,0"/>
+                     />
 
-            <Label Content="State" Foreground="White" Margin="200,0,200,0"/>
+            <Label Content="State" Foreground="White" />
             <TextBox Name="New_State" Background="AliceBlue" FontSize="18" 
-                     Margin="200,0,200,0"/>
+                     />
 
-            <Label Content="Phone No" Foreground="White" Margin="200,0,200,0"/>
+            <Label Content="Phone No" Foreground="White" />
             <TextBox Name="New_PhoneNo" Background="AliceBlue" FontSize="18" 
-                     Margin="200,0,200,0"/>
-
-
+                     />
 
         </StackPanel>
 
         <!-- Right Side -->
-        <StackPanel Grid.Column="1" Grid.ColumnSpan="1" Margin="0,100,10,0" >
+        <StackPanel Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="2"  >
 
-            <Label Content="E-mail" Foreground="White" Margin="200,0,200,0"/>
+            <Label Content="E-mail" Foreground="White" />
             <TextBox Name="New_Email" Background="AliceBlue" FontSize="18" 
-                     Margin="200,0,200,0"/>
+                     />
 
-            <Label Content="Username" Foreground="White" Margin="200,0,200,0"/>
+            <Label Content="Username" Foreground="White" />
             <TextBox Name="New_Username" Background="AliceBlue" FontSize="18" 
-                     Margin="200,0,200,0"/>
+                     />
 
-            <Label Content="Password" Foreground="White" Margin="200,0,200,0"/>
+            <Label Content="Password" Foreground="White" />
             <PasswordBox Name="New_Password" Background="AliceBlue" FontSize="18" 
-                         Margin="200,0,200,0"/>
+                         />
 
-            <Label Content="Re-enter Password" Foreground="White" Margin="200,0,200,0"/>
+            <Label Content="Re-enter Password" Foreground="White" />
             <PasswordBox Name="Repeat_Password" Background="AliceBlue" FontSize="18" 
-                         Margin="200,0,200,0"/>
-
+                         />
 
         </StackPanel>
+
+        <!-- Load image for avatar -->
+        <WrapPanel Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2">
+            <Image Height="140" Width="120" Name="Avatar" 
+                   Margin="5,5,5,5" />
+            <Rectangle Width="8"/>
+            <Button Height="50" Width="190" Background="Black" 
+                    Click="Upload_Avatar_Click" >
+                <Label Content="Upload Avatar..." FontSize="22"
+                       FontWeight="DemiBold"  Foreground="White" />
+            </Button>
+        </WrapPanel>
 
     </Grid>
 </UserControl>

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace FlexApp
 {
@@ -22,6 +23,11 @@ namespace FlexApp
         public RegistrationScreen()
         {
             InitializeComponent();
+
+            // lägg till avatar i databas
+            // uppdatera avatar när man loggar in / byter bild
+            Avatar.Source = new BitmapImage(new Uri(Helper.Image.BjornAvatarURL));
+
         }
 
         private void New_Registration_Button_Click(object sender, RoutedEventArgs e)
@@ -56,10 +62,11 @@ namespace FlexApp
             string adress = $"{New_Street.Text} {New_Postal.Text} {New_City.Text} {New_State.Text}";
 
             User.CreateUser.CreateNewUser(
-                New_FirstName.Text, New_LastName.Text, 
-                New_Email.Text, adress, New_PhoneNo.Text, 
+                New_FirstName.Text, New_LastName.Text,
+                New_Email.Text, adress, New_PhoneNo.Text,
                 New_Username.Text, New_Password.Password
-                );
+                // Avatar.Source.ToString()
+                ) ;
 
             New_FirstName.Text = "";
             New_LastName.Text = "";
@@ -74,5 +81,21 @@ namespace FlexApp
 
         }
 
+        private void Upload_Avatar_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.InitialDirectory = System.IO.Path.GetFullPath(Environment.GetEnvironmentVariable("Home") + @"\.ssh");
+            dlg.DefaultExt = ".jpg";
+            dlg.Filter = "Image files(*.jpg) | *.jpg | All Files(*.*) | *.* ";
+
+            bool? result = dlg.ShowDialog();
+
+            if(result == true)
+            {
+                Avatar.Source = new BitmapImage(new Uri(dlg.FileName));
+            }
+            else if(result != null) MessageBox.Show(Helper.Message.AvatarFailedToLoad);
+                                                       
+        }
     }
 }
