@@ -6,30 +6,88 @@
              xmlns:local="clr-namespace:FlexApp"
              mc:Ignorable="d" 
     d:DesignHeight="580" d:DesignWidth="1115">
-    
+
     <Grid>
-        <Border Background="Transparent">
-            <StackPanel>
-                <Label Content="Registration" Foreground="White" FontSize="35" HorizontalAlignment="Center"/>
-                <RibbonSeparator Margin="150,0,150,20"></RibbonSeparator>
-                <Label Content="First Name" Foreground="White" Margin="200,0,200,0" />
-                <TextBox Name="New_FirstName" Background="AliceBlue" FontSize="18" Margin="200,0,200,0"/>
-                <Label Content="Last Name" Foreground="White" Margin="200,0,200,0"/>
-                <TextBox Name="New_LastName" Background="AliceBlue" FontSize="18" Margin="200,0,200,0"/>
-                <Label Content="E-mail" Foreground="White" Margin="200,0,200,0"/>
-                <TextBox Name="New_Email" Background="AliceBlue" FontSize="18" Margin="200,0,200,0"/>
-                <Label Content="Adress" Foreground="White" Margin="200,0,200,0"/>
-                <TextBox Name="New_Adress" Background="AliceBlue" FontSize="18" Margin="200,0,200,0"/>
-                <Label Content="Username" Foreground="White" Margin="200,0,200,0"/>
-                <TextBox Name="New_Username" Background="AliceBlue" FontSize="18" Margin="200,0,200,0"/>
-                <Label Content="Password" Foreground="White" Margin="200,0,200,0"/>
-                <PasswordBox Name="New_Password" Background="AliceBlue" FontSize="18" Margin="200,0,200,0"/>
-                <Label Content="Re-enter Password" Foreground="White" Margin="200,0,200,0"/>
-                <PasswordBox Name="Repeat_Password" Background="AliceBlue" FontSize="18" Margin="200,0,200,0"/>
-                
-                <Button Name="New_RegistrationButton" Content="Register" Background="AliceBlue" FontSize="18"
-                        Margin="370,40,370,0" Click="New_Registration_Button_Click"/>
-            </StackPanel>
-        </Border>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Top / Bottom(button)-->
+
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" >
+
+            <Label Content="Registration" Foreground="White" FontSize="35" 
+                   HorizontalAlignment="Center"/>
+
+            <RibbonSeparator Margin="150,10,150,10"></RibbonSeparator>
+
+            <Button Name="New_RegistrationButton"  Background="Black" 
+                    FontSize="18" Margin="0,400,0,0" FontWeight="Bold"
+                    Click="New_Registration_Button_Click">
+                <TextBlock Text="R e g i s t e r" Foreground="White"
+                           Margin="0,5,0,10" />
+            </Button>
+
+        </StackPanel>
+
+        <!-- Left side-->
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Margin="10,100,557,0" 
+                    >
+            <Label Content="First Name" Foreground="White" Margin="200,0,200,0" 
+                    />
+            <TextBox Name="New_FirstName" Background="AliceBlue" FontSize="18" 
+                        Margin="200,0,200,0"/>
+
+            <Label Content="Last Name" Foreground="White" Margin="200,0,200,0"/>
+            <TextBox Name="New_LastName" Background="AliceBlue" FontSize="18" 
+                     Margin="200,0,200,0"/>
+
+            <Label Content="Street" Foreground="White" Margin="200,0,200,0"/>
+            <TextBox Name="New_Street" Background="AliceBlue" FontSize="18" 
+                     Margin="200,0,200,0"/>
+
+            <Label Content="Postal" Foreground="White" Margin="200,0,200,0"/>
+            <TextBox Name="New_Postal" Background="AliceBlue" FontSize="18" 
+                     Margin="200,0,200,0"/>
+
+            <Label Content="City" Foreground="White" Margin="200,0,200,0"/>
+            <TextBox Name="New_City" Background="AliceBlue" FontSize="18" 
+                     Margin="200,0,200,0"/>
+
+            <Label Content="State" Foreground="White" Margin="200,0,200,0"/>
+            <TextBox Name="New_State" Background="AliceBlue" FontSize="18" 
+                     Margin="200,0,200,0"/>
+
+            <Label Content="Phone No" Foreground="White" Margin="200,0,200,0"/>
+            <TextBox Name="New_PhoneNo" Background="AliceBlue" FontSize="18" 
+                     Margin="200,0,200,0"/>
+
+
+
+        </StackPanel>
+
+        <!-- Right Side -->
+        <StackPanel Grid.Column="1" Grid.ColumnSpan="1" Margin="0,100,10,0" >
+
+            <Label Content="E-mail" Foreground="White" Margin="200,0,200,0"/>
+            <TextBox Name="New_Email" Background="AliceBlue" FontSize="18" 
+                     Margin="200,0,200,0"/>
+
+            <Label Content="Username" Foreground="White" Margin="200,0,200,0"/>
+            <TextBox Name="New_Username" Background="AliceBlue" FontSize="18" 
+                     Margin="200,0,200,0"/>
+
+            <Label Content="Password" Foreground="White" Margin="200,0,200,0"/>
+            <PasswordBox Name="New_Password" Background="AliceBlue" FontSize="18" 
+                         Margin="200,0,200,0"/>
+
+            <Label Content="Re-enter Password" Foreground="White" Margin="200,0,200,0"/>
+            <PasswordBox Name="Repeat_Password" Background="AliceBlue" FontSize="18" 
+                         Margin="200,0,200,0"/>
+
+
+        </StackPanel>
+
     </Grid>
 </UserControl>

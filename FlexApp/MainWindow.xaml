@@ -12,8 +12,8 @@
             <RowDefinition Height="87"/>
             <RowDefinition Height="51"/>
             <RowDefinition/>
-            <RowDefinition Height="142"/>
-            <RowDefinition Height="404"/>
+            <RowDefinition Height="174"/>
+            <RowDefinition Height="372"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="162"/>
@@ -45,10 +45,6 @@
                 </StackPanel>
             </Button>
         </Grid>
-
-        <!-- Login Drop Down-->
-        <local:LogInDropDown Grid.Column="3" Grid.Row="1" Grid.RowSpan="3"
-                             x:Name="LoginDropDown" Visibility="Hidden" />
 
         <!-- Left Bar -->
         <Grid Grid.RowSpan="3" Grid.Row="2" Grid.Column="0" Name="LeftBar">
@@ -85,10 +81,16 @@
 
         <!-- Movie Display -->
         <Grid Name="MainPage" Grid.Column="2" Grid.Row="3" Margin="0,0,0,5" Grid.ColumnSpan="3" Grid.RowSpan="2">
-            <local:MovieDisplay x:Name="StartPage" Visibility="Hidden" ></local:MovieDisplay>
+            <local:MovieDisplay x:Name="StartPage" Visibility="Visible" Margin="0,0,10,0" ></local:MovieDisplay>
             <local:RegistrationScreen x:Name="RegistrationPage" Visibility="Hidden"></local:RegistrationScreen>
             <local:UserPage x:Name="UserPage" Visibility="Hidden" />
             <local:About x:Name="AboutPage" Visibility="Hidden" />
+
         </Grid>
+
+        <!-- Login Drop Down-->
+        <local:LogInDropDown Grid.Column="3" Grid.Row="1" Grid.RowSpan="3"
+                            x:Name="LoginDropDown" Visibility="Hidden" />
+
     </Grid>
 </Window>

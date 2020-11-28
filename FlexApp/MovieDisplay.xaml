@@ -10,7 +10,7 @@
              d:DesignHeight="580" d:DesignWidth="1072">
     
     <Grid>
-        <ScrollViewer x:Name="MovieViewScroll">
+        <ScrollViewer x:Name="MovieViewScroll"  >
             <ScrollViewer.Effect>
                 <DropShadowEffect/>
             </ScrollViewer.Effect>

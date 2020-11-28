@@ -50,9 +50,8 @@ namespace FlexApp
                     .Insert(0, new UserPageRentalsHistory.MovieHistory($"{r.Movie.Title}", $"{r.RentDate}", $"{r.ReturnDate}"));
             }
 
-            // TODO rensa listan innan ny läses in
-
             // Refresh Users Active Rentals
+            UserPageUserControl.ActiveRentalsUserControl.MovieGrid.Children.Clear();
             foreach (Rental r in Status.ct.Rentals.Where(x => x.Customer == Status.Customer).OrderBy(o=>o.RentDate))
             {
                 if (DateTime.Parse(r.ReturnDate) > DateTime.Now)

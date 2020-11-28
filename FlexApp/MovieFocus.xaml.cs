@@ -15,9 +15,7 @@ using DatabaseConnection;
 
 namespace FlexApp
 {
-    /// <summary>
-    /// Interaction logic for MovieDetailRental.xaml
-    /// </summary>
+
     public partial class MovieFocus : Window
     {
         public ObservableCollection<DaysActiveComboBox> DaysActiveSelection { get {
@@ -46,9 +44,6 @@ namespace FlexApp
 
             DataContext = this;
 
-            Synopsis.Text = "Bra film om många grejer";
-
-
             TrailerRun.InitializeComponent();
         }
 
@@ -56,8 +51,7 @@ namespace FlexApp
         {
             if(!Status.IsLoggedIn)
             {
-                LoginScreen ls = new LoginScreen();
-                ls.Show();
+                Login.Visibility = Visibility.Visible;
             }
 
             if (Status.IsLoggedIn && DaysActiveSelected == -1) MessageBox.Show(Helper.Message.RentalSelectActiveDaysError);
@@ -96,5 +90,6 @@ namespace FlexApp
         {
             Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(x => x.IsInitialized).Activate();
         }
+
     }
 }

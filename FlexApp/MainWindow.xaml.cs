@@ -56,17 +56,8 @@ namespace FlexApp
         {
             if (!Status.IsLoggedIn)
             {
-                /*
-                LoginScreen ls = new LoginScreen(); 
-                ls.Owner = this;
-                ls.WindowStartupLocation = WindowStartupLocation.Manual;
-                ls.Left = 1;
-                ls.Top = 1;
-                ls.Show();
-                */
-
+                StartPage.MoveFocus(new TraversalRequest(FocusNavigationDirection.Last));
                 LoginDropDown.Visibility = Visibility.Visible;
-
             }
 
             if (Status.IsLoggedIn)
@@ -83,7 +74,6 @@ namespace FlexApp
         {
             if (!Status.IsLoggedIn)
             {
-
                 StartPage.Visibility = Visibility.Hidden;
                 UserPage.Visibility = Visibility.Hidden;
                 RegistrationPage.Visibility = Visibility.Visible;
@@ -107,7 +97,6 @@ namespace FlexApp
             UserPage.Visibility = Visibility.Hidden;
             AboutPage.Visibility = Visibility.Visible;
             LoginDropDown.Visibility = Visibility.Hidden;
-
         }
 
         // Logo Knapp
@@ -182,7 +171,6 @@ namespace FlexApp
             MovieDisplay.Page = 0;
             MovieDisplay.Refresh();
         }
-
 
     }
 }

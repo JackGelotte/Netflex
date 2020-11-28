@@ -17,9 +17,9 @@ namespace DatabaseConnection
 
 
         static void Main() {
-            // ct.RemoveRange(ct.Movies);
-            ct.SaveChanges();
-            Read(File.ReadAllLines(@".\MovieList.csv").Skip(100).Take(100).ToArray());
+            //ct.RemoveRange(ct.Rentals, ct.Customers, ct.Logins, ct.Movies);
+           // ct.SaveChanges();
+            Read(File.ReadAllLines(@".\MovieList.csv").Skip(100).Take(400).ToArray());
 
 
 
@@ -73,12 +73,12 @@ namespace DatabaseConnection
 
                 string imdbId = $"{movieRaw[0]}";
                 while (imdbId.Length < 7) imdbId = imdbId.Insert(0, "0");
-
+                /*
                 var apiLib = new ApiLib(API_KEY);
                 var data = apiLib.PostersAsync($"tt{imdbId}");
                 try { movieSort.Add($"{data.Result.Posters.Where(l=>l.Language == "en").First().Link}"); }
                 catch { }
-
+                */
                 Write(movieSort);
             }
         }
@@ -96,7 +96,7 @@ namespace DatabaseConnection
                         Rating = movie[2],
                         Genre = movie[3],
                         ImdbID = Int32.Parse(movie[4]),
-                        PosterLink = movie[5]
+                        PosterLink = null
                     };
                     ct.Add(m);
                     ct.SaveChanges();

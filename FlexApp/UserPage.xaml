@@ -98,7 +98,7 @@
             <Grid Name="RentalView" Grid.Column="2" Grid.Row="2">
 
                 <local:UserPageActiveRentals x:Name="ActiveRentalsUserControl"
-                    Visibility="Hidden" />
+                    Visibility="Visible" />
                 <local:UserPageRentalsHistory x:Name="RentalsHistoryUserControl"
                     Visibility="Hidden" />
                 <local:UserPageAccountInformation x:Name="AccountInfoUserControl"

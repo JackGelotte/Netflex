@@ -37,7 +37,6 @@ namespace FlexApp
             this.autoList.Visibility = Visibility.Visible;
         }
 
-
         private void CloseAutoSuggestionBox()
         {
             this.autoListPopup.Visibility = Visibility.Collapsed;
@@ -45,31 +44,33 @@ namespace FlexApp
             this.autoList.Visibility = Visibility.Collapsed;
         }
 
-
-
         private void AutoTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(this.SearchBox.Text != Helper.Message.SearchBoxText)
+            if (string.IsNullOrEmpty(this.SearchBox.Text))
             {
-                if (string.IsNullOrEmpty(this.SearchBox.Text))
-                {
-                    this.CloseAutoSuggestionBox();
-                    this.autoList.ItemsSource = this.AutoSuggestionList.Where(p => p.Contains(this.SearchBox.Text, StringComparison.OrdinalIgnoreCase)).ToList();
-                    Movies.LoadPopularMovies();
-                    MovieDisplay.Page = 0;
-                    MovieDisplay.Refresh();
-                    return;
-                }
-
-                this.OpenAutoSuggestionBox();
+                this.CloseAutoSuggestionBox();
                 this.autoList.ItemsSource = this.AutoSuggestionList.Where(p => p.Contains(this.SearchBox.Text, StringComparison.OrdinalIgnoreCase)).ToList();
-                Movies.SearchMovie(SearchBox.Text);
+                Movies.LoadPopularMovies();
                 MovieDisplay.Page = 0;
                 MovieDisplay.Refresh();
+                return;
             }
 
+            if (!(e.Changes.Where(c=>c.RemovedLength > 0).Count() > 0))
+            {
+                if (this.SearchBox.Text != Helper.Message.SearchBoxText)
+                {
+                    if ((this.SearchBox.Text.Length + 2) % 2 == 0)
+                    {
+                        this.OpenAutoSuggestionBox();
+                        this.autoList.ItemsSource = this.AutoSuggestionList.Where(p => p.Contains(this.SearchBox.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+                        Movies.SearchMovie(SearchBox.Text);
+                        MovieDisplay.Page = 0;
+                        MovieDisplay.Refresh();
+                    }
+                }
+            }
         }
-
 
         private void AutoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

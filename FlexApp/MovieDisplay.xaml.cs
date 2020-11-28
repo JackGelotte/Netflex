@@ -12,6 +12,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DatabaseConnection;
+using TMDbLib;
+using TMDbLib.Client;
+using TMDbLib.Objects.General;
+using TMDbLib.Objects.Search;
 
 namespace FlexApp
 {
@@ -77,11 +81,26 @@ namespace FlexApp
                 {   if (index < Movies.DisplayMovies.Count) 
                     {
                         Movie m = Movies.DisplayMovies[index];
-
                         StackPanel sp = new StackPanel();
                         TextBlock title = new TextBlock();
                         Image image = new Image();
-                        
+
+                        TMDbClient client = new TMDbClient(Helper.TmdbApi.APIKey);
+                        SearchContainer<SearchMovie> results = client.SearchMovieAsync(m.Title).Result;
+                        try
+                        {
+                            var movieId = results.Results.Where(m => m.Title.Equals(m.Title, StringComparison.OrdinalIgnoreCase)).First().Id;
+                            TMDbLib.Objects.Movies.Movie movie = client.GetMovieAsync(movieId).Result;
+                            string baseUrl = "https://image.tmdb.org/t/p/";
+                            string size = "original"; // "w500" för mindre version
+                            string path = movie.PosterPath;
+                            image.Source = new BitmapImage(new Uri($"{baseUrl}{size}{path}"));
+                        }
+                        catch
+                        {
+                            image.Source = new BitmapImage(new Uri(Helper.Image.BjornAvatarURL));
+                        }
+
                         title.Cursor = Cursors.Wait;
                         title.Text = m.Title;
                         title.Foreground = Brushes.White;
@@ -90,7 +109,6 @@ namespace FlexApp
                         title.HorizontalAlignment = HorizontalAlignment.Center;
 
                         image.Cursor = Cursors.Wait;
-                        image.Source = new BitmapImage(new Uri(m.PosterLink));                    
                         image.Margin = new Thickness(10, 30, 10, 5);
                         image.MaxHeight = 280;                       
 
@@ -114,18 +132,40 @@ namespace FlexApp
         {
             MovieFocus mf = new MovieFocus();
 
+            // Referera klickad film till MovieFocus
             var y = Grid.GetRow(sender as UIElement);
             var x = Grid.GetColumn(sender as UIElement);
-
             int i = (y * MovieGrid.ColumnDefinitions.Count + x) + Page * Movies.MOVIES_PER_PAGE;
-
             mf.MovieSelected = Movies.DisplayMovies[i];
 
-            mf.MoviePoster.Source = new BitmapImage(new Uri(Movies.DisplayMovies[i].PosterLink));
+            // API-call till TMDB
+            // TMDB id från FilmTitel
+            TMDbClient client = new TMDbClient(Helper.TmdbApi.APIKey);
+            SearchContainer<SearchMovie> results = client.SearchMovieAsync(Movies.DisplayMovies[i].Title).Result;
+            var movieId = results.Results.Where(m=>m.Title.Equals(Movies.DisplayMovies[i].Title, StringComparison.OrdinalIgnoreCase)).First().Id;
+
+            TMDbLib.Objects.Movies.Movie movie = client.GetMovieAsync(movieId).Result;
+
+            // Synopsis till MovieFocus
+            mf.Synopsis.Text =  movie.Overview.Length < 350 ? movie.Overview : $"{movie.Overview.Substring(0, 349)}...";
+
+            // General Info till MovieFocus
             mf.MovieNameYear.Text = $"{Movies.DisplayMovies[i].Title} " +
                 $"({Movies.DisplayMovies[i].Year})";
             mf.MovieImdbRating.Text = $"IMDb Score : {Movies.DisplayMovies[i].Rating}";
 
+            // Poster till MovieFocus
+            //mf.MoviePoster.Source = new BitmapImage(new Uri(Movies.DisplayMovies[i].PosterLink));
+
+            string baseUrl = "https://image.tmdb.org/t/p/";
+            string size = "original"; // "w500" för mindre version
+            string path = movie.PosterPath;
+
+            mf.MoviePoster.Source = new BitmapImage(new Uri($"{baseUrl}{size}{path}"));
+
+            //mf.TrailerRun.Trailer.Source = new Uri("");
+
+            // Centrera fönstret till MainWindow
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(x => x.IsInitialized);
             mf.Width = mw.Width - 150;
             mf.Height = mw.Height - 90;
