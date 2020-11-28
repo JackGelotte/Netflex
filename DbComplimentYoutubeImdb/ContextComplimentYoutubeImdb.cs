@@ -18,5 +18,12 @@ namespace DbComplimentYoutubeImdb
                 @"MultipleActiveResultSets=True"
                 );
         }
+
+        // Sätter ImdbId som primary key
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<MovieLink>(entity => { entity.HasKey(m => m.ImdbID); });
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

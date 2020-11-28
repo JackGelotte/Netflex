@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using IMDbApiLib;
 
 namespace DbComplimentYoutubeImdb
 {
@@ -18,6 +19,10 @@ namespace DbComplimentYoutubeImdb
 
         static void Main()
         {
+            // 0-4 TAGNA
+            int start = 5;
+            int end = 9;
+
             // ----------------------------------------
             // --- Rensa Db om något måste göras om ---
             // ----------------------------------------
@@ -27,36 +32,119 @@ namespace DbComplimentYoutubeImdb
             // -----------------------------
             // --- ImdbId från CSV filen ---
             // -----------------------------
-            //
-            // ImdbIdFromRawCSVFile();
+            //        ***Hur många filmer vi tar***
+            //                  \   /
+            // ImdbIdFromRawCSVFile(500);
 
             // ---------------------------------
             // --- PosterLink to MovieLinkDb ---
             // ---------------------------------
-            // AddPosterLink();
+            
+            #region POSTER LINKS
+
+            // hur många vi uppdaterar åt gången -> 0(i) upp till 10
+
+            string posterLink = "";
+            for (int i = start; i < end; i++)
+            {
+                MovieLink entity = ct.MovieLinks.Skip(i).Take(1).First();
+
+                // ImdbApi plockar Poster info
+                var apiLib = new ApiLib(APIKeyRobin);
+                var data = apiLib.PostersAsync($"tt{entity.ImdbID}");
+
+                // Sparar poster link, sorterar efter EN
+                posterLink = data.Result.Posters.Where(p => p.Language == "en").First().Link;
+
+                // Testar så länken inte är trasig, tar nästa om trasig
+                bool isBroken = true;
+                int count = 1;
+                while(isBroken)
+                {
+                    try
+                    {
+                        var testLink = new Uri(posterLink);
+                        isBroken = false;
+                    }
+                    catch
+                    {
+                        Console.WriteLine(Helper.DataBaseError.BrokenTrailerLink);
+
+                        posterLink = data.Result.Posters.Where(p => p.Language == "en").Skip(count).First().Link;
+                        count++;
+                    }
+                }
+
+                // Uppdaterar databas
+                entity.PosterLink = posterLink;
+                ct.MovieLinks.Update(entity);
+                ct.SaveChanges();
+
+            }
+
+            #endregion
+            
 
             // ---------------------------------
             // --- Synopsis to MovieLinkDb ---
             // ---------------------------------
-            // AddSynopsis();
+            
+            #region SYNOPSIS
+
+            string synopsis = "";
+            for (int i = start; i < end; i++)
+            {
+                MovieLink entity = ct.MovieLinks.Skip(i).Take(1).First();
+
+                // ImdbApi plockar synopsis
+                var apiLib = new ApiLib(APIKeyRobin);
+                var data = apiLib.TitleAsync($"tt{entity.ImdbID}");
+
+                // Sparar synopsis
+                synopsis = data.Result.Plot;   
+
+                // Uppdaterar databas
+                entity.Synopsis = synopsis;
+                ct.MovieLinks.Update(entity);
+                ct.SaveChanges();
+
+            }
+            #endregion
+            
 
             // ---------------------------------
             // --- YoutubeId to MovieLinkDb ---
             // ---------------------------------
-            // AddYouTubeId();
+            // 
+            #region YOUTUBE
 
-            // ---------------------------------
-            // --- TrailerLink to MovieLinkDb ---
-            // ---------------------------------
-            // AddTrailerLink();
+            string youtubeId = "";
+            for (int i = start; i < end; i++)
+            {
+                MovieLink entity = ct.MovieLinks.Skip(i).Take(1).First();
+
+                // ImdbApi plockar youtube info
+                var apiLib = new ApiLib(APIKeyRobin);
+                var data = apiLib.YouTubeTrailerAsync($"tt{entity.ImdbID}");
+
+                // Sparar videoId
+                youtubeId = data.Result.VideoId;
+
+                // Uppdaterar databas
+                entity.YoutubeId = youtubeId;
+                ct.MovieLinks.Update(entity);
+                ct.SaveChanges();
+
+            }
+            #endregion
+
 
         }
 
-        public static void ImdbIdFromRawCSVFile()
+        public static void ImdbIdFromRawCSVFile(int recordAmt)
         {
-            // Plockar ut alla filmer från csv                  ***Hur många filmer vi tar***
-            //                                                              \   /
-            List<string> rawCSV = File.ReadAllLines(@".\MovieList.csv").Take(500).ToList();
+            // Plockar ut alla filmer från csv   
+            List<string> rawCSV = File.ReadAllLines(@".\MovieList.csv").Take(recordAmt).ToList();
 
             // Sparar endast ImdbId fältet
             // List med List<string>
@@ -81,27 +169,26 @@ namespace DbComplimentYoutubeImdb
 
             }
 
-            // Lägger till Id i första index på vår nya Db
+            // Lägger till ImdbId som PK
             foreach (List<string> idTable in imdbIds)
             {
-                ct.MovieLinks.Add(new MovieLink() 
-                { 
-                    ImdbID = idTable[0] 
-                });
+                try
+                {
+                    ct.MovieLinks.Add(new MovieLink()
+                    {
+                        ImdbID = idTable[0]
+                    });
+                }
+                catch
+                {
+                    Console.WriteLine(Helper.DataBaseError.InvalidPrimaryKey);
+                }
             }
 
             // Sparar Databasen
             ct.SaveChanges();
 
         }
-
-        public static void AddPosterLink() { }
-
-        public static void AddSynopsis() { }
-
-        public static void AddYouTubeId() { }
-
-        public static void AddTrailerLink() { }
 
     }
 }

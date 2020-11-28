@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DbComplimentYoutubeImdb.Migrations
 {
     [DbContext(typeof(ContextComplimentYoutubeImdb))]
-    [Migration("20201127213806_InitialModel")]
+    [Migration("20201128093216_InitialModel")]
     partial class InitialModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,13 +22,8 @@ namespace DbComplimentYoutubeImdb.Migrations
 
             modelBuilder.Entity("DbComplimentYoutubeImdb.MovieLink", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
                     b.Property<string>("ImdbID")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PosterLink")
                         .HasColumnType("nvarchar(max)");
@@ -42,7 +37,7 @@ namespace DbComplimentYoutubeImdb.Migrations
                     b.Property<string>("YoutubeId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ImdbID");
 
                     b.ToTable("MovieLinks");
                 });

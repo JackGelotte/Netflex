@@ -20,13 +20,8 @@ namespace DbComplimentYoutubeImdb.Migrations
 
             modelBuilder.Entity("DbComplimentYoutubeImdb.MovieLink", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
                     b.Property<string>("ImdbID")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PosterLink")
                         .HasColumnType("nvarchar(max)");
@@ -40,7 +35,7 @@ namespace DbComplimentYoutubeImdb.Migrations
                     b.Property<string>("YoutubeId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ImdbID");
 
                     b.ToTable("MovieLinks");
                 });

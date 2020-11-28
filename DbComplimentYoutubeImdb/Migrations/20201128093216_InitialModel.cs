@@ -10,9 +10,7 @@ namespace DbComplimentYoutubeImdb.Migrations
                 name: "MovieLinks",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ImdbID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImdbID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PosterLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Synopsis = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     YoutubeId = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -20,7 +18,7 @@ namespace DbComplimentYoutubeImdb.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieLinks", x => x.Id);
+                    table.PrimaryKey("PK_MovieLinks", x => x.ImdbID);
                 });
         }
 

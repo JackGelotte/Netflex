@@ -6,7 +6,6 @@ namespace DbComplimentYoutubeImdb
 {
     public class MovieLink
     {
-        public int Id { get; set; }
         public string ImdbID { get; set; }
         public string PosterLink { get; set; }
         public string Synopsis { get; set; }
