@@ -19,9 +19,6 @@ using TMDbLib.Objects.Search;
 
 namespace FlexApp
 {
-    /// <summary>
-    /// Interaction logic for MovieDisplay.xaml
-    /// </summary>
     public partial class MovieDisplay : UserControl
     {
         public static MovieDisplay MovieDisplayUserControl
@@ -46,7 +43,7 @@ namespace FlexApp
 
         }
 
-        public int index = 0;
+        public int Index = 0;
 
         private int page = 0;
         public int Page
@@ -76,9 +73,9 @@ namespace FlexApp
                 {
                     for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
                     {
-                        if (index < Movies.DisplayMovies.Count)
+                        if (Index < Movies.DisplayMovies.Count)
                         {
-                            Movie m = Movies.DisplayMovies[index];
+                            Movie m = Movies.DisplayMovies[Index];
                             StackPanel sp = new StackPanel();
                             TextBlock title = new TextBlock();
                             Image image = new Image();
@@ -120,7 +117,7 @@ namespace FlexApp
                             Grid.SetRow(sp, y);
                             Grid.SetColumn(sp, x);
 
-                            index++;
+                            Index++;
                         }
                     }
                 }
@@ -202,14 +199,14 @@ namespace FlexApp
         private void Click_Previous(object sender, RoutedEventArgs e)
         {
             Page--;
-            index = (Page * Movies.MOVIES_PER_PAGE);
+            Index = (Page * Movies.MOVIES_PER_PAGE);
             Refresh();          
         }
 
         private void Click_Next(object sender, RoutedEventArgs e)
         {
             Page++;
-            index = (Page * Movies.MOVIES_PER_PAGE);
+            Index = (Page * Movies.MOVIES_PER_PAGE);
             Refresh();            
         }
 

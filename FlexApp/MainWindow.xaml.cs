@@ -116,7 +116,7 @@ namespace FlexApp
             Movies.LoadNewMovies();
 
             MovieDisplay.MovieDisplayUserControl.Page = 0;
-            MovieDisplay.MovieDisplayUserControl.index = 0;
+            MovieDisplay.MovieDisplayUserControl.Index = 0;
             MovieDisplay.Refresh();
         }
 
@@ -135,7 +135,7 @@ namespace FlexApp
             }
 
             MovieDisplay.MovieDisplayUserControl.Page = 0;
-            MovieDisplay.MovieDisplayUserControl.index = 0;
+            MovieDisplay.MovieDisplayUserControl.Index = 0;
             MovieDisplay.Refresh();
         }
 

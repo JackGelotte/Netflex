@@ -62,7 +62,14 @@ namespace FlexApp
             UserPageUserControl.ActiveRentalsUserControl.Refresh();
 
             // Refresh Avatar
-            this.AvatarImage.Source = new BitmapImage(new Uri(Status.Customer.AvatarUrl));
+            try
+            {
+                this.AvatarImage.Source = new BitmapImage(new Uri(Status.Customer.AvatarUrl));
+            }
+            catch
+            {
+                this.AvatarImage.Source = new BitmapImage(new Uri(Helper.Image.DefaultAvatarURL));
+            }
 
             // Refresh User Information for UserPage
             var adress = Status.Customer.Adress.Split(' ');
