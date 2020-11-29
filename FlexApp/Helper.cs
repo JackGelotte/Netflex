@@ -17,7 +17,8 @@ namespace FlexApp
             public const string RentalPaymentSuccessful = "Netflex and pills";
 
             public const string SearchErrorIncorectSearchTerm = "Skriv Bättre";
-            public const string SearchReturnedNoResults = "Sorry dude";
+            public const string SearchReturnedNoResultsLine1 = "Sorry dude, can't find it";
+            public const string SearchReturnedNoResultsLine2 = "Maybe try spelling";
             public const string SearchBoxText = " Search...";
 
             public const string RegistrationErrorPasswordMismatch = "Passwards no match, no go";
@@ -31,7 +32,6 @@ namespace FlexApp
             public const string RentalSelectActiveDaysError = "Choose how many days you want the movie active.";
 
             public const string TrailerErrorLoading = "Failed to load trailer";
-
 
         }
 
@@ -52,12 +52,6 @@ namespace FlexApp
             public const string APIKeyJack = "k_a4fdj6tm";
             public const string APIKeyRobin = "k_6f3w3pvw";
         }
-
-        public static class CsvFile
-        {
-
-        }
-
 
     }
 }

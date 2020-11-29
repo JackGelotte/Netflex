@@ -46,15 +46,10 @@ namespace FlexApp
 
         }
 
-        private static int index = 0;
-        public static int Index
-        {
-            get { return index + Page * Movies.MOVIES_PER_PAGE; }
-            set { index = value; }
-        }
-        
-        private static int page = 0;
-        public static int Page
+        public int index = 0;
+
+        private int page = 0;
+        public int Page
         {
             get { return page; }
             set
@@ -75,56 +70,88 @@ namespace FlexApp
 
         public void InitializeMovieView()
         {
-            index = 0;
-            for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
-            {   for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
-                {   if (index < Movies.DisplayMovies.Count) 
+            if (Movies.DisplayMovies.Count > 0)
+            {        
+                for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
+                {
+                    for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
                     {
-                        Movie m = Movies.DisplayMovies[index];
-                        StackPanel sp = new StackPanel();
-                        TextBlock title = new TextBlock();
-                        Image image = new Image();
-
-                        TMDbClient client = new TMDbClient(Helper.TmdbApi.APIKey);
-                        SearchContainer<SearchMovie> results = client.SearchMovieAsync(m.Title).Result;
-                        try
+                        if (index < Movies.DisplayMovies.Count)
                         {
-                            var movieId = results.Results.Where(r => r.Title.Equals(m.Title, StringComparison.InvariantCultureIgnoreCase)).First().Id;
-                            TMDbLib.Objects.Movies.Movie movie = client.GetMovieAsync(movieId).Result;
-                            string baseUrl = "https://image.tmdb.org/t/p/";
-                            string size = "w500"; // "w500" för mindre version / "orginal" för full storlek
-                            string path = movie.PosterPath;
-                            image.Source = new BitmapImage(new Uri($"{baseUrl}{size}{path}"));
+                            Movie m = Movies.DisplayMovies[index];
+                            StackPanel sp = new StackPanel();
+                            TextBlock title = new TextBlock();
+                            Image image = new Image();
+
+                            TMDbClient client = new TMDbClient(Helper.TmdbApi.APIKey);
+                            SearchContainer<SearchMovie> results = client.SearchMovieAsync(m.Title).Result;
+                            try
+                            {
+                                var movieId = results.Results.Where(r => r.Title.Equals(m.Title, StringComparison.InvariantCultureIgnoreCase)).First().Id;
+                                TMDbLib.Objects.Movies.Movie movie = client.GetMovieAsync(movieId).Result;
+                                string baseUrl = "https://image.tmdb.org/t/p/";
+                                string size = "w500"; // "w500" för mindre version / "orginal" för full storlek
+                                string path = movie.PosterPath;
+                                image.Source = new BitmapImage(new Uri($"{baseUrl}{size}{path}"));
+                            }
+                            catch
+                            {
+                                image.Source = new BitmapImage(new Uri(Helper.Image.BjornAvatarURL));
+                            }
+
+                            title.Cursor = Cursors.Wait;
+                            title.Text = m.Title;
+                            title.Foreground = Brushes.White;
+                            title.FontSize = 20;
+                            title.Margin = new Thickness(10, 0, 10, 10);
+                            title.HorizontalAlignment = HorizontalAlignment.Center;
+
+                            image.Cursor = Cursors.Wait;
+                            image.Margin = new Thickness(10, 30, 10, 5);
+                            image.MaxHeight = 280;
+
+                            sp.Children.Add(image);
+                            sp.Children.Add(title);
+
+                            MovieGrid.Children.Add(sp);
+
+                            sp.MouseUp += Mouse_Up;
+
+                            Grid.SetRow(sp, y);
+                            Grid.SetColumn(sp, x);
+
+                            index++;
                         }
-                        catch
-                        {
-                            image.Source = new BitmapImage(new Uri(Helper.Image.BjornAvatarURL));
-                        }
-
-                        title.Cursor = Cursors.Wait;
-                        title.Text = m.Title;
-                        title.Foreground = Brushes.White;
-                        title.FontSize = 20;
-                        title.Margin = new Thickness(10, 0, 10, 10);
-                        title.HorizontalAlignment = HorizontalAlignment.Center;
-
-                        image.Cursor = Cursors.Wait;
-                        image.Margin = new Thickness(10, 30, 10, 5);
-                        image.MaxHeight = 280;                       
-
-                        sp.Children.Add(image);
-                        sp.Children.Add(title);
-
-                        MovieGrid.Children.Add(sp);
-
-                        sp.MouseUp += Mouse_Up;
-
-                        Grid.SetRow(sp, y);
-                        Grid.SetColumn(sp, x);
-
-                        index++;
-                    }   
+                    }
                 }
+            }       
+            else
+            {
+                // Text vid 0 resultat på sökning
+                StackPanel sp = new StackPanel();
+
+                TextBlock tb = new TextBlock();
+                tb.Text = Helper.Message.SearchReturnedNoResultsLine1;
+                tb.Background = Brushes.Black;
+                tb.Foreground = Brushes.White;
+                tb.FontSize = 35;
+                tb.FontWeight = FontWeight.FromOpenTypeWeight(700);
+
+                TextBlock tb2 = new TextBlock();
+                tb2.Text = Helper.Message.SearchReturnedNoResultsLine2;
+                tb2.Background = Brushes.Black;
+                tb2.Foreground = Brushes.White;
+                tb2.FontSize = 20;
+                tb2.FontWeight = FontWeight.FromOpenTypeWeight(500);
+
+                sp.Children.Add(tb);
+                sp.Children.Add(tb2);
+
+                MovieGrid.Children.Add(sp);
+
+                Grid.SetRow(sp, 0);
+                Grid.SetColumn(sp, 0);
+                Grid.SetColumnSpan(sp, 4);               
             }
         }
 
@@ -135,7 +162,7 @@ namespace FlexApp
             // Referera klickad film till MovieFocus
             var y = Grid.GetRow(sender as UIElement);
             var x = Grid.GetColumn(sender as UIElement);
-            int i = (y * MovieGrid.ColumnDefinitions.Count + x) + Page * Movies.MOVIES_PER_PAGE;
+            int i = (y * MovieGrid.ColumnDefinitions.Count + x) + (Page * Movies.MOVIES_PER_PAGE);
             mf.MovieSelected = Movies.DisplayMovies[i];
 
             // API-call till TMDB
@@ -175,13 +202,15 @@ namespace FlexApp
         private void Click_Previous(object sender, RoutedEventArgs e)
         {
             Page--;
-            Refresh();
+            index = (Page * Movies.MOVIES_PER_PAGE);
+            Refresh();          
         }
 
         private void Click_Next(object sender, RoutedEventArgs e)
         {
             Page++;
-            Refresh();
+            index = (Page * Movies.MOVIES_PER_PAGE);
+            Refresh();            
         }
 
     }

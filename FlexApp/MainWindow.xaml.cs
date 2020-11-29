@@ -111,8 +111,31 @@ namespace FlexApp
             StartPage.Visibility = Visibility.Visible;
             RegistrationPage.Visibility = Visibility.Hidden;
             UserPage.Visibility = Visibility.Hidden;
-            AboutPage.Visibility = Visibility.Hidden;         
+            AboutPage.Visibility = Visibility.Hidden;  
+            
             Movies.LoadNewMovies();
+
+            MovieDisplay.MovieDisplayUserControl.Page = 0;
+            MovieDisplay.MovieDisplayUserControl.index = 0;
+            MovieDisplay.Refresh();
+        }
+
+        public void HomePage(string moviedisplay)
+        {
+            LoginDropDown.Visibility = Visibility.Hidden;
+            StartPage.Visibility = Visibility.Visible;
+            RegistrationPage.Visibility = Visibility.Hidden;
+            UserPage.Visibility = Visibility.Hidden;
+            AboutPage.Visibility = Visibility.Hidden;
+
+            switch (moviedisplay)
+            {
+                case "genre": Movies.LoadMoviesByGenre(GenresComboBox.Text); break;
+                case "rating": Movies.LoadPopularMovies(); break;
+            }
+
+            MovieDisplay.MovieDisplayUserControl.Page = 0;
+            MovieDisplay.MovieDisplayUserControl.index = 0;
             MovieDisplay.Refresh();
         }
 
@@ -158,18 +181,12 @@ namespace FlexApp
         }
         private void GenresComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            HomePage();
-            Movies.LoadMoviesByGenre(GenresComboBox.Text);
-            MovieDisplay.Page = 0;
-            MovieDisplay.Refresh();
+            HomePage("genre");
         }
 
         private void Hot_Click(object sender, RoutedEventArgs e)
         {
-            HomePage();
-            Movies.LoadPopularMovies();
-            MovieDisplay.Page = 0;
-            MovieDisplay.Refresh();
+            HomePage("rating");
         }
 
     }

@@ -51,7 +51,8 @@ namespace FlexApp
                 this.CloseAutoSuggestionBox();
                 this.autoList.ItemsSource = this.AutoSuggestionList.Where(p => p.Contains(this.SearchBox.Text, StringComparison.OrdinalIgnoreCase)).ToList();
                 Movies.LoadPopularMovies();
-                MovieDisplay.Page = 0;
+                MovieDisplay.MovieDisplayUserControl.Page = 0;
+                MovieDisplay.MovieDisplayUserControl.index = 0;
                 MovieDisplay.Refresh();
                 return;
             }
@@ -63,7 +64,8 @@ namespace FlexApp
                     this.OpenAutoSuggestionBox();
                     this.autoList.ItemsSource = this.AutoSuggestionList.Where(p => p.Contains(this.SearchBox.Text, StringComparison.OrdinalIgnoreCase)).ToList();
                     Movies.SearchMovie(SearchBox.Text);
-                    MovieDisplay.Page = 0;
+                    MovieDisplay.MovieDisplayUserControl.Page = 0;
+                    MovieDisplay.MovieDisplayUserControl.index = 0;
                     MovieDisplay.Refresh();
                 }
             }
