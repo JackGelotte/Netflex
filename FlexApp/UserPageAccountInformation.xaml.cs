@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -20,6 +21,7 @@ namespace FlexApp
     public partial class UserPageAccountInformation : UserControl
     {
         private string AvatarUrl { get; set; }
+
         public UserPageAccountInformation()
         {
             InitializeComponent();
@@ -27,13 +29,50 @@ namespace FlexApp
 
         private void Adress_Save_Changes_Click(object sender, RoutedEventArgs e)
         {
-
+            string adress = $"{Street.Text} {Postal.Text} {City.Text} {State.Text}";
+            Status.Customer.Adress = adress;
+            Status.ct.Update(Status.Customer);
+            Status.ct.SaveChanges();
             UserPage.UserPageUserControl.Refresh();
         }
 
         private void UserInfo_Save_Changes_Click(object sender, RoutedEventArgs e)
         {
 
+            if (Username.Text != Status.Customer.Login.Username &&(Username.Text.Length < 4 || Password.Password.Length < 4))
+            {
+                MessageBox.Show(Helper.Message.RegistrationErrorUsernamePasswordIncorect);
+                Username.Text = "";
+                return;
+            }
+
+            if (Password.Password != PasswordRepeat.Password)
+            {
+                MessageBox.Show(Helper.Message.RegistrationErrorPasswordMismatch);
+                Password.Password = "";
+                PasswordRepeat.Password = "";
+                return;
+            }
+
+            if (Status.ct.Logins.Where(l => l.Username.Equals(Username)).Count() > 0)
+            {
+                MessageBox.Show(Helper.Message.RegistrationErrorUsernameAlreadyExists);
+                return;
+            }
+
+            if (Email.Text != Status.Customer.Email && (Status.ct.Customers.Where(c => c.Email.Equals(Email.Text)).Count() > 0))
+            {
+                MessageBox.Show(Helper.Message.RegistrationErrorEmailAlreadyRegistered);
+                return;
+            }
+
+            Status.Customer.Email = Email.Text;
+            Status.Customer.Login.Username = Username.Text;
+            Status.Customer.Login.Password = User.CreateUser.Encrypt(Password.Password);
+            
+            Status.ct.Update(Status.Customer);
+            Status.ct.Update(Status.Customer.Login);
+            Status.ct.SaveChanges();
             UserPage.UserPageUserControl.Refresh();
         }
 

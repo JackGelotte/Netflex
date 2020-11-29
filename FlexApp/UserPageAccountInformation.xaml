@@ -64,7 +64,7 @@
             </TabItem>
             
             <!-- Change/View Username/Password/Email -->
-            <TabItem Header="UserInfo" >
+            <TabItem x:Name="UserInfo" Header="UserInfo" >
                 <StackPanel Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="2"  >
 
                     <Label Content="E-mail" Foreground="White" />
@@ -73,11 +73,11 @@
 
                     <Label Content="Username" Foreground="White" />
                     <TextBox Name="Username" Background="AliceBlue" FontSize="18" 
-                     />
+                             />
 
                     <Label Content="Password" Foreground="White" />
                     <PasswordBox Name="Password" Background="AliceBlue" FontSize="18" 
-                         />
+                             />
 
                     <Label Content="Re-enter Password" Foreground="White" />
                     <PasswordBox Name="PasswordRepeat" Background="AliceBlue" FontSize="18" 

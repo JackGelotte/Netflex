@@ -36,7 +36,7 @@ namespace FlexApp
 
             if(New_Username.Text.Length < 4 || New_Password.Password.Length < 4) 
             { 
-                MessageBox.Show(Helper.Message.RegistrationErrorUsernameLength); 
+                MessageBox.Show(Helper.Message.RegistrationErrorUsernamePasswordIncorect); 
                 New_Username.Text = "";
                 return;
             }
@@ -45,6 +45,7 @@ namespace FlexApp
             { 
                 MessageBox.Show(Helper.Message.RegistrationErrorPasswordMismatch);
                 New_Password.Password = "";
+                Repeat_Password.Password = "";
                 return;
             }
 
@@ -79,6 +80,9 @@ namespace FlexApp
             New_PhoneNo.Text = "";
             New_Username.Text = "";
             New_Password.Password = "";
+            Repeat_Password.Password = "";
+
+            UserPage.UserPageUserControl.AvatarImage.Source = new BitmapImage(new Uri(Helper.Image.BjornAvatarURL));
 
         }
 

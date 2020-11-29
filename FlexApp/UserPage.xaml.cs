@@ -52,17 +52,32 @@ namespace FlexApp
 
             // Refresh Users Active Rentals
             UserPageUserControl.ActiveRentalsUserControl.MovieGrid.Children.Clear();
-            foreach (Rental r in Status.ct.Rentals.Where(x => x.Customer == Status.Customer).OrderBy(o=>o.RentDate))
+            foreach (Rental r in Status.ct.Rentals.Where(x => x.Customer == Status.Customer).OrderBy(o => o.RentDate))
             {
                 if (DateTime.Parse(r.ReturnDate) > DateTime.Now)
                 {
                     UserPageUserControl.ActiveRentalsUserControl.ActiveMovies.Insert(0, r);
-                }         
+                }
             }
             UserPageUserControl.ActiveRentalsUserControl.Refresh();
 
             // Refresh Avatar
             this.AvatarImage.Source = new BitmapImage(new Uri(Status.Customer.AvatarUrl));
+
+            // Refresh User Information for UserPage
+            var adress = Status.Customer.Adress.Split(' ');
+
+            UserPageUserControl.AccountInfoUserControl.FirstName.Text = Status.Customer.FirstName;
+            UserPageUserControl.AccountInfoUserControl.LastName.Text = Status.Customer.LastName;
+            UserPageUserControl.AccountInfoUserControl.Street.Text = adress[0];
+            UserPageUserControl.AccountInfoUserControl.Postal.Text = $"{adress[1]} {adress[2]}";
+            UserPageUserControl.AccountInfoUserControl.City.Text = adress[3];
+            UserPageUserControl.AccountInfoUserControl.State.Text = adress[4];
+            UserPageUserControl.AccountInfoUserControl.Email.Text = Status.Customer.Email;
+            UserPageUserControl.AccountInfoUserControl.PhoneNo.Text = Status.Customer.PhoneNumber;
+            UserPageUserControl.AccountInfoUserControl.Username.Text = Status.Customer.Login.Username;
+            UserPageUserControl.AccountInfoUserControl.Password.Password = "";
+            UserPageUserControl.AccountInfoUserControl.PasswordRepeat.Password = "";
 
         }
 

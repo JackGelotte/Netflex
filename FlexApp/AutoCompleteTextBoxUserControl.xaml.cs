@@ -60,14 +60,11 @@ namespace FlexApp
             {
                 if (this.SearchBox.Text != Helper.Message.SearchBoxText)
                 {
-                    if ((this.SearchBox.Text.Length + 2) % 2 == 0)
-                    {
-                        this.OpenAutoSuggestionBox();
-                        this.autoList.ItemsSource = this.AutoSuggestionList.Where(p => p.Contains(this.SearchBox.Text, StringComparison.OrdinalIgnoreCase)).ToList();
-                        Movies.SearchMovie(SearchBox.Text);
-                        MovieDisplay.Page = 0;
-                        MovieDisplay.Refresh();
-                    }
+                    this.OpenAutoSuggestionBox();
+                    this.autoList.ItemsSource = this.AutoSuggestionList.Where(p => p.Contains(this.SearchBox.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+                    Movies.SearchMovie(SearchBox.Text);
+                    MovieDisplay.Page = 0;
+                    MovieDisplay.Refresh();
                 }
             }
         }
