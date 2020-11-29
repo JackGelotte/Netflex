@@ -61,6 +61,9 @@ namespace FlexApp
             }
             UserPageUserControl.ActiveRentalsUserControl.Refresh();
 
+            // Refresh Avatar
+            this.AvatarImage.Source = new BitmapImage(new Uri(Status.Customer.AvatarUrl));
+
         }
 
         private void ActiveRentals_Click(object sender, RoutedEventArgs e)

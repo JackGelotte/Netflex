@@ -75,7 +75,7 @@ namespace FlexApp
 
         public void InitializeMovieView()
         {
-            index = 0;
+            //index = 0;
             for (int y = 0; y < MovieGrid.RowDefinitions.Count; y++)
             {   for (int x = 0; x < MovieGrid.ColumnDefinitions.Count; x++)
                 {   if (index < Movies.DisplayMovies.Count) 
@@ -89,7 +89,7 @@ namespace FlexApp
                         SearchContainer<SearchMovie> results = client.SearchMovieAsync(m.Title).Result;
                         try
                         {
-                            var movieId = results.Results.Where(m => m.Title.Equals(m.Title, StringComparison.OrdinalIgnoreCase)).First().Id;
+                            var movieId = results.Results.Where(r => r.Title.Equals(m.Title, StringComparison.InvariantCultureIgnoreCase)).First().Id;
                             TMDbLib.Objects.Movies.Movie movie = client.GetMovieAsync(movieId).Result;
                             string baseUrl = "https://image.tmdb.org/t/p/";
                             string size = "original"; // "w500" för mindre version
@@ -155,8 +155,6 @@ namespace FlexApp
             mf.MovieImdbRating.Text = $"IMDb Score : {Movies.DisplayMovies[i].Rating}";
 
             // Poster till MovieFocus
-            //mf.MoviePoster.Source = new BitmapImage(new Uri(Movies.DisplayMovies[i].PosterLink));
-
             string baseUrl = "https://image.tmdb.org/t/p/";
             string size = "original"; // "w500" för mindre version
             string path = movie.PosterPath;

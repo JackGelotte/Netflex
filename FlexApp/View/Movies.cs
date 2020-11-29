@@ -8,7 +8,7 @@ namespace FlexApp
 {
     public static class Movies
     {
-        public const int MOVIES_PER_PAGE = 20;
+        public const int MOVIES_PER_PAGE = 16;
 
         public static ObservableCollection<Movie> DisplayMovies { get; set; } = new ObservableCollection<Movie>();
 

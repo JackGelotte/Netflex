@@ -8,7 +8,7 @@ namespace FlexApp.User
 {
     public static class CreateUser
     {          
-        public static void CreateNewUser(string fName, string lName, string eMail, string adress, string phoneNo, string username, string password)
+        public static void CreateNewUser(string fName, string lName, string eMail, string adress, string phoneNo, string username, string password, string avatarUrl)
         {
             Status.ct.Customers.Add(new Customer() 
             {
@@ -17,6 +17,7 @@ namespace FlexApp.User
                 Email = eMail,
                 Adress = adress,
                 PhoneNumber = phoneNo,
+                AvatarUrl = avatarUrl,
                 Login = new Login()  
                 { 
                     Username = username, 

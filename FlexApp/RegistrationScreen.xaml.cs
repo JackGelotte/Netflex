@@ -20,12 +20,13 @@ namespace FlexApp
     /// </summary>
     public partial class RegistrationScreen : UserControl
     {
+        private string AvatarPath { get; set; }
+
         public RegistrationScreen()
         {
             InitializeComponent();
 
-            // lägg till avatar i databas
-            // uppdatera avatar när man loggar in / byter bild
+
             Avatar.Source = new BitmapImage(new Uri(Helper.Image.BjornAvatarURL));
 
         }
@@ -64,8 +65,8 @@ namespace FlexApp
             User.CreateUser.CreateNewUser(
                 New_FirstName.Text, New_LastName.Text,
                 New_Email.Text, adress, New_PhoneNo.Text,
-                New_Username.Text, New_Password.Password
-                // Avatar.Source.ToString()
+                New_Username.Text, New_Password.Password,
+                AvatarPath
                 ) ;
 
             New_FirstName.Text = "";
@@ -84,18 +85,26 @@ namespace FlexApp
         private void Upload_Avatar_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
-            dlg.InitialDirectory = System.IO.Path.GetFullPath(Environment.GetEnvironmentVariable("Home") + @"\.ssh");
+
+            // Om den inte hittar mydocuments funkar denna istället -> System.IO.Path.GetFullPath(Environment.GetEnvironmentVariable("Home") + @"\.ssh");
+            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             dlg.DefaultExt = ".jpg";
-            dlg.Filter = "Image files(*.jpg) | *.jpg | All Files(*.*) | *.* ";
+            dlg.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*jpg|All files (*.*)|*.*";
 
             bool? result = dlg.ShowDialog();
 
             if(result == true)
             {
-                Avatar.Source = new BitmapImage(new Uri(dlg.FileName));
-            }
-            else if(result != null) MessageBox.Show(Helper.Message.AvatarFailedToLoad);
-                                                       
+                try
+                {
+                    Avatar.Source = new BitmapImage(new Uri(dlg.FileName));
+                    AvatarPath = dlg.FileName;
+                }
+                catch
+                {
+                    MessageBox.Show(Helper.Message.AvatarFailedToLoad);
+                }            
+            }                                      
         }
     }
 }
