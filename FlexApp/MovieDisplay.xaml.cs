@@ -193,7 +193,9 @@ namespace FlexApp
             var apiLib = new ApiLib(Helper.ImdbAPI.APIKeyRobin);
             var data = apiLib.YouTubeTrailerAsync($"tt{Movies.DisplayMovies[i].ImdbID}");
 
-            var youtubeId = data.Result.VideoId;
+            var youtubeId = data.Result.VideoId;             
+            
+            // var youtubeId = apiLib.YouTubeTrailerAsync($"tt{Movies.DisplayMovies[i].ImdbID}").Result.VideoId;
 
             var data2 = apiLib.YouTubeAsync($"{youtubeId}");
 
