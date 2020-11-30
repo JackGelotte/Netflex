@@ -52,8 +52,18 @@ namespace FlexApp
             get { return page; }
             set
             {
-                if (value < 0) page = 0;
+                int pageMathF = (int)MathF.Ceiling(Movies.DisplayMovies.Count / Movies.MOVIES_PER_PAGE) - 1;
+                int pageCealing = pageMathF < 0 ? 0 : pageMathF;
+                if (value > pageCealing)
+                {
+                    page = pageCealing;
+                }
+                else if (value < 0)
+                {
+                    page = 0;
+                }
                 else page = value;
+                
             }
         }
 
@@ -100,12 +110,13 @@ namespace FlexApp
                             title.Cursor = Cursors.Wait;
                             title.Text = m.Title;
                             title.Foreground = Brushes.White;
-                            title.FontSize = 20;
-                            title.Margin = new Thickness(10, 0, 10, 10);
-                            title.HorizontalAlignment = HorizontalAlignment.Center;
+                            title.FontSize = 18;
+                            title.TextAlignment = TextAlignment.Center;
+                            title.TextWrapping = TextWrapping.WrapWithOverflow;
+                            title.Margin = new Thickness(10, 0, 10, 0);
 
                             image.Cursor = Cursors.Wait;
-                            image.Margin = new Thickness(10, 30, 10, 5);
+                            image.Margin = new Thickness(10, 20, 10, 5);
                             image.MaxHeight = 280;
 
                             sp.Children.Add(image);
@@ -184,7 +195,7 @@ namespace FlexApp
 
             // Poster till MovieFocus                                                                                         
             string baseUrl = "https://image.tmdb.org/t/p/";
-            string size = "w500"; // "w500" för mindre version / "orginal" för full storlek                                                                                         
+            string size = "w500"; // "w500" för mindre version / "orginal" för full storlek
             string path = movie.PosterPath;
 
             mf.MoviePoster.Source = new BitmapImage(new Uri($"{baseUrl}{size}{path}"));
@@ -216,20 +227,20 @@ namespace FlexApp
             mf.Show();
         }
 
-        private void Click_Previous(object sender, RoutedEventArgs e)
+        
+        public void Click_Previous(object sender, RoutedEventArgs e)
         {
             Page--;
             Index = (Page * Movies.MOVIES_PER_PAGE);
-            Refresh();          
+            Refresh();
         }
 
-        private void Click_Next(object sender, RoutedEventArgs e)
+        public void Click_Next(object sender, RoutedEventArgs e)
         {
             Page++;
             Index = (Page * Movies.MOVIES_PER_PAGE);
-            Refresh();            
+            Refresh();
         }
-
     }
 }
 

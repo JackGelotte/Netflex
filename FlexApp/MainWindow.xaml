@@ -9,22 +9,23 @@
         WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="87"/>
-            <RowDefinition Height="51"/>
-            <RowDefinition/>
-            <RowDefinition Height="174"/>
-            <RowDefinition Height="372"/>
+            <RowDefinition Height="90*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="133*"/>
+            <RowDefinition Height="391*"/>
+            <RowDefinition Height="21*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="162"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="652"/>
-            <ColumnDefinition Width="388"/>
-            <ColumnDefinition Width="32"/>
+            <ColumnDefinition Width="163*"/>
+            <ColumnDefinition Width="44*"/>
+            <ColumnDefinition Width="703*"/>
+            <ColumnDefinition Width="275*"/>
+            <ColumnDefinition Width="80*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Temp Background -->
-        <Grid Grid.RowSpan="5" Grid.ColumnSpan="5">
+        <Grid Grid.RowSpan="6" Grid.ColumnSpan="5">
             <Image Source="/Images/TempBackground.png" Height="720" Width="1280" VerticalAlignment="Top" />
         </Grid>
 
@@ -47,7 +48,7 @@
         </Grid>
 
         <!-- Left Bar -->
-        <Grid Grid.RowSpan="3" Grid.Row="2" Grid.Column="0" Name="LeftBar">
+        <Grid Grid.RowSpan="4" Grid.Row="2" Grid.Column="0" Name="LeftBar" Margin="0,2,44,0" Grid.ColumnSpan="2">
 
             <!-- Search Button -->
             <local:AutoCompleteTextBoxUserControl Height="40" Width="161" VerticalAlignment="Top" HorizontalAlignment="Center" />
@@ -80,8 +81,8 @@
         </Grid>
 
         <!-- Movie Display -->
-        <Grid Name="MainPage" Grid.Column="2" Grid.Row="3" Margin="0,0,0,5" Grid.ColumnSpan="3" Grid.RowSpan="2">
-            <local:MovieDisplay x:Name="StartPage" Visibility="Visible" Margin="0,0,10,0" ></local:MovieDisplay>
+        <Grid Name="MainPage" Grid.Column="1" Grid.Row="3" Margin="44,22,0,5" Grid.ColumnSpan="4" Grid.RowSpan="3">
+            <local:MovieDisplay x:Name="StartPage" Visibility="Visible" Margin="0,0,0,0" ></local:MovieDisplay>
             <local:RegistrationScreen x:Name="RegistrationPage" Visibility="Hidden"></local:RegistrationScreen>
             <local:UserPage x:Name="UserPage" Visibility="Hidden" />
             <local:AboutAlt x:Name="AboutPage" Visibility="Hidden" />
@@ -91,8 +92,9 @@
         </Grid>
 
         <!-- Login Drop Down-->
-        <local:LogInDropDown Grid.Column="3" Grid.Row="1" Grid.RowSpan="3"
+        <local:LogInDropDown Grid.Column="3" Grid.RowSpan="3" Grid.Row="1"
                             x:Name="LoginDropDown" Visibility="Hidden" />
+
 
     </Grid>
 </Window>

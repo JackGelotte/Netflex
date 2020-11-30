@@ -10,7 +10,7 @@
              LostFocus="UserControl_LostFocus" 
              >
     <Grid>
-        <Border Background="#2e3137" CornerRadius="20" Margin="60,0,60,54">
+        <Border Background="#2e3137" CornerRadius="20">
             <StackPanel Margin="20,0,20,10">
                 <Label Content="Login" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
                 <Separator></Separator>
