@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="FlexApp.NextPrevious"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlexApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="90" d:DesignWidth="220">
+    <Grid>
+        <WrapPanel HorizontalAlignment="Center" >
+
+            <Button Name="Previous_Button" Click="Previous_Click" Width="90" Height="70" Background="Black" BorderBrush="Black" Opacity="0.8">
+                <Label Content="&lt;" FontSize="15" FontWeight="Bold" Foreground="White" />
+            </Button>
+            
+            <Rectangle Width="40"/>
+
+            <Button Name="Next_Button" Click="Next_Click" Width="90" Height="70" Background="Black" BorderBrush="Black" Opacity="0.8" >
+                <Label Content=">" FontSize="15" FontWeight="Bold" Foreground="White" />
+            </Button>
+        </WrapPanel>
+        
+    </Grid>
+</UserControl>

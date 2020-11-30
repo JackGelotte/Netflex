@@ -124,6 +124,7 @@ namespace FlexApp
         {
             LoginDropDown.Visibility = Visibility.Hidden;
             StartPage.Visibility = Visibility.Visible;
+
             RegistrationPage.Visibility = Visibility.Hidden;
             UserPage.Visibility = Visibility.Hidden;
             AboutPage.Visibility = Visibility.Hidden;
@@ -189,5 +190,6 @@ namespace FlexApp
             HomePage("rating");
         }
 
+        
     }
 }
