@@ -48,10 +48,10 @@ namespace FlexApp
 
                     TMDbClient client = new TMDbClient(Helper.TmdbApi.APIKey);
                     SearchContainer<SearchMovie> results = client.SearchMovieAsync(m.Movie.Title).Result;
-                    var movieId = results.Results.Where(m => m.Title.Equals(m.Title, StringComparison.OrdinalIgnoreCase)).First().Id;
+                    var movieId = results.Results.Where(r => r.Title.Equals(m.Movie.Title, StringComparison.OrdinalIgnoreCase)).First().Id;
                     TMDbLib.Objects.Movies.Movie movie = client.GetMovieAsync(movieId).Result;
                     string baseUrl = "https://image.tmdb.org/t/p/";
-                    string size = "original"; // "w500" för mindre version
+                    string size = "w500"; // "w500" för mindre version
                     string path = movie.PosterPath;
                     image.Source = new BitmapImage(new Uri($"{baseUrl}{size}{path}"));
 

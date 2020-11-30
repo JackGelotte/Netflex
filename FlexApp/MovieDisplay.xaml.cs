@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DatabaseConnection;
+using IMDbApiLib;
 using TMDbLib;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
@@ -173,9 +174,17 @@ namespace FlexApp
             int i = (y * MovieGrid.ColumnDefinitions.Count + x) + (Page * Movies.MOVIES_PER_PAGE);
             mf.MovieSelected = Movies.DisplayMovies[i];
 
-            // API-call till TMDB
+            // General Info till MovieFocus
+            mf.MovieNameYear.Text = $"{Movies.DisplayMovies[i].Title} " +
+                $"({Movies.DisplayMovies[i].Year})";
+            mf.MovieImdbRating.Text = $"IMDb Score : {Movies.DisplayMovies[i].Rating}";
+
+            // ------------------------------------------------------------------------------------------------------------------------------------|
+            // API-call till TMDB -----------------------------------------------------------------------------------------------------------------|
+            // ------------------------------------------------------------------------------------------------------------------------------------|
+
             // TMDB id från FilmTitel
-            TMDbClient client = new TMDbClient(Helper.TmdbApi.APIKey);
+            TMDbClient client = new TMDbClient(Helper.TmdbApi.APIKey);                                                                     
             SearchContainer<SearchMovie> results = client.SearchMovieAsync(Movies.DisplayMovies[i].Title).Result;
             var movieId = results.Results.Where(m=>m.Title.Equals(Movies.DisplayMovies[i].Title, StringComparison.OrdinalIgnoreCase)).First().Id;
 
@@ -184,19 +193,28 @@ namespace FlexApp
             // Synopsis till MovieFocus
             mf.Synopsis.Text =  movie.Overview.Length < 350 ? movie.Overview : $"{movie.Overview.Substring(0, 349)}...";
 
-            // General Info till MovieFocus
-            mf.MovieNameYear.Text = $"{Movies.DisplayMovies[i].Title} " +
-                $"({Movies.DisplayMovies[i].Year})";
-            mf.MovieImdbRating.Text = $"IMDb Score : {Movies.DisplayMovies[i].Rating}";
-
-            // Poster till MovieFocus
+            // Poster till MovieFocus                                                                                         
             string baseUrl = "https://image.tmdb.org/t/p/";
             string size = "w500"; // "w500" för mindre version / "orginal" för full storlek
             string path = movie.PosterPath;
 
             mf.MoviePoster.Source = new BitmapImage(new Uri($"{baseUrl}{size}{path}"));
 
-            //mf.TrailerRun.Trailer.Source = new Uri("");
+            // Trailer url från Imdb-API
+            var apiLib = new ApiLib(Helper.ImdbAPI.APIKeyRobin);
+            var data = apiLib.YouTubeTrailerAsync($"tt{Movies.DisplayMovies[i].ImdbID}");
+
+            var youtubeId = data.Result.VideoId;
+
+            var data2 = apiLib.YouTubeAsync($"{youtubeId}");
+
+            var youtubeUrl = data2.Result.Videos.First().Url;
+
+            mf.TrailerRun.Trailer.Source = new Uri($"{youtubeUrl}.mp4");
+
+            // -----------------------------------------------------------------------------------------------------------------------------------|
+            // Info from API end -----------------------------------------------------------------------------------------------------------------|
+            // -----------------------------------------------------------------------------------------------------------------------------------|
 
             // Centrera fönstret till MainWindow
             MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(x => x.IsInitialized);
