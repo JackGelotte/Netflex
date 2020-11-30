@@ -46,8 +46,11 @@ namespace FlexApp
             // Refresh Users Rental History
             foreach (Rental r in Status.ct.Rentals.Where(x => x.Customer == Status.Customer))
             {
-                UserPageUserControl.RentalsHistoryUserControl.RentalHistoryListView
+                if (!UserPageUserControl.ActiveRentalsUserControl.ActiveMovies.Contains(r))
+                {
+                    UserPageUserControl.RentalsHistoryUserControl.RentalHistoryListView
                     .Insert(0, new UserPageRentalsHistory.MovieHistory($"{r.Movie.Title}", $"{r.RentDate}", $"{r.ReturnDate}"));
+                }
             }
 
             // Refresh Users Active Rentals
@@ -56,7 +59,10 @@ namespace FlexApp
             {
                 if (DateTime.Parse(r.ReturnDate) > DateTime.Now)
                 {
-                    UserPageUserControl.ActiveRentalsUserControl.ActiveMovies.Insert(0, r);
+                    if(!UserPageUserControl.ActiveRentalsUserControl.ActiveMovies.Contains(r))
+                    {
+                        UserPageUserControl.ActiveRentalsUserControl.ActiveMovies.Insert(0, r);
+                    }                   
                 }
             }
             UserPageUserControl.ActiveRentalsUserControl.Refresh();
