@@ -85,7 +85,7 @@
             <local:MovieDisplay x:Name="StartPage" Visibility="Visible" Margin="0,0,0,0" ></local:MovieDisplay>
             <local:RegistrationScreen x:Name="RegistrationPage" Visibility="Hidden"></local:RegistrationScreen>
             <local:UserPage x:Name="UserPage" Visibility="Hidden" />
-            <local:AboutAlt x:Name="AboutPage" Visibility="Hidden" />
+            <local:About x:Name="AboutPage" Visibility="Hidden" />
 
             <!-- <local:About x:Name="AboutPage" Visibility="Hidden" /> -->
 
