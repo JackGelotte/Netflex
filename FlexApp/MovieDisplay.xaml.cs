@@ -164,9 +164,21 @@ namespace FlexApp
             }
         }
 
-        private void Mouse_Up(object sender, MouseButtonEventArgs e)
+        private async void Mouse_Up(object sender, MouseButtonEventArgs e)
         {
             MovieFocus mf = new MovieFocus();
+
+            // -----------------------------------------------------------------------------------------------------------------------------------|
+            // Info from API end -----------------------------------------------------------------------------------------------------------------|
+            // -----------------------------------------------------------------------------------------------------------------------------------|
+
+            // Centrera fönstret till MainWindow
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(x => x.IsInitialized);
+            mf.Width = mw.Width - 150;
+            mf.Height = mw.Height - 90;
+            mf.Owner = mw;
+            mf.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            mf.Show();
 
             // Referera klickad film till MovieFocus
             var y = Grid.GetRow(sender as UIElement);
@@ -185,10 +197,10 @@ namespace FlexApp
 
             // TMDB id från FilmTitel
             TMDbClient client = new TMDbClient(Helper.TmdbApi.APIKey);                                                                     
-            SearchContainer<SearchMovie> results = client.SearchMovieAsync(Movies.DisplayMovies[i].Title).Result;
+            SearchContainer<SearchMovie> results = await client.SearchMovieAsync(Movies.DisplayMovies[i].Title);
             var movieId = results.Results.Where(m=>m.Title.Equals(Movies.DisplayMovies[i].Title, StringComparison.OrdinalIgnoreCase)).First().Id;
 
-            TMDbLib.Objects.Movies.Movie movie = client.GetMovieAsync(movieId).Result;
+            TMDbLib.Objects.Movies.Movie movie = await client.GetMovieAsync(movieId);
 
             // Synopsis till MovieFocus
             mf.Synopsis.Text =  movie.Overview.Length < 350 ? movie.Overview : $"{movie.Overview.Substring(0, 349)}...";
@@ -200,31 +212,22 @@ namespace FlexApp
 
             mf.MoviePoster.Source = new BitmapImage(new Uri($"{baseUrl}{size}{path}"));
 
+            /*
             // Trailer url från Imdb-API
-            var apiLib = new ApiLib(Helper.ImdbAPI.APIKeyRobin);
-            var data = apiLib.YouTubeTrailerAsync($"tt{Movies.DisplayMovies[i].ImdbID}");
+            var apiLib = new ApiLib(Helper.ImdbAPI.APIKeyJack);
+            var data = await apiLib.YouTubeTrailerAsync($"tt{Movies.DisplayMovies[i].ImdbID}");
+            var youtubeId = data.VideoId;
 
-            var youtubeId = data.Result.VideoId;             
-            
-            // var youtubeId = apiLib.YouTubeTrailerAsync($"tt{Movies.DisplayMovies[i].ImdbID}").Result.VideoId;
+            var apiLib2 = new ApiLib(Helper.ImdbAPI.APIKeyRobin);
+            var data2 = await apiLib2.YouTubeAsync($"{youtubeId}");
 
-            var data2 = apiLib.YouTubeAsync($"{youtubeId}");
-
-            var youtubeUrl = data2.Result.Videos.First().Url;
+            var youtubeUrl = data2.Videos.First().Url;
 
             mf.TrailerRun.Trailer.Source = new Uri($"{youtubeUrl}.mp4");
 
-            // -----------------------------------------------------------------------------------------------------------------------------------|
-            // Info from API end -----------------------------------------------------------------------------------------------------------------|
-            // -----------------------------------------------------------------------------------------------------------------------------------|
+            mf.TrailerRun.Trailer.Source = new Uri("youtubeUrl");
+            */
 
-            // Centrera fönstret till MainWindow
-            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(x => x.IsInitialized);
-            mf.Width = mw.Width - 150;
-            mf.Height = mw.Height - 90;
-            mf.Owner = mw;
-            mf.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            mf.Show();
         }
 
         

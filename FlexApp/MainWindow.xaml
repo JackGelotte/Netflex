@@ -87,8 +87,6 @@
             <local:UserPage x:Name="UserPage" Visibility="Hidden" />
             <local:About x:Name="AboutPage" Visibility="Hidden" />
 
-            <!-- <local:About x:Name="AboutPage" Visibility="Hidden" /> -->
-
         </Grid>
 
         <!-- Login Drop Down-->
