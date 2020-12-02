@@ -54,22 +54,15 @@ namespace FlexApp
                 Login.Visibility = Visibility.Visible;
             }
 
-            if (Status.IsLoggedIn && DaysActiveSelected == -1) MessageBox.Show(Helper.Message.RentalSelectActiveDaysError);
+            if (Status.IsLoggedIn && DaysActiveSelected < 1) MessageBox.Show(Helper.Message.RentalSelectActiveDaysError);
 
-            if (Status.IsLoggedIn && DaysActiveSelected != -1) 
+            if (Status.IsLoggedIn && DaysActiveSelected > 0) 
             {
-                try
-                {
-                    new User.Rental(MovieSelected).Execute(DaysActiveSelected);
-                    UserPage.UserPageUserControl.Refresh();
-                    MessageBox.Show("Rental osv");
-                }
-                catch(Exception er) 
-                {
-                    MessageBox.Show("du suger osv, jupp" + er);
-                }
-
-                this.Close();
+                PaymentWindow payment = new PaymentWindow(MovieSelected, DaysActiveSelected);
+                MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(x => x.IsInitialized);
+                payment.Owner = mw;
+                payment.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                payment.ShowDialog();
             }
         }
 

@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="PaymentWindow" Height="450" Width="800"
         AllowsTransparency="true" WindowStyle="None"
-        Background="Black">
+        Background="Black"
+        MouseDown="Window_MouseDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="29*"/>
@@ -28,13 +29,25 @@
             <StackPanel Orientation="Vertical" Width="320">
                 
                 <Label Content="Name" Foreground="White"/>
-                <TextBlock Name="Name" Foreground="White" Height="40"/>
+                <TextBox Name="Name"  Height="40"/>
                 <Label Content="Card Number" Foreground="White"/>
-                <TextBlock Name="CardNo" Foreground="White" Height="40"/>
+                <TextBox Name="CardNo"  Height="40"/>
                 <Label Content="CSV" Foreground="White"/>
-                <TextBlock Name="csv" Foreground="White" Height="40"/>
+                <TextBox Name="csv"  Height="40"/>
                 <Label Content="Expire Date" Foreground="White"/>
-                <TextBlock Name="ExpDate" Foreground="White" Height="40"/>
+                <StackPanel Orientation="Horizontal">
+                    
+                    <Label Content="Month" Foreground="White" />
+                    <!-- Combobox för månader -->
+                    <ComboBox Name="expMonth" ItemsSource="{Binding ComboMonth}" DisplayMemberPath="Month" 
+                              SelectedValuePath="Month" />
+
+                    <Label Content="Year" Foreground="White" />
+                    <!-- Combobox för år -->
+                    <ComboBox Name="expYear" ItemsSource="{Binding ComboYear}" DisplayMemberPath="Year" 
+                              SelectedValuePath="Year" />
+
+                </StackPanel>
                 
             </StackPanel>
             <Rectangle Width="20"/>
