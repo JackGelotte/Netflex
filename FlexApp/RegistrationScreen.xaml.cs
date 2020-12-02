@@ -106,8 +106,6 @@ namespace FlexApp
                 return;
             }
 
-
-
             string adress = $"{New_Street.Text} {postalCode} {New_City.Text} {New_State.Text}";
 
             User.CreateUser.CreateNewUser(
