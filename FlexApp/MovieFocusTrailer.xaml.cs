@@ -25,7 +25,7 @@ namespace FlexApp
         {
             InitializeComponent();
 
-            Trailer.Source = new Uri(@"c:\inception.mp4");
+            Trailer.Source = new Uri("c:/inception.mp4");
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);

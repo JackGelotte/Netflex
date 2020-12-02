@@ -9,9 +9,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="11*"/>
-            <RowDefinition Height="278*"/>
-            <RowDefinition Height="46*"/>
-            <RowDefinition Height="115*"/>
+            <RowDefinition Height="366*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="23*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
@@ -24,6 +24,7 @@
                     Background="Black" >
 
             <!-- Change/View Adress -->
+
             <TabItem Header="Adress" >
 
                 <Grid>
@@ -38,9 +39,9 @@
                         <ColumnDefinition Width="30*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="127*"/>
-                        <RowDefinition Height="18*"/>
-                        <RowDefinition Height="66*"/>
+                        <RowDefinition Height="324*"/>
+                        <RowDefinition Height="67*"/>
+                        <RowDefinition Height="31*"/>
                     </Grid.RowDefinitions>
 
                     <!-- Left Side -->
@@ -76,11 +77,11 @@
 
                     </StackPanel>
 
+
                     <Button
                         Background="Black" 
                         Click="Adress_Save_Changes_Click" 
-                        Grid.Row="1" 
-                        Grid.Column="2" Grid.ColumnSpan="3"   >
+                        Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3"    >
                         <Label Foreground="White"
                                FontSize="20"
                             Content="S a v e   C h a n g e s" />

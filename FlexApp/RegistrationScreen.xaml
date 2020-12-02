@@ -5,109 +5,110 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlexApp"
              mc:Ignorable="d" 
-    d:DesignHeight="580" d:DesignWidth="1115">
+            d:DesignHeight="580" d:DesignWidth="1071">
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="61*"/>
+                <RowDefinition Height="153*"/>
+                <RowDefinition Height="70*"/>
+                <RowDefinition Height="221*"/>
+                <RowDefinition Height="75*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="191*"/>
+                <ColumnDefinition Width="337*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="337*"/>
+                <ColumnDefinition Width="58*"/>
+                <ColumnDefinition Width="133*"/>
+            </Grid.ColumnDefinitions>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="45*"/>
-            <RowDefinition Height="113*"/>
-            <RowDefinition Height="75*"/>
-            <RowDefinition Height="57*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="191*"/>
-            <ColumnDefinition Width="337*"/>
-            <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="337*"/>
-            <ColumnDefinition Width="58*"/>
-            <ColumnDefinition Width="133*"/>
-        </Grid.ColumnDefinitions>
+            <!-- Top / Bottom(button)-->
 
-        <!-- Top / Bottom(button)-->
+            <StackPanel Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="5" >
 
-        <StackPanel Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="4" >
+                <Label Content="Registration" Foreground="White" FontSize="35" 
+                       HorizontalAlignment="Center"/>
 
-            <Label Content="Registration" Foreground="White" FontSize="35" 
-                   HorizontalAlignment="Center"/>
+                <RibbonSeparator Margin="150,10,150,10"></RibbonSeparator>
 
-            <RibbonSeparator Margin="150,10,150,10"></RibbonSeparator>
+                <Button Name="New_RegistrationButton"  Background="Black" 
+                        FontSize="18" Margin="0,450,0,0" FontWeight="Bold"
+                        Click="New_Registration_Button_Click" Width="627">
+                    <TextBlock Text="R e g i s t e r" Foreground="White"
+                               Margin="0,5,0,10" />
+                </Button>
 
-            <Button Name="New_RegistrationButton"  Background="Black" 
-                    FontSize="18" Margin="0,400,0,0" FontWeight="Bold"
-                    Click="New_Registration_Button_Click" Width="1036">
-                <TextBlock Text="R e g i s t e r" Foreground="White"
-                           Margin="0,5,0,10" />
-            </Button>
+            </StackPanel>
 
-        </StackPanel>
-
-        <!-- Left side-->
-        <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="2" 
-                    >
-            <Label Content="First Name" Foreground="White" 
-                    />
-            <TextBox Name="New_FirstName" Background="AliceBlue" FontSize="18" 
+            <!-- Left side-->
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="180,0,2,0" 
+                        >
+                <Label Content="First Name" Foreground="White" 
                         />
+                <TextBox Name="New_FirstName" Background="AliceBlue" FontSize="18" 
+                            />
 
-            <Label Content="Last Name" Foreground="White" />
-            <TextBox Name="New_LastName" Background="AliceBlue" FontSize="18" 
-                     />
-
-            <Label Content="Street" Foreground="White" />
-            <TextBox Name="New_Street" Background="AliceBlue" FontSize="18" 
-                     />
-
-            <Label Content="Postal" Foreground="White" />
-            <TextBox Name="New_Postal" Background="AliceBlue" FontSize="18" 
-                     />
-
-            <Label Content="City" Foreground="White" />
-            <TextBox Name="New_City" Background="AliceBlue" FontSize="18" 
-                     />
-
-            <Label Content="State" Foreground="White" />
-            <TextBox Name="New_State" Background="AliceBlue" FontSize="18" 
-                     />
-
-            <Label Content="Phone No" Foreground="White" />
-            <TextBox Name="New_PhoneNo" Background="AliceBlue" FontSize="18" 
-                     />
-
-        </StackPanel>
-
-        <!-- Right Side -->
-        <StackPanel Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="2"  >
-
-            <Label Content="E-mail" Foreground="White" />
-            <TextBox Name="New_Email" Background="AliceBlue" FontSize="18" 
-                     />
-
-            <Label Content="Username" Foreground="White" />
-            <TextBox Name="New_Username" Background="AliceBlue" FontSize="18" 
-                     />
-
-            <Label Content="Password" Foreground="White" />
-            <PasswordBox Name="New_Password" Background="AliceBlue" FontSize="18" 
+                <Label Content="Last Name" Foreground="White" />
+                <TextBox Name="New_LastName" Background="AliceBlue" FontSize="18" 
                          />
 
-            <Label Content="Re-enter Password" Foreground="White" />
-            <PasswordBox Name="Repeat_Password" Background="AliceBlue" FontSize="18" 
+                <Label Content="Street" Foreground="White" />
+                <TextBox Name="New_Street" Background="AliceBlue" FontSize="18" 
                          />
 
-        </StackPanel>
+                <Label Content="Postal" Foreground="White" />
+                <TextBox Name="New_Postal" Background="AliceBlue" FontSize="18" 
+                         />
 
-        <!-- Load image for avatar -->
-        <WrapPanel Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2">
-            <Image Height="140" Width="120" Name="Avatar" 
-                   Margin="5,5,5,5" />
-            <Rectangle Width="8"/>
-            <Button Height="50" Width="190" Background="Black" 
-                    Click="Upload_Avatar_Click" >
-                <Label Content="Upload Avatar..." FontSize="22"
-                       FontWeight="DemiBold"  Foreground="White" />
-            </Button>
-        </WrapPanel>
+                <Label Content="City" Foreground="White" />
+                <TextBox Name="New_City" Background="AliceBlue" FontSize="18" 
+                         />
 
-    </Grid>
+                <Label Content="State" Foreground="White" />
+                <TextBox Name="New_State" Background="AliceBlue" FontSize="18" 
+                         />
+
+                <Label Content="Phone No" Foreground="White" />
+                <TextBox Name="New_PhoneNo" Background="AliceBlue" FontSize="18" 
+                         />
+
+            </StackPanel>
+
+            <!-- Right Side -->
+            <StackPanel Grid.Column="4" Grid.Row="1" Grid.RowSpan="3" Margin="1,0,55,0" Grid.ColumnSpan="2"  >
+
+                <Label Content="E-mail" Foreground="White" />
+                <TextBox Name="New_Email" Background="AliceBlue" FontSize="18" 
+                         />
+
+                <Label Content="Username" Foreground="White" />
+                <TextBox Name="New_Username" Background="AliceBlue" FontSize="18" 
+                         />
+
+                <Label Content="Password" Foreground="White" />
+                <PasswordBox Name="New_Password" Background="AliceBlue" FontSize="18" 
+                             />
+
+                <Label Content="Re-enter Password" Foreground="White" />
+                <PasswordBox Name="Repeat_Password" Background="AliceBlue" FontSize="18" 
+                             />
+
+            </StackPanel>
+
+            <!-- Load image for avatar -->
+            <WrapPanel Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="3">
+                <Image Height="140" Width="120" Name="Avatar" 
+                       Margin="5,5,5,5" />
+                <Rectangle Width="8"/>
+                <Button Height="50" Width="190" Background="Black" 
+                        Click="Upload_Avatar_Click" >
+                    <Label Content="Upload Avatar..." FontSize="22"
+                           FontWeight="DemiBold"  Foreground="White" />
+                </Button>
+            </WrapPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

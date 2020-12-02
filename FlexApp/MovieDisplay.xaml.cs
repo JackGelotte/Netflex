@@ -195,42 +195,41 @@ namespace FlexApp
             // API-call till TMDB -----------------------------------------------------------------------------------------------------------------|
             // ------------------------------------------------------------------------------------------------------------------------------------|
 
-            // TMDB id från FilmTitel
-            TMDbClient client = new TMDbClient(Helper.TmdbApi.APIKey);                                                                     
-            SearchContainer<SearchMovie> results = await client.SearchMovieAsync(Movies.DisplayMovies[i].Title);
-            var movieId = results.Results.Where(m=>m.Title.Equals(Movies.DisplayMovies[i].Title, StringComparison.OrdinalIgnoreCase)).First().Id;
 
-            TMDbLib.Objects.Movies.Movie movie = await client.GetMovieAsync(movieId);
+            try
+            {
+                // TMDB id från FilmTitel
+                TMDbClient client = new TMDbClient(Helper.TmdbApi.APIKey);
+                SearchContainer<SearchMovie> results = await client.SearchMovieAsync(Movies.DisplayMovies[i].Title);
+                var movieId = results.Results.Where(m => m.Title.Equals(Movies.DisplayMovies[i].Title, StringComparison.OrdinalIgnoreCase)).First().Id;
 
-            // Synopsis till MovieFocus
-            mf.Synopsis.Text =  movie.Overview.Length < 350 ? movie.Overview : $"{movie.Overview.Substring(0, 349)}...";
+                TMDbLib.Objects.Movies.Movie movie = await client.GetMovieAsync(movieId);
 
-            // Poster till MovieFocus                                                                                         
-            string baseUrl = "https://image.tmdb.org/t/p/";
-            string size = "w500"; // "w500" för mindre version / "orginal" för full storlek
-            string path = movie.PosterPath;
+                // Synopsis till MovieFocus
+                mf.Synopsis.Text = movie.Overview.Length < 350 ? movie.Overview : $"{movie.Overview.Substring(0, 349)}...";
 
-            mf.MoviePoster.Source = new BitmapImage(new Uri($"{baseUrl}{size}{path}"));
+                // Synopsis Björn-Mode
+                if (Status.N00bMode)
+                {
+                    mf.Synopsis.Text = String.Join(' ', mf.Synopsis.Text.Split(' ').Select((x, y) => x = y % 7 != 0 ? x : "Björn"));
+                }
+                
+                // Poster till MovieFocus                                                                                         
+                string baseUrl = "https://image.tmdb.org/t/p/";
+                string size = "w500"; // "w500" för mindre version / "orginal" för full storlek
+                string path = movie.PosterPath;
 
-            /*
-            // Trailer url från Imdb-API
-            var apiLib = new ApiLib(Helper.ImdbAPI.APIKeyJack);
-            var data = await apiLib.YouTubeTrailerAsync($"tt{Movies.DisplayMovies[i].ImdbID}");
-            var youtubeId = data.VideoId;
-
-            var apiLib2 = new ApiLib(Helper.ImdbAPI.APIKeyRobin);
-            var data2 = await apiLib2.YouTubeAsync($"{youtubeId}");
-
-            var youtubeUrl = data2.Videos.First().Url;
-
-            mf.TrailerRun.Trailer.Source = new Uri($"{youtubeUrl}.mp4");
-
-            mf.TrailerRun.Trailer.Source = new Uri("youtubeUrl");
-            */
+                mf.MoviePoster.Source = new BitmapImage(new Uri($"{baseUrl}{size}{path}"));
+            }
+            catch
+            {
+                mf.MoviePoster.Source = new BitmapImage(new Uri(Helper.Image.BjornAvatarURL));
+                mf.Synopsis.Text = String.Concat(mf.Synopsis.Text.Split(' ').Select(x => x = mf.Synopsis.Text.IndexOf(x) % 3 == 0 ? "Björn" : x));
+            }
 
         }
 
-        
+
         public void Click_Previous(object sender, RoutedEventArgs e)
         {
             Page--;

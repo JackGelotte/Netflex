@@ -11,6 +11,8 @@ namespace FlexApp
     {
         public static bool IsLoggedIn { get; set; }
 
+        public static bool N00bMode { get; set; } = false;
+
         public static Customer Customer { get; set; }
 
 

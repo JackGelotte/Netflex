@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:FlexApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280" AllowsTransparency="True"
-        WindowStyle="None" WindowStartupLocation="CenterScreen">
+        WindowStyle="None" WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="90*"/>
@@ -48,26 +49,36 @@
         </Grid>
 
         <!-- Left Bar -->
-        <Grid Grid.RowSpan="4" Grid.Row="2" Grid.Column="0" Name="LeftBar" Margin="0,2,44,0" Grid.ColumnSpan="2">
+        <Grid Grid.RowSpan="4" Grid.Row="2" 
+              Grid.Column="0" Name="LeftBar" Margin="0,2,44,0" 
+              Grid.ColumnSpan="2">
 
             <!-- Search Button -->
-            <local:AutoCompleteTextBoxUserControl Height="40" Width="161" VerticalAlignment="Top" HorizontalAlignment="Center" />
+            <local:AutoCompleteTextBoxUserControl Height="40" Width="161" 
+                                                  VerticalAlignment="Top" 
+                                                  HorizontalAlignment="Center" />
 
             <!-- Genres Box -->
-            <ComboBox Name="GenresComboBox" VerticalAlignment="Top" HorizontalAlignment="Center" Width="120" Height="27"                      
+            <ComboBox Name="GenresComboBox" VerticalAlignment="Top" 
+                      HorizontalAlignment="Center" Width="161" Height="40"                      
                       ItemsSource="{Binding Genres}"
                       DisplayMemberPath="GenreShow"
                       SelectedValuePath="GenreName"
                       SelectedValue="SelectedGenre" 
                       DropDownClosed="GenresComboBox_DropDownClosed"                                          
-                      Margin="0,70,0,0"
+                      Margin="0,50,0,0"
                       />
 
 
             <!-- Hot! Button -->
-            <Button Height="30"  Width="120" Click="Hot_Click" Cursor="Wait" VerticalAlignment="Top" Margin="0,120,0,0">
+            <Button Height="40" Click="Hot_Click" Cursor="Wait" 
+                    VerticalAlignment="Top" 
+                    Margin="2,100,2,0">
                 <StackPanel>
-                    <TextBlock TextAlignment="Center" Text="Hett just nu" FontSize="18"/>
+                    <TextBlock Text=" Popular" 
+                               FontSize="22" Background="Black" 
+                               Foreground="White" Width="167" Height="49"
+                               />
                 </StackPanel>
             </Button>
 

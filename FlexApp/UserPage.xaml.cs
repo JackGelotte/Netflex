@@ -118,14 +118,23 @@ namespace FlexApp
 
         private void NoobFilter_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < 50; i++)
+            if(!Status.N00bMode)
             {
-                MessageBox.Show("Björn e n00b", "hehe", 
-                    MessageBoxButton.OKCancel, 
-                    MessageBoxImage.Error, 
-                    MessageBoxResult.None, 
-                    MessageBoxOptions.RtlReading);
+                for (int i = 0; i < 50; i++)
+                {
+                    MessageBox.Show("Björn e n00b", "hehe",
+                        MessageBoxButton.OKCancel,
+                        MessageBoxImage.Error,
+                        MessageBoxResult.None,
+                        MessageBoxOptions.RtlReading);
+                }
             }
+            else
+            {
+                MessageBox.Show("Erkänn, kul");
+            }
+
+            Status.N00bMode = Status.N00bMode == false ? true : false;
         }
     }
 }
