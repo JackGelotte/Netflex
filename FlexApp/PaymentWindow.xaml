@@ -9,6 +9,61 @@
         AllowsTransparency="true" WindowStyle="None"
         Background="Black">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="341*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="711*"/>
+            <ColumnDefinition Width="30*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" 
+                    Grid.Row="1" Grid.Column="1"  
+                    HorizontalAlignment="Center">
+            <!-- Left Side -->
+            <StackPanel Orientation="Vertical" Width="320">
+                
+                <Label Content="Name" Foreground="White"/>
+                <TextBlock Name="Name" Foreground="White" Height="40"/>
+                <Label Content="Card Number" Foreground="White"/>
+                <TextBlock Name="CardNo" Foreground="White" Height="40"/>
+                <Label Content="CSV" Foreground="White"/>
+                <TextBlock Name="csv" Foreground="White" Height="40"/>
+                <Label Content="Expire Date" Foreground="White"/>
+                <TextBlock Name="ExpDate" Foreground="White" Height="40"/>
+                
+            </StackPanel>
+            <Rectangle Width="20"/>
+            <!-- Right Side -->
+            <StackPanel Orientation="Vertical" Width="320">
+                <Label Content="Upload Photo Id" Foreground="White"/>
+                <Image Name="PhotoId" Height="240"/>
+                <Rectangle Height="20"/>
+                <Button Name="BrowsePhoto" Background="Black" Width="100"
+                        Click="BrowsePhoto_Click">
+                    <Label Content="Browse" Foreground="White" />
+                </Button>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1"
+                    HorizontalAlignment="Center" >
+            <Button Name="Cancel" Click="Cancel_Click"
+                Width="200"  Background="Black"
+                    >
+                <Label Content="Cancel" Foreground="White"
+                       FontSize="25" FontWeight="Bold" />
+            </Button>
+            <Rectangle Width="80"/>
+            <Button Name="Pay" Click="Pay_Click"
+                Width="200" Background="Black" >
+                <Label Content="Pay" Foreground="White"
+                       FontSize="25" FontWeight="Bold"  />
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>

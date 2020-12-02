@@ -23,5 +23,20 @@ namespace FlexApp
         {
             InitializeComponent();
         }
+
+        private void Pay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BrowsePhoto_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
