@@ -23,9 +23,10 @@ namespace FlexApp
 
             public const string RegistrationErrorPasswordMismatch = "Passwards no match, no go";
             public const string RegistrationErrorUsernameAlreadyExists = "Username taken, try 89712893821972873";
+            public const string RegistrationErrorEmailWrongFormat = "Invalid email adress, keep trying us";
             public const string RegistrationErrorEmailAlreadyRegistered = "Email already have an account, go get your password";
-            public const string RegistrationErrorUsernamePasswordIncorect = "Username must be at least 3 characters, password 7, make it safe osv";
-            public const string RegistrationErrorUsernameLength = "Username needs to be at least 4 characters, you laazy?";
+            public const string RegistrationErrorUsernamePasswordIncorect = "Username must be at least 4 characters, password 4, make it safe osv";
+            public const string RegistrationErrorInvalidPostal = "Postal Code is 5 numbers in sweden, get over it";
             public const string AvatarFailedToLoad = "Fel format eller för ful, testa igen";
 
             public const string RentalSelectedActiveDays = "Days Active";

@@ -29,6 +29,24 @@ namespace FlexApp
 
         private void Adress_Save_Changes_Click(object sender, RoutedEventArgs e)
         {
+            // Kollar så Postal Code är i rätt format
+            string postalCode = String.Concat(Postal.Text
+                .Select(c => c = !Char.IsDigit(c) ? ' ' : c)
+                .SkipWhile(x => Char.IsWhiteSpace(x)));
+            try { postalCode = postalCode.Insert(3, " "); }
+            catch
+            {
+                MessageBox.Show(Helper.Message.RegistrationErrorInvalidPostal);
+                Postal.Text = "";
+                return;
+            }
+            if (postalCode.Length > 6)
+            {
+                MessageBox.Show(Helper.Message.RegistrationErrorInvalidPostal);
+                Postal.Text = "";
+                return;
+            }
+
             string adress = $"{Street.Text} {Postal.Text} {City.Text} {State.Text}";
             Status.Customer.Adress = adress;
             Status.ct.Update(Status.Customer);
@@ -43,6 +61,8 @@ namespace FlexApp
             {
                 MessageBox.Show(Helper.Message.RegistrationErrorUsernamePasswordIncorect);
                 Username.Text = "";
+                Password.Password = "";
+                PasswordRepeat.Password = "";
                 return;
             }
 
@@ -57,12 +77,36 @@ namespace FlexApp
             if (Status.ct.Logins.Where(l => l.Username.Equals(Username)).Count() > 0)
             {
                 MessageBox.Show(Helper.Message.RegistrationErrorUsernameAlreadyExists);
+                Username.Text = "";
+                Password.Password = "";
+                Password.Password = "";
                 return;
             }
 
             if (Email.Text != Status.Customer.Email && (Status.ct.Customers.Where(c => c.Email.Equals(Email.Text)).Count() > 0))
             {
                 MessageBox.Show(Helper.Message.RegistrationErrorEmailAlreadyRegistered);
+                Username.Text = "";
+                Password.Password = "";
+                Password.Password = "";
+                return;
+            }
+
+            // Kollar så Email är i rätt format
+            List<bool> check = new List<bool>();
+            string email = Email.Text;
+            int iAt = email.IndexOf('@');
+            int iDot = email.IndexOf('.');
+
+            if (!email.Contains('@') && !email.Contains('.')) check.Add(false);
+            if (email.Where(c => c == '@').Count() > 1 || email.Where(c => c == '.').Count() > 1) check.Add(false);
+            if (iAt > iDot) check.Add(false);
+            if (email.Replace('@', 'X').Replace('.', 'X').Where(c => !Char.IsLetterOrDigit(c)).Count() > 0) check.Add(false);
+            if (iAt < 1 || iDot - iAt < 1 || email.Length - iDot < 2) check.Add(false);
+            if (check.Contains(false))
+            {
+                MessageBox.Show(Helper.Message.RegistrationErrorEmailWrongFormat);
+                Email.Text = "";
                 return;
             }
 

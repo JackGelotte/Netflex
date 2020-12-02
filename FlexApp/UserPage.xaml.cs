@@ -74,7 +74,7 @@ namespace FlexApp
             }
             catch
             {
-                this.AvatarImage.Source = new BitmapImage(new Uri(Helper.Image.DefaultAvatarURL));
+                this.AvatarImage.Source = new BitmapImage(new Uri(Helper.Image.BjornAvatarURL));
             }
 
             // Refresh User Information for UserPage
@@ -118,6 +118,7 @@ namespace FlexApp
 
         private void NoobFilter_Click(object sender, RoutedEventArgs e)
         {
+            // Vad gör n00bMode, ingen vet, sök, gogogo
             if(!Status.N00bMode)
             {
                 for (int i = 0; i < 50; i++)

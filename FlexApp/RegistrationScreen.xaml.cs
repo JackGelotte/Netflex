@@ -26,21 +26,23 @@ namespace FlexApp
         {
             InitializeComponent();
 
-
+            // Vacker standard Avatar
             Avatar.Source = new BitmapImage(new Uri(Helper.Image.BjornAvatarURL));
-
         }
 
         private void New_Registration_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            // Kollar så Username och password är 4+ långt
             if(New_Username.Text.Length < 4 || New_Password.Password.Length < 4) 
             { 
                 MessageBox.Show(Helper.Message.RegistrationErrorUsernamePasswordIncorect); 
                 New_Username.Text = "";
+                New_Password.Password = "";
+                Repeat_Password.Password = "";
                 return;
             }
 
+            // Kollar så lösenorden matchar
             if (New_Password.Password != Repeat_Password.Password) 
             { 
                 MessageBox.Show(Helper.Message.RegistrationErrorPasswordMismatch);
@@ -49,19 +51,64 @@ namespace FlexApp
                 return;
             }
 
+            // Kollar så username inte redan är taget
             if (Status.ct.Logins.Where(l => l.Username.Equals(New_Username)).Count() > 0) 
             { 
                 MessageBox.Show(Helper.Message.RegistrationErrorUsernameAlreadyExists);
+                New_Username.Text = "";
+                New_Password.Password = "";
+                Repeat_Password.Password = "";
                 return;
             }
 
+            // Kollar så email inte redan finns registrerad
             if (Status.ct.Customers.Where(c => c.Email.Equals(New_Email.Text)).Count() > 0) 
             { 
-                MessageBox.Show(Helper.Message.RegistrationErrorEmailAlreadyRegistered); 
+                MessageBox.Show(Helper.Message.RegistrationErrorEmailAlreadyRegistered);
+                New_Username.Text = "";
+                New_Password.Password = "";
+                Repeat_Password.Password = "";
                 return; 
             }
 
-            string adress = $"{New_Street.Text} {New_Postal.Text} {New_City.Text} {New_State.Text}";
+            // Kollar så Postal Code är i rätt format
+            string postalCode = String.Concat(New_Postal.Text
+                .Select(c => c = !Char.IsDigit(c) ? ' ' : c)
+                .SkipWhile(x => Char.IsWhiteSpace(x)));
+            try { postalCode = postalCode.Insert(3, " "); }
+            catch {
+                MessageBox.Show(Helper.Message.RegistrationErrorInvalidPostal);
+                New_Postal.Text = "";
+                return;
+            }
+            if(postalCode.Length > 6)
+            {
+                MessageBox.Show(Helper.Message.RegistrationErrorInvalidPostal);
+                New_Postal.Text = "";
+                return;
+            }
+
+            // Kollar så Email är i rätt format
+            List<bool> check = new List<bool>();
+            string email = New_Email.Text;
+            int iAt = email.IndexOf('@');
+            int iDot = email.IndexOf('.');
+
+            if (!email.Contains('@') && !email.Contains('.')) check.Add(false);
+            if (email.Where(c => c == '@').Count() > 1 || email.Where(c => c == '.').Count() > 1) check.Add(false);
+            if (iAt > iDot) check.Add(false);
+            if (email.Replace('@', 'X').Replace('.', 'X').Where(c => !Char.IsLetterOrDigit(c)).Count() > 0) check.Add(false);
+            if (iAt < 1 || iDot - iAt < 1 || email.Length - iDot < 2) check.Add(false);
+            if (check.Contains(false)) 
+            {
+                MessageBox.Show(Helper.Message.RegistrationErrorEmailWrongFormat);
+                New_Email.Text = "";
+                return;
+            }
+
+
+
+            string adress = $"{New_Street.Text} {postalCode} {New_City.Text} {New_State.Text}";
 
             User.CreateUser.CreateNewUser(
                 New_FirstName.Text, New_LastName.Text,
@@ -83,6 +130,7 @@ namespace FlexApp
             Repeat_Password.Password = "";
 
             UserPage.UserPageUserControl.AvatarImage.Source = new BitmapImage(new Uri(Helper.Image.BjornAvatarURL));
+            this.Visibility = Visibility.Hidden;
 
         }
 
