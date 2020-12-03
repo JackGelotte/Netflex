@@ -27,8 +27,6 @@ namespace FlexApp.User
 
         public void Execute(int daysActive)
         {
-            Payment(daysActive);
-
             if(Status.IsLoggedIn && IsPayed)
             {
                 Status.ct.Add(new DatabaseConnection.Rental()
@@ -41,14 +39,5 @@ namespace FlexApp.User
                 Status.ct.SaveChanges();
             }
         }
-
-        public void Payment(int daysActive)
-        {
-            if(true)
-            {
-                IsPayed = true;
-            }
-        }
-
     }
 }

@@ -11,6 +11,7 @@ namespace FlexApp
             public const string LoginSuccessful = "Cool, you're in";
             public const string LoginFailedWrongUsernameOrPassword = "Nope";
             public const string LoginPrompt = "Need to be logged in annars nej";
+            public const string LoginInfoFailedToLoad = "Old adress info, please update";
 
             public const string RentalErrorSelectDaysActive = "hur länge kompis?";
             public const string RentalErrorPaymentFailed = "kom tillbaks 26e";

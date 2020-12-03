@@ -52,6 +52,7 @@ namespace FlexApp
             if(!Status.IsLoggedIn)
             {
                 Login.Visibility = Visibility.Visible;
+                return;
             }
 
             if (Status.IsLoggedIn && DaysActiveSelected < 1) MessageBox.Show(Helper.Message.RentalSelectActiveDaysError);

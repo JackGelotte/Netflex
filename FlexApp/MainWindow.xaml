@@ -36,12 +36,12 @@
                 <Image Source="/Images/Logo.png" HorizontalAlignment="Left" />
             </Label>
 
-            <Button Name="Login_Logout_Button" Click="Login_Logout_Click" Margin="700,0,0,0" Height="35"  Width="120" Cursor="Wait">
+            <Button Name="Login_Logout_Button" Click="Login_Logout_Click" Margin="700,0,0,0" Height="35"  Width="120" Cursor="Hand">
                 <StackPanel>
                     <TextBlock Name="Login_Logout_ButtonText" Text="Login" TextAlignment="Center" FontSize="18"/>
                 </StackPanel>
             </Button>
-            <Button Name="Register_MyPage_Button" Click="Register_MyPage_Click" Margin="1050,0,0,0" Height="35"  Width="120" Cursor="Wait">
+            <Button Name="Register_MyPage_Button" Click="Register_MyPage_Click" Margin="1050,0,0,0" Height="35"  Width="120" Cursor="Hand">
                 <StackPanel>
                     <TextBlock Name="Register_MyPage_ButtonText" Text="Register" TextAlignment="Center" FontSize="18"/>
                 </StackPanel>
@@ -71,7 +71,7 @@
 
 
             <!-- Hot! Button -->
-            <Button Height="40" Click="Hot_Click" Cursor="Wait" 
+            <Button Height="40" Click="Hot_Click" Cursor="Hand" 
                     VerticalAlignment="Top" 
                     Margin="2,100,2,0">
                 <StackPanel>
@@ -84,7 +84,7 @@
 
 
             <!-- About Button -->
-            <Button Click="About_Click" BorderBrush="Transparent" Height="25"  Width="90" Cursor="Wait" VerticalAlignment="Bottom" Margin="0,0,0,50" Background="Transparent" >
+            <Button Click="About_Click" BorderBrush="Transparent" Height="25"  Width="90" Cursor="Hand" VerticalAlignment="Bottom" Margin="0,0,0,50" Background="Transparent" >
                 <StackPanel>
                     <TextBlock TextAlignment="Center" Text="About" FontSize="15"/>
                 </StackPanel>

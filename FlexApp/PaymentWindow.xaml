@@ -29,7 +29,7 @@
             <StackPanel Orientation="Vertical" Width="320">
                 
                 <Label Content="Name" Foreground="White"/>
-                <TextBox Name="Name"  Height="40"/>
+                <TextBox Name="nName"  Height="40"/>
                 <Label Content="Card Number" Foreground="White"/>
                 <TextBox Name="CardNo"  Height="40"/>
                 <Label Content="CSV" Foreground="White"/>

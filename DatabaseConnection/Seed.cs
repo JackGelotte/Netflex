@@ -19,6 +19,11 @@ namespace DatabaseConnection
         static void Main() {
             //ct.RemoveRange(ct.Rentals, ct.Customers, ct.Logins, ct.Movies);
            // ct.SaveChanges();
+
+            // Bara kicka i hur många filmer
+            // För att "live" sökuppdatering ska fungera i sökfönster bör inte fler
+            // än 30 filmer läsas in
+            // annars så släng in så mycket filmer du vill, öka med en 50-100 i taget
             Read(File.ReadAllLines(@".\MovieList.csv").Skip(2000).Take(100).ToArray());
 
 

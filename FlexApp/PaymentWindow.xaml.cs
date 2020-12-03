@@ -83,7 +83,7 @@ namespace FlexApp
             if (CardNo.Text.Length < 15 || CardNo.Text.Length > 18 || CardNo.Text.Any(x => !Char.IsDigit(x)))
             {
                 MessageBox.Show(Helper.Message.PaymentIncorrectCardNo);
-                Name.Text = string.Empty;
+                nName.Text = string.Empty;
                 CardNo.Text = string.Empty;
                 csv.Text = string.Empty;
                 expMonth.Text = string.Empty;
@@ -93,7 +93,7 @@ namespace FlexApp
             if (csv.Text.Length != 3 || csv.Text.Any(x => !Char.IsDigit(x)))
             {
                 MessageBox.Show(Helper.Message.PaymentIncorrectCSV);
-                Name.Text = string.Empty;
+                nName.Text = string.Empty;
                 CardNo.Text = string.Empty;
                 csv.Text = string.Empty;
                 expMonth.Text = string.Empty;
@@ -103,7 +103,7 @@ namespace FlexApp
             if(string.IsNullOrEmpty(expYear.Text) || string.IsNullOrEmpty(expMonth.Text))
             {
                 MessageBox.Show(Helper.Message.PaymentReqExp);
-                Name.Text = string.Empty;
+                nName.Text = string.Empty;
                 CardNo.Text = string.Empty;
                 csv.Text = string.Empty;
                 expMonth.Text = string.Empty;

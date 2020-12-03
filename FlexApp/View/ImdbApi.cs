@@ -23,25 +23,25 @@ namespace FlexApp
 
         public static List<PosterDataItem> ImdbPosters { get; set; } = new List<PosterDataItem>();
 
-        public static async Task<TrailerData> ImdbTrailer(Movie movie)
+        public static async void ImdbTrailer(Movie movie)
         {
             ApiLib api = new ApiLib(API_KEY);
             var data = await api.TitleAsync($"{movie.ImdbID}");
-            return data.Trailer;
+            var result = data.Trailer;
         }
 
-        public static async Task<string> ImdbPlot(Movie movie)
+        public static async void ImdbPlot(Movie movie)
         {
             ApiLib api = new ApiLib(API_KEY);
             var data = await api.TitleAsync($"{movie.ImdbID}");
-            return data.Plot;
+            var result = data.Plot;
         }
 
-        public static async Task<List<SimilarShort>> Imdb(Movie movie)
+        public static async void Imdb(Movie movie)
         {
             ApiLib api = new ApiLib(API_KEY);
             var data = await api.TitleAsync($"{movie.ImdbID}");
-            return data.Similars;
+            var result = data.Similars;
         }
 
     }

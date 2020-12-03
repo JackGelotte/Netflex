@@ -107,7 +107,7 @@ namespace FlexApp
                                 image.Source = new BitmapImage(new Uri(Helper.Image.BjornAvatarURL));
                             }
 
-                            title.Cursor = Cursors.Wait;
+                            title.Cursor = Cursors.Hand;
                             title.Text = m.Title;
                             title.Foreground = Brushes.White;
                             title.FontSize = 18;
@@ -115,7 +115,7 @@ namespace FlexApp
                             title.TextWrapping = TextWrapping.WrapWithOverflow;
                             title.Margin = new Thickness(10, 0, 10, 0);
 
-                            image.Cursor = Cursors.Wait;
+                            image.Cursor = Cursors.Hand;
                             image.Margin = new Thickness(10, 20, 10, 5);
                             image.MaxHeight = 280;
 
@@ -228,7 +228,6 @@ namespace FlexApp
             }
 
         }
-
 
         public void Click_Previous(object sender, RoutedEventArgs e)
         {

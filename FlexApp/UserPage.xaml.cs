@@ -79,18 +79,24 @@ namespace FlexApp
 
             // Refresh User Information for UserPage
             var adress = Status.Customer.Adress.Split(' ');
-
-            UserPageUserControl.AccountInfoUserControl.FirstName.Text = Status.Customer.FirstName;
-            UserPageUserControl.AccountInfoUserControl.LastName.Text = Status.Customer.LastName;
-            UserPageUserControl.AccountInfoUserControl.Street.Text = adress[0];
-            UserPageUserControl.AccountInfoUserControl.Postal.Text = $"{adress[1]} {adress[2]}";
-            UserPageUserControl.AccountInfoUserControl.City.Text = adress[3];
-            UserPageUserControl.AccountInfoUserControl.State.Text = adress[4];
-            UserPageUserControl.AccountInfoUserControl.Email.Text = Status.Customer.Email;
-            UserPageUserControl.AccountInfoUserControl.PhoneNo.Text = Status.Customer.PhoneNumber;
-            UserPageUserControl.AccountInfoUserControl.Username.Text = Status.Customer.Login.Username;
-            UserPageUserControl.AccountInfoUserControl.Password.Password = "";
-            UserPageUserControl.AccountInfoUserControl.PasswordRepeat.Password = "";
+            try
+            {
+                UserPageUserControl.AccountInfoUserControl.FirstName.Text = Status.Customer.FirstName;
+                UserPageUserControl.AccountInfoUserControl.LastName.Text = Status.Customer.LastName;
+                UserPageUserControl.AccountInfoUserControl.Street.Text = adress[0];
+                UserPageUserControl.AccountInfoUserControl.Postal.Text = $"{adress[1]} {adress[2]}";
+                UserPageUserControl.AccountInfoUserControl.City.Text = adress[3];
+                UserPageUserControl.AccountInfoUserControl.State.Text = adress[4];
+                UserPageUserControl.AccountInfoUserControl.Email.Text = Status.Customer.Email;
+                UserPageUserControl.AccountInfoUserControl.PhoneNo.Text = Status.Customer.PhoneNumber;
+                UserPageUserControl.AccountInfoUserControl.Username.Text = Status.Customer.Login.Username;
+                UserPageUserControl.AccountInfoUserControl.Password.Password = "";
+                UserPageUserControl.AccountInfoUserControl.PasswordRepeat.Password = "";
+            }
+            catch
+            {
+                MessageBox.Show(Helper.Message.LoginInfoFailedToLoad);
+            }
 
         }
 
