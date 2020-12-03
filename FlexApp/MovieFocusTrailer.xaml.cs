@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TMDbLib;
+using System.IO;
+using System.Reflection;
 
 namespace FlexApp
 {
@@ -25,7 +27,14 @@ namespace FlexApp
         {
             InitializeComponent();
 
-            Trailer.Source = new Uri("c:/inception.mp4");
+            string trailerTest = @"\Images\inception.mp4";
+
+            string exePath = Directory.GetCurrentDirectory();
+            string folderPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(exePath, @"..\..\..\"));
+            string fullPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(folderPath + trailerTest));
+            
+
+            Trailer.Source = new Uri(fullPath); 
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
