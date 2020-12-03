@@ -72,7 +72,7 @@
         </StackPanel>
 
         <local:LogInDropDown x:Name="Login" Grid.Column="2" 
-                             Margin="386,104,-43,10" Grid.RowSpan="3" Grid.Row="3" 
+                             Margin="323,153,20,10" Grid.RowSpan="3" Grid.Row="3" 
                              Grid.ColumnSpan="2" Visibility="Hidden" />
     </Grid>
 </Window>
