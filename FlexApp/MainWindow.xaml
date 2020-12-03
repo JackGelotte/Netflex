@@ -32,7 +32,7 @@
 
         <!-- Top Bar -->
         <Grid Grid.RowSpan="2" Grid.ColumnSpan="5">
-            <Label MouseUp="Logo_Click">
+            <Label MouseUp="Logo_Click" Width="380" HorizontalAlignment="Left">
                 <Image Source="/Images/Logo.png" HorizontalAlignment="Left" />
             </Label>
 

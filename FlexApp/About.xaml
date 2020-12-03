@@ -9,12 +9,12 @@
     <Grid>
 
         <Image Source="/Images/Arnold-Schwarzenegger-Now-post3.jpg"/>
-        <Image Source="/Images/Logo.png" Width="230" Height="100" Margin="170,150,672,291">
+        <Image Source="/Images/Logo.png" Width="230" Height="100" Margin="180,150,671,291">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="2.501"/>
+                    <RotateTransform Angle="2.1"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Image.RenderTransform>

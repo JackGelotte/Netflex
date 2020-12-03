@@ -29,10 +29,10 @@
             <StackPanel Orientation="Vertical" Width="320">
                 
                 <Label Content="Name" Foreground="White"/>
-                <TextBox Name="nName"  Height="40"/>
-                <Label Content="Card Number" Foreground="White"/>
+                <TextBox Name="Name"  Height="40"/>
+                <Label Content="Card Number (15-18 digits)" Foreground="White"/>
                 <TextBox Name="CardNo"  Height="40"/>
-                <Label Content="CSV" Foreground="White"/>
+                <Label Content="CSV (3 digits)" Foreground="White"/>
                 <TextBox Name="csv"  Height="40"/>
                 <Label Content="Expire Date" Foreground="White"/>
                 <StackPanel Orientation="Horizontal">

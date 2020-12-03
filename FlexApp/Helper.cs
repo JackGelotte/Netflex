@@ -37,7 +37,7 @@ namespace FlexApp
 
             public const string PaymentNoID = "Vi behöver ditt ID, Björn.";
             public const string PaymentIncorrectCardNo = "Försök inte, Björn";
-            public const string PaymentIncorrectCSV = "lol nop.";
+            public const string PaymentIncorrectCSV = "lol nop.(csv)";
             public const string PaymentReqExp = "Exp req.";
 
         }
