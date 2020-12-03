@@ -15,14 +15,11 @@ namespace FlexApp.User
 
         public Movie Movie { get; set; }
 
-        public static ObservableCollection<Rental> RentalsInProcess = new ObservableCollection<Rental>();
-
         public Rental(Movie movie) 
         { 
             Customer = Status.Customer;
-            IsPayed = false;
+            IsPayed = true;
             Movie = movie;
-            RentalsInProcess.Add(this);
         }
 
         public void Execute(int daysActive)
